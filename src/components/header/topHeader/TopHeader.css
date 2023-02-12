@@ -1,0 +1,28 @@
+#top-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #1E1F29;
+  }
+  
+  #top-header .header-links li {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 12px;
+  }
+  
+  #top-header .header-links li:last-child {
+    margin-right: 0px;
+  }
+  
+  #top-header .header-links li a {
+    color: #FFF;
+  }
+  
+  #top-header .header-links li a:hover {
+    color: #D10024;
+  }
+  
+  #top-header .header-links li i {
+    color: #D10024;
+    margin-right: 5px;
+  }
