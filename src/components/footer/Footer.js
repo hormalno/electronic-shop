@@ -1,13 +1,19 @@
+import styled from "styled-components";
 import BottomFooter from "./bottomFooter/BottomFooter";
 import TopFooter from "./topFooter/TopFooter";
 
 function Footer() {
     return (
-        <footer id="footer">
+        <FooterStyle>
 			<TopFooter />
             <BottomFooter />
-		</footer>
+		</FooterStyle>
     )
 }
 
 export default Footer;
+
+const FooterStyle = styled.footer `
+	background: #15161D;
+	color: #B9BABC;
+`
