@@ -1,7 +1,13 @@
+import styled from "styled-components";
+
 function Main(props) {
     return (
-        <h1>{props.title}</h1>
+        <HeaderCenter>{props.title}</HeaderCenter>
     )
 }
 
 export default Main;
+
+const HeaderCenter = styled.h1 `
+    text-align:center;
+`
