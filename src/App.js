@@ -1,16 +1,25 @@
 import './App.css';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
 import Main from './components/main/Main';
- 
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Layout from './components/Layout';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" exact element={<Layout />}>
+      <Route path="about" element={<Main title="HOME PAGE" />} />
+      {/* ... etc. */}
+    </Route>
+  )
+);
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main title="HOME PAGE" />
-      <Footer />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
