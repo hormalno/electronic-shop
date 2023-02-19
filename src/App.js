@@ -10,7 +10,7 @@ import Layout from './components/Layout';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" exact element={<Layout />}>
+    <Route path="/" element={<Layout />}>
       <Route path="" element={<Main title="HOME PAGE" />} />
       <Route path="hotdeals" element={<Main title="HOT DEALS" />} />
       <Route path="categories" element={<Main title="CATEGORIES" />} />
