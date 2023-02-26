@@ -1,3 +1,5 @@
+import './HotDeals.css'
+
 function HotDeals() {
     return (
         <div id="hot-deal" className="section">

@@ -14,7 +14,7 @@ function MainHeader() {
 					<div className="col-md-3 clearfix">
 						<div className="header-ctn">
 							<Wishlist />
-							{/* <Cart /> */}
+							<Cart />
 							<div className="menu-toggle">
 								<a href="#">
 									<i className="fa fa-bars"></i>

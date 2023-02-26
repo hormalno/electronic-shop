@@ -1,4 +1,6 @@
-function TopSellingWidget() {
+import './Widget.css'
+
+function Widget() {
     return (
 		<div className="section">
 			<div className="container">
@@ -240,4 +242,4 @@ function TopSellingWidget() {
     )
 }
 
-export default TopSellingWidget;
+export default Widget;

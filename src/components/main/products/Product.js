@@ -4,7 +4,7 @@ function Product() {
     return (
         <div className="product">
             <div className="product-img">
-                <img src="./img/product03.png" />
+                <img src="./img/product03.png" alt="" />
                 <div className="product-label">
                     <span className="sale">-30%</span>
                 </div>

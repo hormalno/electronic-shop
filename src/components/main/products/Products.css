@@ -1,82 +1,6 @@
 /*=========================================================
-	06 -> PRODUCT
+	PRODUCT
 ===========================================================*/
-  /*----------------------------*\
-      Widget product
-  \*----------------------------*/
-  
-  .product-widget {
-    position: relative;
-  }
-  
-  .product-widget+.product-widget {
-    margin: 30px 0px;
-  }
-  
-  .product-widget .product-img {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 60px;
-  }
-  
-  .product-widget .product-img>img {
-    width: 100%;
-  }
-  
-  .product-widget .product-body {
-    padding-left: 75px;
-    min-height: 60px;
-  }
-  
-  .product-widget .product-body .product-category {
-    text-transform: uppercase;
-    font-size: 10px;
-    color: #8D99AE;
-  }
-  
-  .product-widget .product-body .product-name {
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-  
-  .product-widget .product-body .product-name>a {
-    font-weight: 700;
-  }
-  
-  .product-widget .product-body .product-name>a:hover, .product-widget .product-body .product-name>a:focus {
-    color: #D10024;
-  }
-  
-  .product-widget .product-body .product-price {
-    font-size: 14px;
-    color: #D10024;
-  }
-  
-  .product-widget .product-body .product-price .product-old-price {
-    font-size: 70%;
-    font-weight: 400;
-    color: #8D99AE;
-  }
-  
-  .product-widget .product-body .product-price .qty {
-    font-weight: 400;
-    margin-right: 10px;
-  }
-  
-  .product-widget .delete {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 14px;
-    width: 14px;
-    text-align: center;
-    font-size: 10px;
-    padding: 0;
-    background: #1e1f29;
-    border: none;
-    color: #FFF;
-  }
   
   /*----------------------------*\
       Products slick
@@ -172,6 +96,31 @@
 
 .slick-next {
   right: -20px;
+}
+
+/*----------------------------*\
+	Dots
+\*----------------------------*/
+
+.slick-dots li, .slick-dots li button, .slick-dots li button:before {
+  width: 10px;
+  height: 10px;
+}
+
+.slick-dots li button:before {
+  content: "";
+  opacity: 1;
+  background: #E4E7ED;
+  border-radius: 50%;
+}
+
+.slick-dots li.slick-active button:before {
+  background-color: #D10024;
+}
+
+.custom-dots .slick-dots {
+  position: static;
+  margin: 15px 0px;
 }
 
 /*----------------------------*\

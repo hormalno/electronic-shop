@@ -1,17 +1,16 @@
 import ShopNow from "./shopNow/ShopNow";
 import Products from "./products/Products";
 import HotDeals from "./hotDeals/HotDeals";
-import TopSelling from "./topSelling/TopSelling";
-import TopSellingWidget from "./topSellingWidget/TopSellingWidget";
+import Widget from "./widget/Widget";
 
 function Main(props) {
     return (
         <>
             <ShopNow />
-            <Products />
+            <Products title="NEW PRODUCTS" />
             <HotDeals />
-            <TopSelling />
-            <TopSellingWidget />
+            <Products title="TOP SELLING" />
+            <Widget />
         </>
     )
 }

@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import './ShopNow.css'
+
 function ShopNow() {
     return (
         <div className="section">
@@ -10,7 +13,7 @@ function ShopNow() {
 							</div>
 							<div className="shop-body">
 								<h3>Laptop<br/>Collection</h3>
-								<a href="#" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></a>
+								<Link to="laptops" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
 							</div>
 						</div>
 					</div>
@@ -21,7 +24,7 @@ function ShopNow() {
 							</div>
 							<div className="shop-body">
 								<h3>Accessories<br/>Collection</h3>
-								<a href="#" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></a>
+								<Link to="accessories" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
 							</div>
 						</div>
 					</div>
@@ -32,7 +35,7 @@ function ShopNow() {
 							</div>
 							<div className="shop-body">
 								<h3>Cameras<br/>Collection</h3>
-								<a href="#" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></a>
+								<Link to="cameras" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
 							</div>
 						</div>
 					</div>
