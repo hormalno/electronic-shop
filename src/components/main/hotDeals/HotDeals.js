@@ -1,11 +1,11 @@
 function HotDeals() {
     return (
-        <div id="hot-deal" class="section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="hot-deal">
-							<ul class="hot-deal-countdown">
+        <div id="hot-deal" className="section">
+			<div className="container">
+				<div className="row">
+					<div className="col-md-12">
+						<div className="hot-deal">
+							<ul className="hot-deal-countdown">
 								<li>
 									<div>
 										<h3>02</h3>
@@ -31,9 +31,9 @@ function HotDeals() {
 									</div>
 								</li>
 							</ul>
-							<h2 class="text-uppercase">hot deal this week</h2>
+							<h2 className="text-uppercase">hot deal this week</h2>
 							<p>New Collection Up to 50% OFF</p>
-							<a class="primary-btn cta-btn" href="#">Shop now</a>
+							<a className="primary-btn cta-btn" href="#">Shop now</a>
 						</div>
 					</div>
 				</div>

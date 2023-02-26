@@ -17,8 +17,8 @@ const router = createBrowserRouter(
       <Route path="laptops" element={<Main title="LAPTOPS" />} />
       <Route path="smartphones" element={<Main title="SMARTPHONES" />} />
       <Route path="cameras" element={<Main title="CAMERAS" />} />
-      <Route path="accessories" element={<Main title="ACCESSORIES" />} />
-      <Route path="*" element={<Main title="PAGE NOT FOUND" />} /> */}
+      <Route path="accessories" element={<Main title="ACCESSORIES" />} />*/}
+      <Route path="*" element={"PAGE NOT FOUND"} /> 
     </Route>
   )
 );
