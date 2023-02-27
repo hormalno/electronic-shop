@@ -14,6 +14,11 @@ function Product() {
                 <h3 className="product-name"><a href="#">product name goes here</a></h3>
                 <h4 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h4>
                 <div className="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
                 </div>
                 <div className="product-btns">
                     <button className="add-to-wishlist"><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></button>

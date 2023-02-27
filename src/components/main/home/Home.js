@@ -1,12 +1,12 @@
-import ShopNow from "./shopNow/ShopNow";
-import Products from "./products/Products";
+import Products from "../utilities/products/Products";
 import HotDeals from "./hotDeals/HotDeals";
+import ShopNow from "./shopNow/ShopNow";
 import Widget from "./widget/Widget";
 
-function Main(props) {
+function Home(props) {
     return (
         <>
-            <ShopNow />
+            <ShopNow/>
             <Products title="NEW PRODUCTS" />
             <HotDeals />
             <Products title="TOP SELLING" />
@@ -15,4 +15,4 @@ function Main(props) {
     )
 }
 
-export default Main;
+export default Home;
