@@ -4,10 +4,10 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Layout from './components/Layout';
-import Home from './components/main/home/Home';
 import './App.css';
-import PageNotFound from "./components/main/pagenotfound/PageNotFound";
+import Layout from "./layout/Layout";
+import Home from './pages/home/Home';
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

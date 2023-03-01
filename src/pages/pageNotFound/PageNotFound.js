@@ -1,4 +1,4 @@
-import Breadcrumb from "../../utilities/breadcrumb/Breadcrumb";
+import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 
 function PageNotFound() {
     return (

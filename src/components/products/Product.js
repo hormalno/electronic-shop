@@ -1,10 +1,10 @@
 import './Product.css'
 
-function Product() {
+function Product(props) {
     return (
         <div className="product">
             <div className="product-img">
-                <img src="./img/product03.png" alt="" />
+                <img src={props.img} alt="" />
                 <div className="product-label">
                     <span className="sale">-30%</span>
                 </div>

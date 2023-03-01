@@ -12,6 +12,7 @@ function Products(props) {
 		autoplay: true,
 		infinite: true,
 		speed: 300,
+		dragable: true,
 		dots: false,
 		arrows: false,
 		appendArrows: true,
@@ -29,12 +30,12 @@ function Products(props) {
 			}}]
 	};
 
-	let slider = useRef();
+	let slider1 = useRef();
 	const next = () => {
-		slider.slickNext();
+		slider1.slickNext();
 	};
 	const previous = () => {
-		slider.slickPrev();
+		slider1.slickPrev();
 	};
 
     return (
@@ -58,10 +59,13 @@ function Products(props) {
 						<div className="row">
 							<div className="products-tabs">
 								<div id="tab1" className="tab-pane active">
-									<Slider ref={c => (slider = c)} className="products-slick" {...settings}>
-										{mockData.map(data => (
-											<Product key={data} />
-											))};
+									<Slider ref={s => (slider1 = s)} className="products-slick" {...settings}>
+										<Product img="./img/product01.png" />
+										<Product img="./img/product02.png" />
+										<Product img="./img/product03.png" />
+										<Product img="./img/product04.png" />
+										<Product img="./img/product05.png" />
+										<Product img="./img/product06.png" />
 									</Slider>
 									<div className="products-slick-nav">
 										<button className="slick-prev" onClick={previous}>Previous</button>

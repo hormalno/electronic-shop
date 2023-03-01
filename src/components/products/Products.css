@@ -5,17 +5,6 @@
   /*----------------------------*\
       Products slick
   \*----------------------------*/
-  
-  .products-slick .slick-list {
-    padding-bottom: 60px;
-    margin-bottom: -60px;
-    z-index: 2;
-  }
-  
-  .products-slick .product.slick-slide {
-    margin: 15px;
-  }
-  
   .products-tabs>.tab-pane {
     display: block;
     height: 0;
@@ -31,6 +20,13 @@
     visibility: visible;
     height: auto;
   }
+
+  .products-slick .slick-list {
+    padding-bottom: 60px;
+    margin-bottom: -60px;
+    z-index: 2;
+  }
+  
   
   .products-slick-nav {
     position: absolute;
