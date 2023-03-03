@@ -1,12 +1,14 @@
-import Product from './Product';
-import './Products.css';
+import Product from '../product/Product';
 import Slider from 'react-slick';
 import { useRef } from 'react';
+import {SectionTitleClass,
+		SectionNavClass,
+		SectionTabNavClass,
+		ProductsTabsClass} from './ProductsStyle';
+import {ProductsSlickNavStyle} from "./ProductsSlickNavStyle";
 
 function Products(props) {
-	const mockData = [1,2,3,4,5,6];
-
-	const settings = {
+	const sliderSettings = {
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		autoplay: true,
@@ -30,49 +32,38 @@ function Products(props) {
 			}}]
 	};
 
-	let slider1 = useRef();
-	const next = () => {
-		slider1.slickNext();
-	};
-	const previous = () => {
-		slider1.slickPrev();
-	};
+	let slider = useRef();
 
     return (
 		<div className="section">
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12">
-						<div className="section-title">
+						<SectionTitleClass>
 							<h3 className="title">{props.title}</h3>
-							<div className="section-nav">
-								<ul className="section-tab-nav tab-nav">
+							<SectionNavClass>
+								<SectionTabNavClass>
 									<li className="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
 									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
 									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
 									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-								</ul>
-							</div>
-						</div>
+								</SectionTabNavClass>
+							</SectionNavClass>
+						</SectionTitleClass>
 					</div>
 					<div className="col-md-12">
 						<div className="row">
-							<div className="products-tabs">
+							<ProductsTabsClass>
 								<div id="tab1" className="tab-pane active">
-									<Slider ref={s => (slider1 = s)} className="products-slick" {...settings}>
-										<Product img="./img/product01.png" />
-										<Product img="./img/product02.png" />
-										<Product img="./img/product03.png" />
-										<Product img="./img/product04.png" />
-										<Product img="./img/product05.png" />
-										<Product img="./img/product06.png" />
+									<Slider ref={s => (slider = s)} className="products-slick" {...sliderSettings}>
+										{props.mockData.map(()=> {return <Product img="./img/product01.png" />})}
 									</Slider>
-									<div className="products-slick-nav">
-										<button className="slick-prev" onClick={previous}>Previous</button>
-										<button className="slick-next" onClick={next}>Next</button>					
-									</div>
+									<ProductsSlickNavStyle>
+										<button className="slick-prev" onClick={() => {slider.slickPrev();}}>Previous</button>
+										<button className="slick-next" onClick={() => {slider.slickNext();}}>Next</button>					
+									</ProductsSlickNavStyle>
 								</div>
-							</div>
+							</ProductsTabsClass>
 						</div>
 					</div>
 				</div>

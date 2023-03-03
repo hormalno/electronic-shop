@@ -7,10 +7,10 @@ function Home(props) {
     return (
         <>
             <ShopNow />
-            <Products title="NEW PRODUCTS" />
+            <Products title="NEW PRODUCTS" mockData = {[1,2,3,4,5,6]} />
             <HotDeals />
-            <Products title="TOP SELLING" />
-            <Widget />
+            <Products title="TOP SELLING" mockData = {[1,2,3,4,5,6]} />
+            <Widget mockData = {[1,2,3,4,5,6]} />
         </>
     )
 }
