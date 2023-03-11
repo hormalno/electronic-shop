@@ -1,13 +1,13 @@
-import Product from '../product/Product';
+import ProductShortView from '../productShortView/ProductShortView';
 import Slider from 'react-slick';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import {SectionTitleClass,
 		SectionNavClass,
 		SectionTabNavClass,
-		ProductsTabsClass} from './ProductsStyle';
-import {ProductsSlickNavStyle} from "./ProductsSlickNavStyle";
+		ProductsTabsClass} from './ProductsSliderStyle';
+import {ProductsSliderNavStyle} from "./ProductsSliderNavStyle";
 
-function Products(props) {
+function ProductsSlider(props) {
 	const sliderSettings = {
 		slidesToShow: 4,
 		slidesToScroll: 1,
@@ -32,7 +32,7 @@ function Products(props) {
 			}}]
 	};
 
-	let slider = useRef();
+	let [slider, setSlider] = useState();
 
     return (
 		<div className="section">
@@ -55,13 +55,13 @@ function Products(props) {
 						<div className="row">
 							<ProductsTabsClass>
 								<div id="tab1" className="tab-pane active">
-									<Slider ref={s => (slider = s)} className="products-slick" {...sliderSettings}>
-										{props.mockData.map(()=> {return <Product img="./img/product01.png" />})}
+									<Slider ref={s => setSlider(s)} className="products-slick" {...sliderSettings}>
+										{props.mockData.map(()=> {return <ProductShortView img="../img/product01.png" />})}
 									</Slider>
-									<ProductsSlickNavStyle>
+									<ProductsSliderNavStyle>
 										<button className="slick-prev" onClick={() => {slider.slickPrev();}}>Previous</button>
 										<button className="slick-next" onClick={() => {slider.slickNext();}}>Next</button>					
-									</ProductsSlickNavStyle>
+									</ProductsSliderNavStyle>
 								</div>
 							</ProductsTabsClass>
 						</div>
@@ -72,4 +72,4 @@ function Products(props) {
     )
 }
 
-export default Products;
+export default ProductsSlider;

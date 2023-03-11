@@ -3,7 +3,7 @@ import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 function PageNotFound() {
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb title="page not found" path="home/blank" />
             <div class="section">
                 <div class="container">
                     <div class="row">

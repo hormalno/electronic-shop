@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ProductClass = styled.div `
+export const ProductShortViewClass = styled.div `
     position: relative;
     margin: 15px;
     -webkit-box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
@@ -17,19 +17,19 @@ export const ProductClass = styled.div `
         transform: translateY(100%);
     }
 `
-export const ProductImgClass = styled.div ` 
+export const ProductShortViewImgClass = styled.div ` 
     position: relative;
     >img {
         width: 100%;
     }
 `
 
-export const ProductLabelClass = styled.div ` 
+export const ProductShortViewLabelClass = styled.div ` 
     position: absolute;
     top: 15px;
     right: 15px;
 `
-export const ProductLabelSpanClass = styled.span `
+export const ProductShortViewLabelSpanClass = styled.span `
     border: 2px solid;
     padding: 2px 10px;
     font-size: 12px;
@@ -44,19 +44,19 @@ export const ProductLabelSpanClass = styled.span `
         color: #FFF;
     }
 `
-export const ProductBodyClass = styled.div `
+export const ProductShortViewBodyClass = styled.div `
     position: relative;
     padding: 15px;
     background-color: #FFF;
     text-align: center;
     z-index: 20;
 `
-export const ProductCategoryClass = styled.p `
+export const ProductShortViewCategoryClass = styled.p `
     text-transform: uppercase;
     font-size: 12px;
     color: #8D99AE;
 `
-export const ProductNameClass = styled.h3 `
+export const ProductShortViewNameClass = styled.h3 `
     text-transform: uppercase;
     font-size: 14px;
     >a {
@@ -66,16 +66,16 @@ export const ProductNameClass = styled.h3 `
         }
     }
 `
-export const ProductPriceClass = styled.h4 `
+export const ProductShortViewPriceClass = styled.h4 `
     color: #D10024;
     font-size: 18px;
-    .product-old-price {
+    .ProductShortView-old-price {
         font-size: 70%;
         font-weight: 400;
         color: #8D99AE;
       }
 `
-export const ProductRatingClass = styled.div `
+export const ProductShortViewRatingClass = styled.div `
     position: relative;
     margin: 15px 0px 10px;
     height: 20px;
@@ -104,7 +104,7 @@ export const ProductRatingClass = styled.div `
         background-color: #E4E7ED;
     }
 `
-export const ProductButtonClass = styled.button `
+export const ProductShortViewButtonClass = styled.button `
     position: relative;
     width: 40px;
     height: 40px;

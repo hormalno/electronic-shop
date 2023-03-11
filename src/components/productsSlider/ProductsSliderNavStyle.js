@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProductsSlickNavStyle = styled.div `
+export const ProductsSliderNavStyle = styled.div `
     position: absolute;
     right: 15px;
     z-index: 10;

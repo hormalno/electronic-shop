@@ -1,12 +1,12 @@
 import WidgetItem from "../widgetItem/WidgetItem";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Slider from 'react-slick';
-import {ProductsSlickNavStyle} from "../../../../components/products/ProductsSlickNavStyle";
+import {ProductsSliderNavStyle} from "../../../../components/productsSlider/ProductsSliderNavStyle";
 import {WidgetSectionTitle,WidgetSectionNav} from "./WidgetSectionStyle";
 
 function WidgetSection(props) {
 
-    let slider = useRef();
+    let [slider, setSlider] = useState();
 
     const sliderSettings = {
         infinite: true,
@@ -22,13 +22,13 @@ function WidgetSection(props) {
             <WidgetSectionTitle>
                 <h4 class="title">Top selling</h4>
                 <WidgetSectionNav>
-                    <ProductsSlickNavStyle>
+                    <ProductsSliderNavStyle>
                         <button className="slick-prev" onClick={() => {slider.slickPrev()}}>Previous</button>
 						<button className="slick-next" onClick={() => {slider.slickNext()}}>Next</button>		
-                    </ProductsSlickNavStyle>
+                    </ProductsSliderNavStyle>
                 </WidgetSectionNav>
             </WidgetSectionTitle>
-            <Slider ref={s => (slider = s)} className="products-widget-slick" {...sliderSettings}>
+            <Slider ref={s => setSlider(s)} className="products-widget-slick" {...sliderSettings}>
                 <div>
                     {props.mockData.slice(0,3).map(() => <WidgetItem img="./img/product01.png" />)}
                 </div>
