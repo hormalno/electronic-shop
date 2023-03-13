@@ -56,7 +56,7 @@ function ProductsSlider(props) {
 							<ProductsTabsClass>
 								<div id="tab1" className="tab-pane active">
 									<Slider ref={s => setSlider(s)} className="products-slick" {...sliderSettings}>
-										{props.mockData.map(()=> {return <ProductShortView img="../img/product01.png" />})}
+										{props.products.map((product)=> {return <ProductShortView product={product} />})}
 									</Slider>
 									<ProductsSliderNavStyle>
 										<button className="slick-prev" onClick={() => {slider.slickPrev();}}>Previous</button>

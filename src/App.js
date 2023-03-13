@@ -14,19 +14,19 @@ import Laptops from "./pages/laptops/Laptops";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import ProductDetail from "./pages/productDetail/ProductDetail";
 import Smartphones from "./pages/smartphones/Smartphones";
-import {getProduct} from './services/ProductService'
+import {getProduct,getAllProducts} from './services/ProductService'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<Home />} />
+      <Route path="" element={<Home newProducts={getAllProducts()} topSellingProducts={getAllProducts()} />} />
       {/* <Route path="hotdeals" element={<Main title="HOT DEALS" />} />*/}
-      <Route path="categories" element={<Categories />} />
-      <Route path="laptops" element={<Laptops />} />
-      <Route path="smartphones" element={<Smartphones />} />
-      <Route path="cameras" element={<Cameras />} />
-      <Route path="accessories" element={<Accessories />} />
-      <Route path="categories/1" element={<ProductDetail  product={getProduct()} />} />
+      <Route path="categories" element={<Categories products={getAllProducts()} />} />
+      <Route path="laptops" element={<Laptops products={getAllProducts()} />} />
+      <Route path="smartphones" element={<Smartphones products={getAllProducts()} />} />
+      <Route path="cameras" element={<Cameras products={getAllProducts()} />} />
+      <Route path="accessories" element={<Accessories products={getAllProducts()} />} />
+      <Route path="categories/1" element={<ProductDetail  product={getProduct()} relatedProducts={getAllProducts()} />} />
       <Route path="*" element={<PageNotFound />} /> 
     </Route>
   )

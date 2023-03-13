@@ -13,26 +13,32 @@ import {ProductShortViewClass,
     } from './ProductShortViewStyle'
 
 function ProductShortViewView(props) {
+
+    let ratingStars = [];
+    for (let index = 0; index < Math.floor(props.product.rating); index++) {
+        ratingStars.push(<i className="fa fa-star"></i>);        
+    }
+    let newProduct = props.product.isNew ? <ProductShortViewLabelSpanClass new >NEW</ProductShortViewLabelSpanClass> : '';
+    let saleProduct = props.product.sale ? <ProductShortViewLabelSpanClass sale >-{props.product.sale}%</ProductShortViewLabelSpanClass> : '';
+    let oldPrice = props.product.oldPrice ? <del className="product-old-price">${props.product.oldPrice.toFixed(2)}</del> : '';
+
     return (
         <ProductShortViewClass>
             <ProductShortViewImgClass>
-                <img src={props.img} alt="" />
+                <img src={props.product.mainImg} alt="" />
                 <ProductShortViewLabelClass>
-                    <ProductShortViewLabelSpanClass className="sale">-30%</ProductShortViewLabelSpanClass>
+                    {newProduct}
+                    {saleProduct}
                 </ProductShortViewLabelClass>
             </ProductShortViewImgClass>
             <ProductShortViewBodyClass>
-                <ProductShortViewCategoryClass>Category</ProductShortViewCategoryClass>
-                <ProductShortViewNameClass><Link to="/categories/1">ProductShortView name goes here</Link></ProductShortViewNameClass>
-                <ProductShortViewPriceClass>$980.00 <del className="ProductShortView-old-price">$990.00</del></ProductShortViewPriceClass>
+                <ProductShortViewCategoryClass>{props.product.category}</ProductShortViewCategoryClass>
+                <ProductShortViewNameClass><Link to="/categories/1">{props.product.name}</Link></ProductShortViewNameClass>
+                <ProductShortViewPriceClass>${props.product.price.toFixed(2)} {oldPrice}</ProductShortViewPriceClass>
                 <ProductShortViewRatingClass>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                    {ratingStars}
                 </ProductShortViewRatingClass>
-                <div className="ProductShortView-btns">
+                <div className="product-btns">
                     <ProductShortViewButtonClass><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></ProductShortViewButtonClass>
                     <ProductShortViewButtonClass><i className="fa fa-exchange"></i><span className="tooltipp">add to compare</span></ProductShortViewButtonClass>
                     <ProductShortViewButtonClass><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></ProductShortViewButtonClass>

@@ -7,9 +7,9 @@ function Home(props) {
     return (
         <>
             <ShopNow />
-            <ProductsSlider title="NEW PRODUCTS" mockData = {[1,2,3,4,5,6]} />
+            <ProductsSlider title="NEW PRODUCTS" products={props.newProducts} />
             <HotDeals />
-            <ProductsSlider title="TOP SELLING" mockData = {[1,2,3,4,5,6]} />
+            <ProductsSlider title="TOP SELLING" products={props.topSellingProducts} />
             <Widget mockData = {[1,2,3,4,5,6]} />
         </>
     )

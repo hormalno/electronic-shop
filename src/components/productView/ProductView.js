@@ -5,7 +5,7 @@ import './ProductView.css'
 function ProductView(props) {
 
 	// Product Main img Slick
-	const product_main_img = {
+	const sliderMainImg = {
 		infinite: true,
 		speed: 300,
 		dots: false,
@@ -15,7 +15,7 @@ function ProductView(props) {
 	};
 	
 		// Product imgs Slick
-	const product_imgs = {
+	const sliderImgs = {
 		slidesToShow: 3,
 		slidesToScroll: 1,
 		arrows: true,
@@ -37,52 +37,34 @@ function ProductView(props) {
 	const [slider1,setSlider1] = useState();
 	const [slider2,setSlider2] = useState();
 
+	const oldPrice = props.product.oldPrice ? <del className="product-old-price">${props.product.oldPrice.toFixed(2)}</del> : '';
+
 
     return (
 		<div className="section">
 			<div className="container">
 				<div className="row">
 					<div className="col-md-5 col-md-push-2">
-						<Slider id="product-main-img" asNavFor={slider2} ref={s1 =>setSlider1(s1) } {...product_main_img}>
-							<div className="product-preview">
-								<img src="../img/product01.png" alt="" />
-							</div>
-
-							<div className="product-preview">
-								<img src="../img/product03.png" alt=""/>
-							</div>
-
-							<div className="product-preview">
-								<img src="../img/product06.png" alt=""/>
-							</div>
-
-							<div className="product-preview">
-								<img src="../img/product08.png" alt=""/>
-							</div>
+						<Slider id="product-main-img" asNavFor={slider2} ref={s1 =>setSlider1(s1) } {...sliderMainImg}>
+							{props.product.imgs.map((img) => 
+								<div className="product-preview">
+									<img src={img} alt="" />
+								</div>
+							)}
 						</Slider>
 					</div>
 					<div className="col-md-2  col-md-pull-5">
-						<Slider id="product-imgs" asNavFor = {slider1} ref = {s2 => setSlider2(s2)} {...product_imgs}>
-							<div className="product-preview">
-								<img src="../img/product01.png" alt=""/>
-							</div>
-
-							<div className="product-preview">
-								<img src="../img/product03.png" alt=""/>
-							</div>
-
-							<div className="product-preview">
-								<img src="../img/product06.png" alt=""/>
-							</div>
-
-							<div className="product-preview">
-								<img src="../img/product08.png" alt=""/>
-							</div>
+						<Slider id="product-imgs" asNavFor = {slider1} ref = {s2 => setSlider2(s2)} {...sliderImgs}>
+							{props.product.imgs.map((img) => 
+								<div className="product-preview">
+									<img src={img} alt="" />
+								</div>
+							)}
 						</Slider>
 					</div>
 					<div className="col-md-5">
 						<div className="product-details">
-							<h2 className="product-name">product name goes here</h2>
+							<h2 className="product-name">{props.product.name}</h2>
 							<div>
 								<div className="product-rating">
 									<i className="fa fa-star"></i>
@@ -94,11 +76,10 @@ function ProductView(props) {
 								<a className="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h3 className="product-price">$980.00 <del className="product-old-price">$990.00</del></h3>
+								<h3 className="product-price">${props.product.price.toFixed(2)} {oldPrice}</h3>
 								<span className="product-available">In Stock</span>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
+							<p>{props.product.shortDescription}</p>
 							<div className="product-options">
 								<label>
 									Size
@@ -113,7 +94,6 @@ function ProductView(props) {
 									</select>
 								</label>
 							</div>
-
 							<div className="add-to-cart">
 								<div className="qty-label">
 									Qty
@@ -125,18 +105,15 @@ function ProductView(props) {
 								</div>
 								<button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
 							</div>
-
 							<ul className="product-btns">
 								<li><a href="#"><i className="fa fa-heart-o"></i> add to wishlist</a></li>
 								<li><a href="#"><i className="fa fa-exchange"></i> add to compare</a></li>
 							</ul>
-
 							<ul className="product-links">
 								<li>Category:</li>
 								<li><a href="#">Headphones</a></li>
 								<li><a href="#">Accessories</a></li>
 							</ul>
-
 							<ul className="product-links">
 								<li>Share:</li>
 								<li><a href="#"><i className="fa fa-facebook"></i></a></li>
@@ -144,7 +121,6 @@ function ProductView(props) {
 								<li><a href="#"><i className="fa fa-google-plus"></i></a></li>
 								<li><a href="#"><i className="fa fa-envelope"></i></a></li>
 							</ul>
-
 						</div>
 					</div>
 					<div className="col-md-12">
@@ -158,14 +134,14 @@ function ProductView(props) {
 								<div id="tab1" className="tab-pane fade in active">
 									<div className="row">
 										<div className="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<p>{props.product.description}</p>
 										</div>
 									</div>
 								</div>
 								<div id="tab2" className="tab-pane fade in">
 									<div className="row">
 										<div className="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<p>{props.product.details}</p>
 										</div>
 									</div>
 								</div>

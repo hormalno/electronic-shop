@@ -33,16 +33,9 @@ export const ProductShortViewLabelSpanClass = styled.span `
     border: 2px solid;
     padding: 2px 10px;
     font-size: 12px;
-    .sale {
-        background-color: #FFF;
-        border-color: #D10024;
-        color: #D10024;
-    }
-    .new {
-        background-color: #D10024;
-        border-color: #D10024;
-        color: #FFF;
-    }
+    background-color: ${props => props.sale ? '#FFF;' : '#D10024;'}
+    border-color:: ${props => props.sale ? '#D10024;' : '#D10024;'}
+    color: ${props => props.sale ? '#D10024;' : '#FFF;'}
 `
 export const ProductShortViewBodyClass = styled.div `
     position: relative;
@@ -69,7 +62,7 @@ export const ProductShortViewNameClass = styled.h3 `
 export const ProductShortViewPriceClass = styled.h4 `
     color: #D10024;
     font-size: 18px;
-    .ProductShortView-old-price {
+    .product-old-price {
         font-size: 70%;
         font-weight: 400;
         color: #8D99AE;

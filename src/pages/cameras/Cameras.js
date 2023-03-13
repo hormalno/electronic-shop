@@ -1,11 +1,11 @@
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import Store from "../../components/store/Store";
 
-function Cameras() {
+function Cameras(props) {
     return (
         <>
             <Breadcrumb title="cameras" path="all categories/cameras"/>
-            <Store />
+            <Store products={props.products} />
         </>
     )
 }

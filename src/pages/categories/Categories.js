@@ -1,11 +1,11 @@
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import Store from "../../components/store/Store";
 
-function Categories() {
+function Categories(props) {
     return (
         <>
             <Breadcrumb title="categories" path="all categories"/>
-            <Store />
+            <Store products={props.products} />
         </>
     )
 }
