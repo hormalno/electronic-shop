@@ -397,12 +397,16 @@
   .reviews-pagination li.active {
     background-color: #D10024;
     border-color: #D10024;
-    color: #FFF;
+    
     cursor: default;
   }
   
   .reviews-pagination li a {
     display: block;
+  }
+
+  .reviews-pagination li.active a {
+    color: #FFF;
   }
   
   /*-- Review Form --*/

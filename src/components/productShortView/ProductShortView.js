@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import RatingView from '../ratingView/RatingView'
 import {ProductShortViewClass,
         ProductShortViewImgClass,
         ProductShortViewLabelClass,
@@ -14,29 +15,21 @@ import {ProductShortViewClass,
 
 function ProductShortViewView(props) {
 
-    let ratingStars = [];
-    for (let index = 0; index < Math.floor(props.product.rating); index++) {
-        ratingStars.push(<i className="fa fa-star"></i>);        
-    }
-    let newProduct = props.product.isNew ? <ProductShortViewLabelSpanClass new >NEW</ProductShortViewLabelSpanClass> : '';
-    let saleProduct = props.product.sale ? <ProductShortViewLabelSpanClass sale >-{props.product.sale}%</ProductShortViewLabelSpanClass> : '';
-    let oldPrice = props.product.oldPrice ? <del className="product-old-price">${props.product.oldPrice.toFixed(2)}</del> : '';
-
     return (
         <ProductShortViewClass>
             <ProductShortViewImgClass>
                 <img src={props.product.mainImg} alt="" />
                 <ProductShortViewLabelClass>
-                    {newProduct}
-                    {saleProduct}
+                    {props.product.isNew ? <ProductShortViewLabelSpanClass new >NEW</ProductShortViewLabelSpanClass> : ''}
+                    {props.product.sale ? <ProductShortViewLabelSpanClass sale >-{props.product.sale}%</ProductShortViewLabelSpanClass> : ''}
                 </ProductShortViewLabelClass>
             </ProductShortViewImgClass>
             <ProductShortViewBodyClass>
                 <ProductShortViewCategoryClass>{props.product.category}</ProductShortViewCategoryClass>
                 <ProductShortViewNameClass><Link to="/categories/1">{props.product.name}</Link></ProductShortViewNameClass>
-                <ProductShortViewPriceClass>${props.product.price.toFixed(2)} {oldPrice}</ProductShortViewPriceClass>
+                <ProductShortViewPriceClass>${props.product.price.toFixed(2)} {props.product.oldPrice ? <del className="product-old-price">${props.product.oldPrice.toFixed(2)}</del> : ''}</ProductShortViewPriceClass>
                 <ProductShortViewRatingClass>
-                    {ratingStars}
+                    <RatingView rating={props.product.rating} />
                 </ProductShortViewRatingClass>
                 <div className="product-btns">
                     <ProductShortViewButtonClass><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></ProductShortViewButtonClass>
