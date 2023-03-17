@@ -1,4 +1,5 @@
-import RatingView from "../ratingView/RatingView";
+import RatingView from "../../ratingView/RatingView";
+import './ProductOverview.css'
 
 function ProductOverview(props) {
     return (

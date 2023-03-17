@@ -1,13 +1,13 @@
-import Paginate from "../paginate/Paginate";
-import RatingView from "../ratingView/RatingView";
-import ReviewView from "../reviewView/ReviewView";
-import RatingScheme from "./RatingScheme";
-import ReviewForm from "./ReviewForm";
+import RatingView from "../../ratingView/RatingView";
+import ProductReviews from "../productReviews/ProductReviews";
+import RatingScheme from "../ratingSchema/RatingScheme";
+import ReviewForm from "../reviewForm/ReviewForm";
+import {ProductTab,RatingAvg,RatingStars} from './ProductInformationStyle';
 
 function ProductInformation({product}) {
     return ( 
         <div className="col-md-12">
-            <div id="product-tab">
+            <ProductTab>
                 <ul className="tab-nav">
                     <li className="active"><a data-toggle="tab" href="#tab1">Description</a></li>
                     <li><a data-toggle="tab" href="#tab2">Details</a></li>
@@ -32,37 +32,25 @@ function ProductInformation({product}) {
                         <div className="row">
                             <div className="col-md-3">
                                 <div id="rating">
-                                    <div className="rating-avg">
+                                    <RatingAvg>
                                         <span>{product.rating}</span>
-                                        <div className="rating-stars">
+                                        <RatingStars>
                                             <RatingView rating={product.rating} />
-                                        </div>
-                                    </div>
+                                        </RatingStars>
+                                    </RatingAvg>
                                     <RatingScheme reviews={product.reviews}/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div id="reviews">
-                                    {/* <ul className="reviews">
-                                        {product.reviews.map(review => <ReviewView review={review} />)}
-                                    </ul>
-                                    <ul className="reviews-pagination">
-                                        <li className="active">1</li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li></li>
-                                        <li><a href="#"><i className="fa fa-angle-right"></i></a></li>
-                                        <
-                                    </ul> */}
-                                    <Paginate pageData={product.reviews} />
-                                </div>
-                                
+                                    <ProductReviews pageData={product.reviews} />
+                                </div>                                
                             </div>
                             <ReviewForm />
                         </div>
                     </div>
                 </div>
-            </div>
+            </ProductTab>
         </div>
     )
 };

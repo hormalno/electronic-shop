@@ -1,19 +1,20 @@
 import RatingView from "../ratingView/RatingView";
+import {ReviewsStyle, ReviewHeading, ReviewRating, ReviewBody} from "./ReviewViewStyle"
 
 function ReviewView(props) {
     return (
-        <li>
-            <div className="review-heading">
+        <ReviewsStyle>
+            <ReviewHeading>
                 <h5 className="name">{props.review.name}</h5>
                 <p className="date">{props.review.date}</p>
-                <div className="review-rating">
+                <ReviewRating>
                     <RatingView rating={props.review.rating} />
-                </div>
-            </div>
-            <div className="review-body">
+                </ReviewRating>
+            </ReviewHeading>
+            <ReviewBody>
                 <p>{props.review.text}</p>
-            </div>
-        </li>
+            </ReviewBody>
+        </ReviewsStyle>
     )
 };
 

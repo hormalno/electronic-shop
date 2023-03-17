@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import ReviewView from '../reviewView/ReviewView';
+import ReviewView from '../../reviewView/ReviewView';
+import {ReviewsPagination} from './ProductReviewsStyle';
 
-function Paginate({pageData}) {
+function ProductReviews({pageData}) {
     const [currentPage, setCurrentPage] = useState(0);
 
     const PER_PAGE = 4;
@@ -22,35 +23,20 @@ function Paginate({pageData}) {
       <ul className="reviews">
         {currentPageData}
       </ul>
-      <ul className="reviews-pagination">
+      <ReviewsPagination>
         <ReactPaginate
           breakLabel="..."
           nextLabel='>'
           previousLabel='<'
           onPageChange={handlePageClick}
-          pageRangeDisplayed={4}
+          pageRangeDisplayed={1}
           pageCount={pageCount}
           renderOnZeroPageCount={null}
           activeClassName = "active"
         />
-      </ul>
+      </ReviewsPagination>
     </>
   );
 }
 
-export default Paginate;
-
-
-
-// function Items({ currentItems }) {
-//   return (
-//     <>
-//       {currentItems &&
-//         currentItems.map((item) => (
-//           <li>
-//             <a>Item #{item}</a>
-//           </li>
-//         ))}
-//     </>
-//   );
-// }
+export default ProductReviews;

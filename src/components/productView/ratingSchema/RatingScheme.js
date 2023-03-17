@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import RatingView from "../ratingView/RatingView";
+import RatingView from "../../ratingView/RatingView";
+import {RatingStyle,RatingProgress,RatingStars,RatingSum} from "./RatingSchemaStyle";
 
 function RatingScheme(props) {
 
@@ -18,18 +19,18 @@ function RatingScheme(props) {
     console.log(ratings)
     
     return (
-        <ul className="rating">
+        <RatingStyle>
             {ratings.map((rating) => 
                 <li>
-                    <div className="rating-stars">
+                    <RatingStars>
                         <RatingView rating={rating.key} />
-                    </div>
-                    <div className="rating-progress">
+                    </RatingStars>
+                    <RatingProgress>
                         <Progress percentage={rating.progress}></Progress>
-                    </div>
-                    <span className="sum">{rating.sum}</span>
+                    </RatingProgress>
+                    <RatingSum>{rating.sum}</RatingSum>
                 </li>)}
-        </ul>
+        </RatingStyle>
     )
 };
 
