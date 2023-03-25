@@ -43,7 +43,17 @@ const product = {
 
 export const getAllProducts = () => {
     let productArray = [];
-    for (let index = 0; index < 12; index++) {
+    for (let index = 0; index < 35; index++) {
+        product.id = index;
+        productArray.push(product);
+    }
+    return productArray;
+}
+
+export const getAllProductsByCategory = (category) => {
+    let productArray = [];
+    for (let index = 0; index < 35; index++) {
+        product.id = index;
         productArray.push(product);
     }
     return productArray;

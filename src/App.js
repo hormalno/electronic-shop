@@ -1,3 +1,4 @@
+import { useEffect,useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -15,6 +16,10 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import ProductDetail from "./pages/productDetail/ProductDetail";
 import Smartphones from "./pages/smartphones/Smartphones";
 import {getProduct,getAllProducts} from './services/ProductService'
+import {firestore} from './utils/firebase';
+import { collection, getDocs } from "firebase/firestore"; 
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +38,16 @@ const router = createBrowserRouter(
 );
 
 function App() {
+
+  useEffect ( () => {
+    const querySnapshot = getDocs(collection(firestore, "products"))
+    .then(res => res.forEach((doc) => {
+      console.log(doc.id,doc.data());
+    }));
+  },[])
+  
+  
+
   return (
     <RouterProvider router={router} />
   );

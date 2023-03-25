@@ -5,7 +5,7 @@ function Cameras(props) {
     return (
         <>
             <Breadcrumb title="cameras" path="all categories/cameras"/>
-            <Store products={props.products} />
+            <Store category="cameras" />
         </>
     )
 }
