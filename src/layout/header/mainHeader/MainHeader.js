@@ -15,12 +15,6 @@ function MainHeader() {
 						<div className="header-ctn">
 							<Wishlist />
 							<Cart />
-							<div className="menu-toggle">
-								<a href="#">
-									<i className="fa fa-bars"></i>
-									<span>Menu</span>
-								</a>
-							</div>
 						</div>
 					</div>
 				</div>

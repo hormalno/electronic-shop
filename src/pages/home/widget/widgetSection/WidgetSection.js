@@ -20,7 +20,7 @@ function WidgetSection(props) {
     return (
         <div className="col-md-4 col-xs-6">
             <WidgetSectionTitle>
-                <h4 class="title">Top selling</h4>
+                <h4 className="title">Top selling</h4>
                 <WidgetSectionNav>
                     <ProductsSliderNavStyle>
                         <button className="slick-prev" onClick={() => {slider.slickPrev()}}>Previous</button>

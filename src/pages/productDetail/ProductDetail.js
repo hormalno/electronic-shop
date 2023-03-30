@@ -5,7 +5,7 @@ import ProductView from "../../components/productView/ProductView";
 function ProductDetail(props) {
     return (
         <>
-            <Breadcrumb title="category 1" path="home/blank" />
+            <Breadcrumb />
             <ProductView product={props.product} />
             <ProductsSlider title="RELATED PRODUCTS" products={props.relatedProducts} />
         </>

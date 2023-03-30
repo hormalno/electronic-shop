@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Logo() {
     return (
         <div className="col-md-3">
             <HeaderLogo>
-                <a href="#" className="logo">
+                <Link to="/" className="logo">
                     <img src="./img/logo.png" alt="" />
-                </a>
+                </Link>
             </HeaderLogo>
         </div>
     )

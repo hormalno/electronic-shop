@@ -1,48 +1,32 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useMatches } from 'react-router-dom';
+import StoreContext from '../../contexts/StoreContext';
 import './Breadcrumb.css'
 
-function Breadcrumb(props) {
-	const paths = props.path.split('/')
-	.map((path) => {
-		let pathObj = {};
-		switch (true) {
-			case path === "all categories":
-				pathObj.title = "categories"
-				pathObj.link = "categories"
-				pathObj.isActive = false;
-				break;
-			case path === "blank":
-				pathObj.title = "blank"
-				pathObj.link = "active"
-				pathObj.isActive = true;
-				break;
-			case path === "home":
-					pathObj.title = "home"
-					pathObj.link = "/"
-					pathObj.isActive = false;
-					break;
-			default:
-				pathObj.title = path;
-				pathObj.link = "/" + path;
-				pathObj.isActive = false;
+function Breadcrumb({pageNotFound}) {
+	let location = useLocation();
+	let currentLink = "";
+	let splitCrumbs = location.pathname.split('/');
+	let title = splitCrumbs[splitCrumbs.length-1];
+	let crumbs = splitCrumbs.filter((crumb) => crumb !== '')
+	.map((crumb,index) => {
+		currentLink += "/" + crumb;
+
+		if (currentLink === location.pathname) {
+			return (<li key={index}>{crumb}</li>)
+		} else {
+			return (<li key={index}><Link to={currentLink}>{crumb}</Link></li>)
 		}
-		return pathObj;
-	})
+	});
 
     return (
 		<div id="breadcrumb" className="section">
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12">
-						<h3 className="breadcrumb-header">{props.title}</h3>
+						<h3 className="breadcrumb-header">{title}</h3>
 						<ul className="breadcrumb-tree">
-							{paths.map(x => {
-								if (x.isActive) {
-									return (<li className={x.isActive ? "active" : undefined}>{x.title}</li>)
-								} else {
-									return (<li><Link to={x.link} >{x.title}</Link></li>)
-								}	
-							})};
+							<li><Link to='/'>Home</Link></li>
+							{crumbs}
 						</ul>
 					</div>
 				</div>
@@ -50,5 +34,8 @@ function Breadcrumb(props) {
 		</div>
     )
 }
+
+
+
 
 export default Breadcrumb;

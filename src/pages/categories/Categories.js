@@ -1,12 +1,14 @@
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
+import StoreContext from "../../contexts/StoreContext";
 import Store from "../../components/store/Store";
 
 function Categories(props) {
+
     return (
-        <>
-            <Breadcrumb title="categories" path="all categories"/>
-            <Store category="all" />
-        </>
+        <StoreContext.Provider value={props.category}>
+            <Breadcrumb />
+            <Store />
+        </StoreContext.Provider>
     )
 }
 

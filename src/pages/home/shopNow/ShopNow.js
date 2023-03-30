@@ -13,7 +13,7 @@ function ShopNow() {
 							</div>
 							<div className="shop-body">
 								<h3>Laptop<br/>Collection</h3>
-								<Link to="laptops" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
+								<Link to="/categories/laptops" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
 							</div>
 						</div>
 					</div>
@@ -24,7 +24,7 @@ function ShopNow() {
 							</div>
 							<div className="shop-body">
 								<h3>Accessories<br/>Collection</h3>
-								<Link to="accessories" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
+								<Link to="/categories/accessories" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
 							</div>
 						</div>
 					</div>
@@ -35,7 +35,7 @@ function ShopNow() {
 							</div>
 							<div className="shop-body">
 								<h3>Cameras<br/>Collection</h3>
-								<Link to="cameras" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
+								<Link to="/categories/cameras" className="cta-btn">Shop now <i className="fa fa-arrow-circle-right"></i></Link>
 							</div>
 						</div>
 					</div>

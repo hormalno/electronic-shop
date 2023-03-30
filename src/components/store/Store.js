@@ -2,13 +2,13 @@ import Aside from "./aside/Aside";
 import Content from "./content/Content";
 
 
-const Store = ({category}) => {
+const Store = () => {
     return (
 		<div className="section">
 			<div className="container">
 				<div className="row">
 					<Aside />
-					<Content category={category} />
+					<Content />
 				</div>
 			</div>
 		</div>

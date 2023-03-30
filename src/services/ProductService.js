@@ -1,4 +1,7 @@
-const product = {
+import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
+import {firestore} from '../utils/firebase';
+
+export const product = {
     name: 'Some Name here',
     category: 'laptop',
     brand: 'Asus',
@@ -39,7 +42,6 @@ const product = {
     isTopSelling: true,
     inStock: true
 }
-
 
 export const getAllProducts = () => {
     let productArray = [];

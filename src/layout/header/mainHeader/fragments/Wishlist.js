@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 function Wishlist() {
     return (
         <div>
-            <a href="#">
+            <Link to="#">
                 <i className="fa fa-heart-o"></i>
                 <span>Your Wishlist</span>
                 <div className="qty">2</div>
-            </a>
+            </Link>
         </div>
     )
 }

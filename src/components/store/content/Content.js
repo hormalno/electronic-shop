@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ReactPaginate from "react-paginate";
 import ProductShortView from "../../productShortView/ProductShortView";
 import {getAllProductsByCategory} from "../../../services/ProductService";
+import StoreContext from "../../../contexts/StoreContext";
 import "./Content.css"
 
-const Content = ({category}) => {
-
+const Content = () => {
+    const category = useContext(StoreContext);
     const [currentPage, setCurrentPage] = useState(1);
 	const [storeData, setStoreData] = useState([]);
 	const [perPage, setPerPage] = useState(9);
@@ -19,8 +20,8 @@ const Content = ({category}) => {
     let currentPageData = storeData
     .slice(offset, offset + perPage)
     .map(product => <div className="col-md-4 col-xs-6">
-                <ProductShortView key={product.id} product={product} />
-    </div>);
+                        <ProductShortView key={product.id} product={product} />
+                    </div>);
     const pageCount = Math.ceil(storeData.length / perPage);    
     const handlePageClick = ({ selected: selectedPage }) => {
         setCurrentPage(selectedPage);

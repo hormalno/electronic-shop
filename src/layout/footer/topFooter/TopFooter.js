@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function TopFooter() {
@@ -10,9 +11,9 @@ function TopFooter() {
 							<h3 className="footer-title">About Us</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 							<FoooterLinks>
-								<li><a href="#"><i className="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-								<li><a href="#"><i className="fa fa-phone"></i>+021-95-51-84</a></li>
-								<li><a href="#"><i className="fa fa-envelope-o"></i>email@email.com</a></li>
+								<li><Link to="#"><i className="fa fa-map-marker"></i>1734 Stonecoal Road</Link></li>
+								<li><Link to="#"><i className="fa fa-phone"></i>+021-95-51-84</Link></li>
+								<li><Link to="#"><i className="fa fa-envelope-o"></i>email@email.com</Link></li>
 							</FoooterLinks>
 						</FooterClass>
 					</div>
@@ -21,11 +22,11 @@ function TopFooter() {
 						<FooterClass>
 							<h3 className="footer-title">Categories</h3>
 							<FoooterLinks>
-								<li><a href="#">Hot deals</a></li>
-								<li><a href="#">Laptops</a></li>
-								<li><a href="#">Smartphones</a></li>
-								<li><a href="#">Cameras</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li><Link to="/hotdeals">Hot deals</Link></li>
+								<li><Link to="/categories/laptops">Laptops</Link></li>
+								<li><Link to="/categories/smartphones">Smartphones</Link></li>
+								<li><Link to="/categories/cameras">Cameras</Link></li>
+								<li><Link to="/categories/accessories">Accessories</Link></li>
 							</FoooterLinks>
 						</FooterClass>
 					</div>
@@ -36,11 +37,11 @@ function TopFooter() {
 						<FooterClass>
 							<h3 className="footer-title">Information</h3>
 							<FoooterLinks>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Orders and Returns</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
+								<li><Link to="#">About Us</Link></li>
+								<li><Link to="#">Contact Us</Link></li>
+								<li><Link to="#">Privacy Policy</Link></li>
+								<li><Link to="#">Orders and Returns</Link></li>
+								<li><Link to="#">Terms & Conditions</Link></li>
 							</FoooterLinks>
 						</FooterClass>
 					</div>
@@ -49,11 +50,11 @@ function TopFooter() {
 						<FooterClass>
 							<h3 className="footer-title">Service</h3>
 							<FoooterLinks>
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">View Cart</a></li>
-								<li><a href="#">Wishlist</a></li>
-								<li><a href="#">Track My Order</a></li>
-								<li><a href="#">Help</a></li>
+								<li><Link to="#">My Account</Link></li>
+								<li><Link to="#">View Cart</Link></li>
+								<li><Link to="#">Wishlist</Link></li>
+								<li><Link to="#">Track My Order</Link></li>
+								<li><Link to="#">Help</Link></li>
 							</FoooterLinks>
 						</FooterClass>
 					</div>

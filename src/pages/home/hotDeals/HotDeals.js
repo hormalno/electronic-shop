@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './HotDeals.css'
 
 function HotDeals() {
@@ -35,7 +36,7 @@ function HotDeals() {
 							</ul>
 							<h2 className="text-uppercase">hot deal this week</h2>
 							<p>New Collection Up to 50% OFF</p>
-							<a className="primary-btn cta-btn" href="#">Shop now</a>
+							<Link className="primary-btn cta-btn" to="/categories">Shop now</Link>
 						</div>
 					</div>
 				</div>

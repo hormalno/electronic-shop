@@ -4,7 +4,7 @@ import TopHeader from "./topHeader/TopHeader"
 function Header() {
     return (
         <header>
-            <TopHeader></TopHeader>
+            <TopHeader />
             <MainHeader />
         </header>
     )
