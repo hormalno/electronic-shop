@@ -1,7 +1,24 @@
+import { useContext } from 'react';
 import './TopHeader.css';
 import { Link } from "react-router-dom";
+import AuthContext from '../../../contexts/AuthContext';
 
 function TopHeader() {
+
+    const authInfo = useContext(AuthContext);
+    let accountInfo;
+    if (authInfo.isAuthenticated) {
+        accountInfo = (<>
+                            <li><Link to="/profile"><i className="fa fa-user-o"></i>Welcome, {authInfo.username}</Link></li>
+                            <li><Link to="/logout"> Logout</Link></li>
+                        </>)
+    } else {
+        accountInfo = (<>
+                            <li><Link to="/login"><i className="fa fa-user-o"></i>Log In</Link></li>
+                            <li><Link to="/register"> Register</Link></li>
+                        </>)
+    };
+
     return (
         <div id="top-header">
             <div className="container">
@@ -12,8 +29,7 @@ function TopHeader() {
                 </ul>
                 <ul className="header-links pull-right">
                     <li><Link to="#"><i className="fa fa-dollar"></i> USD</Link></li>
-                    <li><Link to="/login"><i className="fa fa-user-o"></i>Log In</Link></li>
-                    <li><Link to="/register"> Register</Link></li>
+                    {accountInfo}                    
                 </ul>
             </div>
         </div>

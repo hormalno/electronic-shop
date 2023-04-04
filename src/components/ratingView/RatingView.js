@@ -3,10 +3,10 @@ function RatingView(props) {
 
     let ratingStars = [];
     for (let index = 0; index < redStars; index++) {
-        ratingStars.push(<i className="fa fa-star"></i>);        
+        ratingStars.push(<i className="fa fa-star" key={index}></i>);        
     }
-    for (let index = 0; index < 5-redStars; index++) {
-        ratingStars.push(<i className="fa fa-star-o empty"></i>);        
+    for (let index = redStars; index < 5; index++) {
+        ratingStars.push(<i className="fa fa-star-o empty" key={index}></i>);        
     }    
 
     return (

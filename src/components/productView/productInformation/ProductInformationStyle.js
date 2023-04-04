@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProductTab = styled.div `
+export const ProductTabStyle = styled.div `
     margin-top: 60px;
     .tab-nav {
         position: relative;
@@ -53,13 +53,13 @@ export const ProductTab = styled.div `
 
 `
 
-export const RatingAvg = styled.div `
+export const RatingAvgStyle = styled.div `
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 15px;
 `
 
-export const RatingStars = styled.div `
+export const RatingStarsStyle = styled.div `
     margin-left: 10px;
     display: inline-block;
     >i {

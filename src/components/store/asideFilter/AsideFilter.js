@@ -1,6 +1,6 @@
-import "./Aside.css"
+import "./AsideFilter.css"
 
-function Aside() {
+function AsideFilter() {
     return (
         <div id="aside" className="col-md-3">
             <div className="aside">
@@ -8,7 +8,7 @@ function Aside() {
                 <div className="checkbox-filter">
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-1" />
-                        <label for="category-1">
+                        <label htmlFor="category-1">
                             <span></span>
                             Laptops
                             <small>(120)</small>
@@ -16,7 +16,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-2" />
-                        <label for="category-2">
+                        <label htmlFor="category-2">
                             <span></span>
                             Smartphones
                             <small>(740)</small>
@@ -24,7 +24,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-3" />
-                        <label for="category-3">
+                        <label htmlFor="category-3">
                             <span></span>
                             Cameras
                             <small>(1450)</small>
@@ -32,7 +32,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-4" />
-                        <label for="category-4">
+                        <label htmlFor="category-4">
                             <span></span>
                             Accessories
                             <small>(578)</small>
@@ -40,7 +40,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-5" />
-                        <label for="category-5">
+                        <label htmlFor="category-5">
                             <span></span>
                             Laptops
                             <small>(120)</small>
@@ -48,7 +48,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-6" />
-                        <label for="category-6">
+                        <label htmlFor="category-6">
                             <span></span>
                             Smartphones
                             <small>(740)</small>
@@ -78,7 +78,7 @@ function Aside() {
                 <div className="checkbox-filter">
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-1" />
-                        <label for="brand-1">
+                        <label htmlFor="brand-1">
                             <span></span>
                             SAMSUNG
                             <small>(578)</small>
@@ -86,7 +86,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-2" />
-                        <label for="brand-2">
+                        <label htmlFor="brand-2">
                             <span></span>
                             LG
                             <small>(125)</small>
@@ -94,7 +94,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-3" />
-                        <label for="brand-3">
+                        <label htmlFor="brand-3">
                             <span></span>
                             SONY
                             <small>(755)</small>
@@ -102,7 +102,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-4" />
-                        <label for="brand-4">
+                        <label htmlFor="brand-4">
                             <span></span>
                             SAMSUNG
                             <small>(578)</small>
@@ -110,7 +110,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-5" />
-                        <label for="brand-5">
+                        <label htmlFor="brand-5">
                             <span></span>
                             LG
                             <small>(125)</small>
@@ -118,7 +118,7 @@ function Aside() {
                     </div>
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-6" />
-                        <label for="brand-6">
+                        <label htmlFor="brand-6">
                             <span></span>
                             SONY
                             <small>(755)</small>
@@ -130,4 +130,4 @@ function Aside() {
     )
 }
 
-export default Aside;
+export default AsideFilter;

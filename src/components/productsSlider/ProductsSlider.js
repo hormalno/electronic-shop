@@ -1,10 +1,7 @@
 import ProductShortView from '../productShortView/ProductShortView';
 import Slider from 'react-slick';
-import { useEffect, useRef, useState } from 'react';
-import {SectionTitleClass,
-		SectionNavClass,
-		SectionTabNavClass,
-		ProductsTabsClass} from './ProductsSliderStyle';
+import { useEffect, useState } from 'react';
+import { SectionTitleClass, SectionNavClass, SectionTabNavClass, ProductsTabsClass } from './ProductsSliderStyle';
 import {ProductsSliderNavStyle} from "./ProductsSliderNavStyle";
 import {getAllProducts} from '../../services/ProductService'
 
@@ -49,7 +46,7 @@ function ProductsSlider(props) {
 							<ProductsTabsClass>
 								<div id="tab1" className="tab-pane active">
 									<Slider ref={s => setSlider(s)} className="products-slick" {...sliderSettings}>
-										{getAllProducts().map((product)=> {return <ProductShortView product={product} />})}
+										{getAllProducts().map((product)=> {return <ProductShortView key={product.id} product={product} />})}
 									</Slider>
 									<ProductsSliderNavStyle>
 										<button className="slick-prev" onClick={() => {slider.slickPrev();}}>Previous</button>

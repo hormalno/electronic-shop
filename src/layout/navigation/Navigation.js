@@ -8,7 +8,6 @@ function Navigation() {
 				<div id="responsive-nav">
 					<ul className="main-nav nav navbar-nav">
 						<li><NavLink to="/" className={({ isActive }) => isActive ? "active" : undefined }>Home</NavLink></li>
-						<li><NavLink to="/hotdeals" className={({ isActive }) => isActive ? "active" : undefined }>Hot Deals</NavLink></li>
 						<li><NavLink to="/categories" className={({ isActive }) => isActive ? "active" : undefined }>Categories</NavLink></li>
 						<li><NavLink to="/categories/laptops" className={({ isActive }) => isActive ? "active" : undefined }>Laptops</NavLink></li>
 						<li><NavLink to="/categories/smartphones" className={({ isActive }) => isActive ? "active" : undefined }>Smartphones</NavLink></li>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ReviewsPagination = styled.ul `
+export const ReviewsPaginationStyle = styled.ul `
     text-align: center;
     li {
         display: inline-block;

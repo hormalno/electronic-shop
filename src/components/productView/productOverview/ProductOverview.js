@@ -1,22 +1,22 @@
 import RatingView from "../../ratingView/RatingView";
 import './ProductOverview.css'
 
-function ProductOverview(props) {
+function ProductOverview({product}) {
     return (
         <div className="col-md-5">
             <div className="product-details">
-                <h2 className="product-name">{props.product.name}</h2>
+                <h2 className="product-name">{product.name}</h2>
                 <div>
                     <div className="product-rating">
-                        <RatingView rating={props.product.rating} />
+                        <RatingView rating={product.rating} />
                     </div>
-                    <a className="review-link" href="#review-form">{props.product.reviews.length} Review(s) | Add your review</a>
+                    <a className="review-link" href="#review-form">12 Review(s) | Add your review</a>
                 </div>
                 <div>
-                    <h3 className="product-price">${props.product.price.toFixed(2)} {props.product.oldPrice ? <del className="product-old-price">${props.product.oldPrice.toFixed(2)}</del> : ''}</h3>
-                    {props.product.inStock ? <span className="product-available">In Stock</span> : ''}
+                    <h3 className="product-price">${product.price} {product.oldPrice ? <del className="product-old-price">${product.oldPrice}</del> : ''}</h3>
+                    {product.inStock ? <span className="product-available">In Stock</span> : ''}
                 </div>
-                <p>{props.product.shortDescription}</p>
+                <p>{product.shortDescription}</p>
                 <div className="product-options">
                     <label>
                         Size
@@ -44,12 +44,11 @@ function ProductOverview(props) {
                 </div>
                 <ul className="product-btns">
                     <li><a href="#"><i className="fa fa-heart-o"></i> add to wishlist</a></li>
-                    <li><a href="#"><i className="fa fa-exchange"></i> add to compare</a></li>
                 </ul>
                 <ul className="product-links">
                     <li>Category:</li>
-                    <li><a href="#">Headphones</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#">{product.category}</a></li>
                 </ul>
                 <ul className="product-links">
                     <li>Share:</li>

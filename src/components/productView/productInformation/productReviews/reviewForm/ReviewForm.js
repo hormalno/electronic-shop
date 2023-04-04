@@ -1,3 +1,4 @@
+import isAuth from "../../../../../hoc/isAuth";
 import './ReviewForm.css'
 
 function ReviewForm() {

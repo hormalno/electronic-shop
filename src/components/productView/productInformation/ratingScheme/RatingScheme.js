@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RatingView from "../../ratingView/RatingView";
+import RatingView from "../../../ratingView/RatingView";
 import {RatingStyle,RatingProgress,RatingStars,RatingSum} from "./RatingSchemaStyle";
 
 function RatingScheme(props) {
@@ -14,9 +14,7 @@ function RatingScheme(props) {
         ratingObj.sum = props.reviews.filter((review) => review.rating === index).length;
         ratingObj.progress = ((ratingObj.sum / props.reviews.length) * 100).toString() + '%';
         ratings.push(ratingObj)
-    }
-
-    console.log(ratings)
+    };
     
     return (
         <RatingStyle>

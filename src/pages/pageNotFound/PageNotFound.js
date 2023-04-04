@@ -4,9 +4,9 @@ function PageNotFound() {
     return (
         <>
             <Breadcrumb />
-            <div class="section">
-                <div class="container">
-                    <div class="row">
+            <div className="section">
+                <div className="container">
+                    <div className="row">
                         <h3>Page Not Found</h3>
                     </div>
                 </div>
