@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReviewView from './reviewView/ReviewView';
-import useReviews from '../../../../hooks/useReviews';
+import useReviews from '../../../../../hooks/useReviews';
 import {ReviewsPaginationStyle} from './ProductReviewsStyle';
 import { getDocs, collection, doc } from 'firebase/firestore';
-import { db } from '../../../../utils/firebase';
+import { db } from '../../../../../utils/firebase';
+import ProductContext from '../../../../../contexts/ProductContext';
 
-const ProductReviews = ({productId}) => {
+const ProductReviews = () => {
 
+  const product = useContext(ProductContext);
   const [currentPage, setCurrentPage] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [currentPageData , setCurrentPageData] = useState([]);
@@ -15,26 +17,22 @@ const ProductReviews = ({productId}) => {
   const perPage = 4;
 
   useEffect(() => {
-    console.log(productId)
-    if (productId) {
-      getDocs(collection(db, "products", productId, "reviews"))
+      getDocs(collection(db, "products", product.id, "reviews"))
       .then((snapshot) => {
-        console.log("Entered get docs")
-        if (!snapshot.empty) {
-          console.log("Entered get docs 2")
-            let foundReviews = [];
-            snapshot.forEach((doc) => {
-                foundReviews.push(doc.data());
-            })
-            setReviews(foundReviews);
-        };            
+          if (snapshot.docs.length > 0) {
+              let foundReviews = [];
+              snapshot.forEach((doc) => {
+                  foundReviews.push(doc.data());
+              })
+              setReviews(foundReviews);
+          };
+          
+          const offset = currentPage * perPage;
+          setCurrentPageData(reviews.slice(offset, offset + perPage));
+          setPageCount(Math.ceil(reviews.length / perPage));
       }).catch(e => console.log(e));
-    };
 
-    const offset = currentPage * perPage;
-    setCurrentPageData(reviews.slice(offset, offset + perPage));
-    setPageCount(Math.ceil(reviews.length / perPage));
-  },[currentPage]);
+  },[product,reviews,currentPage]);
 
   const handlePageClick = ({ selected: selectedPage }) => setCurrentPage(selectedPage);
 

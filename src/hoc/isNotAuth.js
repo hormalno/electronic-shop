@@ -6,10 +6,8 @@ const isNotAuth = (WrappedComponent) => {
 
     const Component = (props) => {
         const {isAuthenticated} = useContext(AuthContext);
-        const navigate = useNavigate();
 
         if (isAuthenticated) {
-            navigate("/")
             return null;
         }
 
