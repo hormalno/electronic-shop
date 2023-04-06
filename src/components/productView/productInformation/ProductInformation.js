@@ -1,4 +1,4 @@
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {ProductTabStyle} from './ProductInformationStyle';
 import TabContent from "./tabContent/TabContent";
 import { useState } from "react";

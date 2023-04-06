@@ -1,9 +1,8 @@
 import RatingView from "../../ratingView/RatingView";
-import { useParams } from "react-router-dom";
-import useProduct from "../../../hooks/useProduct";
 import './ProductOverview.css';
 import { useContext } from "react";
 import ProductContext from '../../../contexts/ProductContext';
+import { Link } from "react-router-dom";
 
 const ProductOverview = () => {
 
@@ -14,10 +13,10 @@ const ProductOverview = () => {
             <div className="product-details">
                 <h2 className="product-name">{product?.name}</h2>
                 <div>
-                    <div className="product-rating">
+                    <div className="product-rating">s
                         <RatingView rating={product?.rating} />
                     </div>
-                    <a className="review-link" href="#review-form">{product?.reviewsCount} Review(s) | Add review</a>
+                    <Link className="review-link" to="#review-form">{product?.reviewsCount} Review(s) | Add review</Link>
                 </div>
                 <div>
                     <h3 className="product-price">${product?.price} {product?.oldPrice ? <del className="product-old-price">${product?.oldPrice}</del> : ''}</h3>
@@ -50,18 +49,18 @@ const ProductOverview = () => {
                     <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
                 </div>
                 <ul className="product-btns">
-                    <li><a href="#"><i className="fa fa-heart-o"></i> add to wishlist</a></li>
+                    <li><Link to="#"><i className="fa fa-heart-o"></i> add to wishlist</Link></li>
                 </ul>
                 <ul className="product-links">
                     <li>Category:</li>
-                    <li><a href="#">{product?.category}</a></li>
+                    <li><Link to="#">{product?.category}</Link></li>
                 </ul>
                 <ul className="product-links">
                     <li>Share:</li>
-                    <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i className="fa fa-envelope"></i></a></li>
+                    <li><Link to="#"><i className="fa fa-facebook"></i></Link></li>
+                    <li><Link to="#"><i className="fa fa-twitter"></i></Link></li>
+                    <li><Link to="#"><i className="fa fa-google-plus"></i></Link></li>
+                    <li><Link to="#"><i className="fa fa-envelope"></i></Link></li>
                 </ul>
             </div>
         </div>

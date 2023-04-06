@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Slider from "react-slick";
-import {ProductMainImg,ProductImgs,ProductPreview} from "./ProductImagesStyle";
+import {ProductMainImg,ProductImgs} from "./ProductImagesStyle";
 import { useContext } from "react";
 import ProductContext from "../../../contexts/ProductContext";
 import './ProductImages.css';

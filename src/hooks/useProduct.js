@@ -11,8 +11,8 @@ const useProduct = (productId) => {
         .then((docSnap) => {
             if (docSnap.exists()) {
                 let foundProduct = docSnap.data();
-                getDocs(collection(db, "products", productId, "reviews")).
-                then((reviewsSnap) => {
+                getDocs(collection(db, "products", productId, "reviews"))
+                .then((reviewsSnap) => {
                     let foundReviews = [];
                     reviewsSnap.forEach((doc) => {
                         foundReviews.push(doc.data());
@@ -25,7 +25,7 @@ const useProduct = (productId) => {
             }
         }).catch(e=>console.log(e));
         
-    },[]);
+    },[productId]);
 
     return product;
 };

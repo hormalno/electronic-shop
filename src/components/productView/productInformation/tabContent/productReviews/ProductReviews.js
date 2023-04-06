@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReviewView from './reviewView/ReviewView';
-import useReviews from '../../../../../hooks/useReviews';
 import {ReviewsPaginationStyle} from './ProductReviewsStyle';
-import { getDocs, collection, doc } from 'firebase/firestore';
+import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../../../../../utils/firebase';
 import ProductContext from '../../../../../contexts/ProductContext';
 
