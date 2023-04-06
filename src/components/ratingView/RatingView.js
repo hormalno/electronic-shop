@@ -1,5 +1,5 @@
-function RatingView(props) {
-    let redStars = Math.floor(props.rating);
+const RatingView = ({rating}) => {
+    let redStars = Math.floor(rating);
 
     let ratingStars = [];
     for (let index = 0; index < redStars; index++) {

@@ -6,7 +6,7 @@ function ReviewView({review}) {
         <ReviewsStyle>
             <ReviewHeading>
                 <h5 className="name">{review.name}</h5>
-                <p className="date">{review.createdAt}</p>
+                <p className="date">27 DEC 2018, 8:0 PM</p>
                 <ReviewRating>
                     <RatingView rating={review.rating} />
                 </ReviewRating>

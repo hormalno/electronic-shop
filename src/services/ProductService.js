@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, setDoc, getDocs, serverTimestamp } from "firebase/firestore"; 
+import { addDoc, collection, doc, setDoc, getDocs, serverTimestamp, updateDoc, increment } from "firebase/firestore"; 
 import {db, firestore} from '../utils/firebase';
 
 const categories = ["laptop","accessory","camera","smartphone"];
@@ -22,27 +22,34 @@ export const createProducts = () => {
             newProduct.oldPrice = getRndInteger(index*100,index*250);
             switch(true) {
                 case category === "laptop":
-                newProduct.brand = brandsLaptop[getRndInteger(1,4)-1];
-                break;
+                    newProduct.brand = brandsLaptop[getRndInteger(1,4)-1];
+                    newProduct.mainImg = '../img/product01.png';
+                    newProduct.images = ['../img/product01.png','../img/product02.png','../img/product03.png','../img/product04.png'];
+                    break;
                 case category === "accessory":
-                newProduct.brand = brandsAccessories[getRndInteger(1,4)-1];
-                break;
+                    newProduct.brand = brandsAccessories[getRndInteger(1,4)-1];
+                    newProduct.mainImg = '../img/product05.png';
+                    newProduct.images = ['../img/product05.png','../img/product06.png','../img/product07.png','../img/product08.png'];
+                    break;
                 case category === "camera":
-                newProduct.brand = brandsCameras[getRndInteger(1,4)-1];  
-                break;
+                    newProduct.brand = brandsCameras[getRndInteger(1,4)-1];  
+                    newProduct.mainImg = '../img/product09.png';
+                    newProduct.images = ['../img/product09.png','../img/product10.png','../img/product11.png','../img/product12.png'];
+                    break;
                 case category === "smartphone":
-                newProduct.brand = brandsSmartphones[getRndInteger(1,4)-1];
-                break;
+                    newProduct.brand = brandsSmartphones[getRndInteger(1,4)-1];
+                    newProduct.mainImg = '../img/product14.png';
+                    newProduct.images = ['../img/product14.png','../img/product13.png','../img/product15.png','../img/product16.png'];
+                    break;
                 default:
                     console.log("default")
             }
-            newProduct.mainImg = '../img/product01.png';
-            newProduct.images = ['../img/product01.png','../img/product03.png','../img/product06.png','../img/product08.png'];
             newProduct.description =  'This is the full description. This is the full description. This is the full description. This is the full description. This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.';
             newProduct.shortDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
             newProduct.details = 'This is more details. This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.';
             newProduct.sale = getRndInteger(10,75);
             newProduct.rating = parseFloat(getRndInteger(0,4) + "." + getRndInteger(10,75));
+            newProduct.reviewsCount = 0;
             if (index === 3 || index === 7 || index === 11 || index === 12 || index === 14) {
                 newProduct.isNew = true;
             } else {
@@ -61,26 +68,37 @@ export const createProducts = () => {
             
             products.push(newProduct);
         }
-    })
+    });
+
     // products.forEach((product) => {
     //     const productRef = doc(collection(db, "products"))
     //     setDoc(productRef,{...product,id:productRef.id})
-    //     .then((createdProduct)=>console.log(createdProduct))
+    //     .then(()=>console.log("Product created!"))
     //     .catch(e => console.log(e));
     // });
 
     // getDocs(collection(db, "products"))
     // .then((querySnapshot) => {
     //     querySnapshot.forEach((productRef) => {
-    //         const reviewRef = doc(collection(db, "products", productRef.id, "reviews"))
-    //         setDoc(reviewRef, {
-    //             id: reviewRef.id,
-    //             email: "asdf@asdf.com",
-    //             name: "Yasen",
-    //             rating: getRndInteger(1,5),
-    //             text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-    //             createdAt: serverTimestamp()
-    //         })            
+    //         for (let index = 0; index < 10; index++) {
+    //             let customReviewChosen = getRndInteger(1,40);
+    //             if (customReviewChosen === 3) {
+                    
+    //                 updateDoc(doc(db,"products",productRef.id), {reviewsCount: increment(1)})
+    //                 .then(() => console.log("The reviews count is incremented!"));
+
+    //                 const reviewRef = doc(collection(db, "products", productRef.id, "reviews"))
+    //                 setDoc(reviewRef, {
+    //                     id: reviewRef.id,
+    //                     email: "asdf@asdf.com",
+    //                     name: "Yasen",
+    //                     rating: getRndInteger(1,5),
+    //                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    //                     createdAt: serverTimestamp()
+    //                 }).then(() => console.log("The review is added!"));
+    //             }         
+    //         }
+                
     //     })
     // }).catch(e => console.log(e));
 };

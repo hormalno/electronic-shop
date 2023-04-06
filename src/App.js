@@ -28,7 +28,7 @@ const router = createBrowserRouter(
       <Route path="categories/smartphones" element={<Categories category="smartphone" />} />
       <Route path="categories/cameras" element={<Categories category="camera" />} />
       <Route path="categories/accessories" element={<Categories category="accessory" />} />
-      <Route path="categories/:productID" element={<ProductDetail />} />
+      <Route path="categories/:productId" element={<ProductDetail />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />

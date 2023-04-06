@@ -3,24 +3,25 @@ import ProductInformation from './productInformation/ProductInformation';
 import ProductImages from './productImages/ProductImages';
 import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
+import ProductContext from '../../contexts/ProductContext';
 
 function ProductView() {
 
-	let productID = useParams();
-	const product = useProduct(productID);
-
-	console.log(product);
+	let {productId} = useParams();
+    const product = useProduct(productId);
 
     return (
-		<div className="section">
-			<div className="container">
-				<div className="row">
-					{/* <ProductImages images={product.images} />   */}
-					<ProductOverview product={product} />
-					<ProductInformation product={product} />
+		<ProductContext.Provider value={product}>
+			<div className="section">
+				<div className="container">
+					<div className="row">
+						<ProductImages />
+						<ProductOverview />
+						<ProductInformation />
+					</div>
 				</div>
 			</div>
-		</div>
+		</ProductContext.Provider>
     )
 };
 

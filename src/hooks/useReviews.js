@@ -9,13 +9,16 @@ const useReviews = (productId) => {
     useEffect(() => {
         getDocs(collection(db, "products", productId, "reviews"))
         .then((snapshot) => {
-            let foundReviews = [];
-            snapshot.forEach((doc) => {
-                foundReviews.push(doc.data());
-            })
-            setReviews(foundReviews);
+            console.log("Entered get docs")
+            if (snapshot.length > 0) {
+                let foundReviews = [];
+                snapshot.forEach((doc) => {
+                    foundReviews.push(doc.data());
+                })
+                setReviews(foundReviews);
+            };            
         }).catch(e => console.log(e));
-    },[productId])
+    },[])
 
     return reviews;
 };

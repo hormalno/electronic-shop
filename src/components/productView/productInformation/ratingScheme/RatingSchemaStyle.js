@@ -7,7 +7,7 @@ export const RatingStyle = styled.ul `
     }
 `
 
-export const RatingStars = styled.div `
+export const RatingStarsStyle = styled.div `
     display: inline-block;
     >i {
         color: #E4E7ED;
@@ -17,7 +17,7 @@ export const RatingStars = styled.div `
     }    
 `
 
-export const RatingProgress = styled.div `
+export const RatingProgressStyle = styled.div `
     position: relative;
     display: inline-block;
     height: 9px;
@@ -35,8 +35,12 @@ export const RatingProgress = styled.div `
     }
 `
 
-export const RatingSum = styled.span `
+export const RatingSumStyle = styled.span `
     display: inline-block;
     font-size: 12px;
     color: #8D99AE;
+`
+
+export const Progress = styled.div `
+    width: ${props => props.percentage ? props.percentage : '0%'};
 `

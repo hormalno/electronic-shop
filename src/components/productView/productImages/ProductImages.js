@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Slider from "react-slick";
 import {ProductMainImg,ProductImgs,ProductPreview} from "./ProductImagesStyle";
-// import './ProductImages.css';
+import { useContext } from "react";
+import ProductContext from "../../../contexts/ProductContext";
+import './ProductImages.css';
 
-const ProductImages = ({images}) => {
+const ProductImages = () => {
+
+    const product = useContext(ProductContext);
 
 	const sliderMainImg = {
 		infinite: true,
@@ -30,17 +34,16 @@ const ProductImages = ({images}) => {
         <>
             <ProductMainImg className="col-md-5 col-md-push-2">
                 <Slider id="product-main-img" asNavFor={slider2} ref={s1 =>setSlider1(s1) } {...sliderMainImg}>
-                    {/* {images.map((img) =><img src={img} alt="" />)} */}
+                    {product?.images?.map((img) =><img key={img} src={img} alt="" />)}
                 </Slider>
             </ProductMainImg>
             <ProductImgs className="col-md-2  col-md-pull-5">
                 <Slider id="product-imgs" asNavFor={slider1} ref={s2 => setSlider2(s2)} {...sliderImgs}>
-                    {/* {images.map((img) => 
-                        <div className="product-preview">
+                    {product?.images?.map((img) => 
+                        <div key={img} className="product-preview">
                             <img src={img} alt="" />
                         </div>
-                    )} */}
-                   
+                    )}                   
                 </Slider>
             </ProductImgs>
         </>
