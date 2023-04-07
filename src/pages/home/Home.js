@@ -1,15 +1,15 @@
 import ProductsSlider from '../../components/productsSlider/ProductsSlider';
 import ShopNow from './shopNow/ShopNow';
 import HotDeals from './hotDeals/HotDeals';
-import Widget from './widget/Widget';
+import Widget from '../../components/widget/Widget';
 
-function Home(props) {
+function Home() {
     return (
         <>
             <ShopNow />
-            <ProductsSlider title="NEW PRODUCTS" products={props.newProducts} />
+            <ProductsSlider title="new products" mainFilter="new" />
             <HotDeals />
-            <ProductsSlider title="TOP SELLING" products={props.topSellingProducts} />
+            <ProductsSlider title="top rated" mainFilter="rated"/>
             <Widget mockData = {[1,2,3,4,5,6]} />
         </>
     )

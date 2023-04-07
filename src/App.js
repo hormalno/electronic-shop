@@ -10,6 +10,7 @@ import Logout from "./pages/users/Logout";
 import AuthContext from "./contexts/AuthContext"
 import useAuth from "./hooks/useAuth";
 import './App.css';
+import Checkout from "./pages/checkout/Checkout";
 // import { createProducts } from "./services/ProductService";
 
 // const CreateProducts = () => {
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />
+      <Route path="checkout" element={<Checkout />} />
       {/* <Route path="createProducts" element={<CreateProducts />} /> */}
       <Route path="*" element={<PageNotFound />} /> 
     </Route>

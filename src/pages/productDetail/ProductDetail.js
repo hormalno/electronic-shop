@@ -2,12 +2,12 @@ import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import ProductsSlider from "../../components/productsSlider/ProductsSlider";
 import ProductView from "../../components/productView/ProductView";
 
-function ProductDetail(props) {
+function ProductDetail() {
     return (
         <>
             <Breadcrumb />
-            <ProductView product={props.product} />
-            <ProductsSlider title="RELATED PRODUCTS" products={props.relatedProducts} />
+            <ProductView />
+            <ProductsSlider title="on sale products" mainFilter="sale" />
         </>
     )
 };

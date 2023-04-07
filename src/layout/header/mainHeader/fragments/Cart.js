@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Cart.css'
 
 function Cart() {
@@ -37,8 +38,8 @@ function Cart() {
                     <h5>SUBTOTAL: $2940.00</h5>
                 </div>
                 <div className="cart-btns">
-                    <a href="#">View Cart</a>
-                    <a href="#">Checkout  <i className="fa fa-arrow-circle-right"></i></a>
+                    <Link to="/cart">View Cart</Link>
+                    <Link to="/checkout">Checkout  <i className="fa fa-arrow-circle-right"></i></Link>
                 </div>
             </div>
         </div>

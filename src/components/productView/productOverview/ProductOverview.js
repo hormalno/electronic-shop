@@ -19,7 +19,7 @@ const ProductOverview = () => {
                     <Link className="review-link" to="#review-form">{product?.reviewsCount} Review(s) | Add review</Link>
                 </div>
                 <div>
-                    <h3 className="product-price">${product?.price} {product?.oldPrice ? <del className="product-old-price">${product?.oldPrice}</del> : ''}</h3>
+                    <h3 className="product-price">${product?.price} {product?.sale > 0 ? (<del className="product-old-price">${product?.oldPrice}</del>) : ''}</h3>
                     {product?.inStock ? <span className="product-available">In Stock</span> : ''}
                 </div>
                 <p>{product?.shortDescription}</p>

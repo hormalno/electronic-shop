@@ -1,11 +1,12 @@
 import ProductShortView from '../productShortView/ProductShortView';
 import Slider from 'react-slick';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import useSliderData from '../../hooks/useSliderData';
 import { SectionTitleClass, SectionNavClass, SectionTabNavClass, ProductsTabsClass } from './ProductsSliderStyle';
 import {ProductsSliderNavStyle} from "./ProductsSliderNavStyle";
-import {getAllProducts} from '../../services/ProductService'
 
-function ProductsSlider(props) {
+function ProductsSlider({title, mainFilter}) {
 	const sliderSettings = {
 		slidesToShow: 4,
 		slidesToScroll: 1,
@@ -18,11 +19,14 @@ function ProductsSlider(props) {
 		appendArrows: true
 	};
 
-	let [slider, setSlider] = useState();
+	const [slider, setSlider] = useState();	
+	const [category, setCategory] = useState('');
+	const sliderProducts = useSliderData(mainFilter,category);
 
-	useEffect( () => {
-
-	},[])
+	const onClickHandler = (e) => {
+		e.preventDefault();
+        setCategory(e.target.name);
+	};
 
     return (
 		<div className="section">
@@ -30,13 +34,13 @@ function ProductsSlider(props) {
 				<div className="row">
 					<div className="col-md-12">
 						<SectionTitleClass>
-							<h3 className="title">{props.title}</h3>
+							<h3 className="title">{title}</h3>
 							<SectionNavClass>
 								<SectionTabNavClass>
-									<li className="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+									<li className={category === 'laptop' ? 'active' : ''}><Link to="#navTap" name="laptop" onClick={onClickHandler}>Laptops</Link></li>
+									<li className={category === 'smartphone' ? 'active' : ''}><Link to="#navTap" name="smartphone" onClick={onClickHandler}>Smartphones</Link></li>
+									<li className={category === 'camera' ? 'active' : ''}><Link to="#navTap" name="camera" onClick={onClickHandler}>Cameras</Link></li>
+									<li className={category === 'accessory' ? 'active' : ''}><Link to="#navTap" name="accessory" onClick={onClickHandler}>Accessories</Link></li>
 								</SectionTabNavClass>
 							</SectionNavClass>
 						</SectionTitleClass>
@@ -46,7 +50,7 @@ function ProductsSlider(props) {
 							<ProductsTabsClass>
 								<div id="tab1" className="tab-pane active">
 									<Slider ref={s => setSlider(s)} className="products-slick" {...sliderSettings}>
-										{getAllProducts().map((product)=> {return <ProductShortView key={product.id} product={product} />})}
+										{sliderProducts && sliderProducts.map((product)=> {return <ProductShortView key={product.id} product={product} />})}
 									</Slider>
 									<ProductsSliderNavStyle>
 										<button className="slick-prev" onClick={() => {slider.slickPrev();}}>Previous</button>

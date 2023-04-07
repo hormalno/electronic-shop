@@ -1,7 +1,7 @@
 import WidgetItem from "../widgetItem/WidgetItem";
 import { useRef, useState } from 'react';
 import Slider from 'react-slick';
-import {ProductsSliderNavStyle} from "../../../../components/productsSlider/ProductsSliderNavStyle";
+import {ProductsSliderNavStyle} from "../../productsSlider/ProductsSliderNavStyle";
 import {WidgetSectionTitle,WidgetSectionNav} from "./WidgetSectionStyle";
 
 function WidgetSection(props) {
