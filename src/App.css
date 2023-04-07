@@ -244,6 +244,11 @@ textarea.input {
   max-height: 800px;
 }
 
+.errorClass {
+  color: #ff0000;
+  font-size: 12px;
+}
+
 /*----------------------------*\
 	Section
 \*----------------------------*/

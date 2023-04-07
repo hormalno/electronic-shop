@@ -39,12 +39,8 @@ const Login = (props) => {
 								validationSchema={LoginSchema}
 								onSubmit={SubmitHandler}>
 								<Form>
-									<div className="form-group">
-										<MyTextInput className="input" type="email" name="email" placeholder="Email" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="password" name="password" placeholder="Enter Your Password" />
-									</div>
+									<MyTextInput type="email" name="email" placeholder="Email" />
+									<MyTextInput type="password" name="password" placeholder="Enter Your Password" />
 									<div className="form-group">
 										<button className='primary-btn' type="submit" >Submit</button>
 									</div>

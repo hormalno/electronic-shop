@@ -25,7 +25,6 @@ const RatingScheme = () => {
             if (snapshot.docs.length > 0) {                
                 snapshot.forEach((doc) => {
                     let foundReview = doc.data();
-                    console.log(foundReview)
                     foundReviews.push(foundReview);
                 })            
             };

@@ -63,30 +63,14 @@ const Register = () => {
 								validationSchema={RegisterSchema}
 								onSubmit={onSubmitHandler}>
 								<Form>
-									<div className="form-group">
-										<MyTextInput className="input" type="email" name="email" placeholder="Email" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="password" name="password" placeholder="Enter Your Password" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="password" name="repeatPassword" placeholder="Repeat Your Password" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="text" name="firstname" placeholder="First Name" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="text" name="lastname" placeholder="Last Name" />
-									</div>						
-									<div className="form-group">
-										<MyTextInput className="input" type="text" name="address" placeholder="Address" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="text" name="city" placeholder="City" />
-									</div>
-									<div className="form-group">
-										<MyTextInput className="input" type="text" name="country" placeholder="Country" />
-									</div>
+									<MyTextInput type="email" name="email" placeholder="Email" />
+									<MyTextInput type="password" name="repeatPassword" placeholder="Repeat Your Password" />
+									<MyTextInput type="text" name="firstname" placeholder="First Name" />
+									<MyTextInput type="text" name="lastname" placeholder="Last Name" />
+									<MyTextInput type="text" name="address" placeholder="Address" />
+									<MyTextInput type="text" name="city" placeholder="City" />
+									<MyTextInput type="text" name="country" placeholder="Country" />
+									<MyTextInput type="password" name="password" placeholder="Enter Your Password" />
 									<div className="form-group">
 										<button type="submit" className="primary-btn">Submit</button>
 									</div>

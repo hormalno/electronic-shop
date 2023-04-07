@@ -38,7 +38,7 @@ const TabContent = ({tabId}) => {
                                     <ProductReviews />
                                 </div>                                
                             </div>
-                            <ReviewForm />
+                            <ReviewForm productId={product.id} />
                         </>)
         }
     },[tabId,product])
