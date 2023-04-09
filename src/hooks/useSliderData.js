@@ -11,21 +11,21 @@ const useSliderData = (mainFilter, category) => {
         let q;
         if (mainFilter === "new") {
             if (category) {
-                q = query(productsRef, where("isNew", "==", true),where('category', "==", category));
+                q = query(productsRef, where("isNew", "==", true), where("category", "==", category));
             } else {
                 q = query(productsRef, where("isNew", "==", true));
             }
         } else if (mainFilter === "rated") {
             if (category) {
-                q = query(productsRef, where("rating", ">", 3),where('category', "==", category));
+                q = query(productsRef, where("rating", ">=", 4), where("category", "==", category));
             } else {
-                q = query(productsRef, where("rating", ">", 3));
+                q = query(productsRef, where("rating", ">=", 4));
             }
         } else if (mainFilter === "sale") {
             if (category) {
-                q = query(productsRef, where("sale", ">", 0),where('category', "==", category));
+                q = query(productsRef, where("sale", ">=", 1), where("category", "==", category));
             } else {
-                q = query(productsRef, where("sale", ">", 0));
+                q = query(productsRef, where("sale", ">=", 1));
             }
         };
 

@@ -1,16 +1,16 @@
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import Layout from "./layout/Layout";
-import Categories from "./pages/categories/Categories";
 import Home from './pages/home/Home';
-import PageNotFound from "./pages/pageNotFound/PageNotFound";
+import Categories from "./pages/categories/Categories";
 import ProductDetail from "./pages/productDetail/ProductDetail";
 import Login from "./pages/users/Login";
 import Register from "./pages/users/Register";
 import Logout from "./pages/users/Logout";
-import AuthContext from "./contexts/AuthContext"
-import useAuth from "./hooks/useAuth";
-import './App.css';
 import Checkout from "./pages/checkout/Checkout";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
+import AuthContextProvider from "./contexts/AuthContextProvider"
+import './App.css';
+
 // import { createProducts } from "./services/ProductService";
 
 // const CreateProducts = () => {
@@ -19,6 +19,11 @@ import Checkout from "./pages/checkout/Checkout";
 //     <h3>Products created!</h3>
 //   )
 // }
+// to do refactoring the contexts
+// to do updating rating
+// to do cart
+// to do wishlist
+// to do MyRadioInput
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,12 +48,10 @@ const router = createBrowserRouter(
 
 function App() {
 
-  const authInfo = useAuth();
-
   return (
-    <AuthContext.Provider value={authInfo}>
+    <AuthContextProvider>
       <RouterProvider router={router} />
-    </AuthContext.Provider>
+    </AuthContextProvider>
   );
 }
 

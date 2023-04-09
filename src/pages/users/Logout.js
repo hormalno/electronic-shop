@@ -10,7 +10,7 @@ const Logout = () => {
         signOut(auth)
         .then(()=>console.log("User logged out!"))
         .catch(e => console.log(e));
-        navigate("/")
+        navigate(-1)
     },[])   
 };
 

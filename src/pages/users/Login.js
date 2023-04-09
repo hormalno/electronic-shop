@@ -6,14 +6,14 @@ import { Formik, Form } from 'formik';
 import { MyTextInput } from '../../components/form/FormFields';
 import isNotAuth from "../../hoc/isNotAuth";
 
-const Login = (props) => {
+const Login = () => {
 
 	const navigate  = useNavigate();
 
 	const SubmitHandler = (values) => {
 		signInWithEmailAndPassword(auth, values.email, values.password)
-		.then(userCredential => {
-			navigate("/")
+		.then(() => {
+			navigate(-1)
 		}).catch(e => console.log(e))
 	};
 

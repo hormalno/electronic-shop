@@ -1,7 +1,7 @@
-import RatingView from "../../../../../ratingView/RatingView";
+import RatingView from "../../../../ratingView/RatingView";
 import {ReviewsStyle, ReviewHeading, ReviewRating, ReviewBody} from "./ReviewViewStyle"
 
-function ReviewView({review}) {
+const ReviewView = ({review}) => {
     return (
         <ReviewsStyle>
             <ReviewHeading>
