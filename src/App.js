@@ -20,7 +20,6 @@ import './App.css';
 //   )
 // }
 // to do refactoring the contexts
-// to do updating rating
 // to do cart
 // to do wishlist
 // to do MyRadioInput

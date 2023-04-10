@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
 
@@ -11,21 +11,21 @@ const useSliderData = (mainFilter, category) => {
         let q;
         if (mainFilter === "new") {
             if (category) {
-                q = query(productsRef, where("isNew", "==", true), where("category", "==", category));
+                q = query(productsRef, where("isNew", "==", true), where("category", "==", category), orderBy("name"), limit(6));
             } else {
-                q = query(productsRef, where("isNew", "==", true));
+                q = query(productsRef, where("isNew", "==", true), limit(6));
             }
         } else if (mainFilter === "rated") {
             if (category) {
-                q = query(productsRef, where("rating", ">=", 4), where("category", "==", category));
+                q = query(productsRef, where("rating", ">=", 4), where("category", "==", category), orderBy("rating", "desc"), limit(6));
             } else {
-                q = query(productsRef, where("rating", ">=", 4));
+                q = query(productsRef, where("rating", ">=", 4), orderBy("rating", "desc"), limit(6));
             }
         } else if (mainFilter === "sale") {
             if (category) {
-                q = query(productsRef, where("sale", ">=", 1), where("category", "==", category));
+                q = query(productsRef, where("sale", ">=", 1), where("category", "==", category), orderBy("sale", "desc"), limit(6));
             } else {
-                q = query(productsRef, where("sale", ">=", 1));
+                q = query(productsRef, where("sale", ">=", 1), orderBy("sale", "desc"), limit(6));
             }
         };
 

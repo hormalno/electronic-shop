@@ -1,4 +1,4 @@
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { getDocs, collection, query, where, limit } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
 
@@ -9,9 +9,9 @@ const useStoreData = (queries) => {
     useEffect(()=> {
         let q;
         if (queries) {
-            q = query(collection(db, "products"), where("category", "==", queries));
+            q = query(collection(db, "products"), where("category", "==", queries), limit(12));
         } else {
-            q = query(collection(db, "products"));
+            q = query(collection(db, "products"), limit(12));
         };
 
         getDocs(q)
