@@ -10,6 +10,7 @@ import Checkout from "./pages/checkout/Checkout";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import AuthContextProvider from "./contexts/AuthContextProvider"
 import './App.css';
+import CartContextProvider from "./contexts/CartContextProvider";
 
 // import { createProducts } from "./services/ProductService";
 
@@ -48,9 +49,11 @@ const router = createBrowserRouter(
 function App() {
 
   return (
+    <CartContextProvider>
     <AuthContextProvider>
       <RouterProvider router={router} />
     </AuthContextProvider>
+    </CartContextProvider>
   );
 }
 

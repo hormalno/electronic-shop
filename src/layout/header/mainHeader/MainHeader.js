@@ -1,7 +1,7 @@
 import Logo from './fragments/Logo'
 import SearchBar from './fragments/SearchBar'
 import Wishlist from './fragments/Wishlist'
-import Cart from './fragments/Cart'
+import Cart from './fragments/cart/Cart'
 import './MainHeader.css'
 
 function MainHeader() {
