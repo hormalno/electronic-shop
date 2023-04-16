@@ -159,7 +159,7 @@ export const AddToCartClass = styled.div `
         height: 40px;
         padding: 0 30px;
         background-color: #ef233c;
-        color: #FFF;
+        color: #fff;
         text-transform: uppercase;
         font-weight: 700;
         border-radius: 40px;
@@ -170,10 +170,20 @@ export const AddToCartClass = styled.div `
             color: #D10024;
             border-color: #D10024;
             padding: 0px 30px 0px 50px;
+            >i {
+                opacity: 1;
+                visibility: visible;
+            }
         }
-        :hover>i {
-            opacity: 1;
-            visibility: visible;
+        :disabled {
+            background-color: #FFF;
+            color: #D10024;
+            border-color: #D10024;
+            padding: 0px 30px 0px 50px;
+            >i {
+                opacity: 1;
+                visibility: visible;
+            }
         }
     }
     .add-to-cart-btn>i {

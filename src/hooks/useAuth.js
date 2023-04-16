@@ -8,9 +8,11 @@ const useAuth = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      console.log(user.uid)
       if (user) {
         setAuthInfo({
-          username: user.email,
+          id: user.uid,
+          username: user.email,          
           isAuthenticated: true
         })
       } else {

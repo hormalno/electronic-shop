@@ -258,6 +258,14 @@ textarea.input {
   padding-bottom: 30px;
 }
 
+.billing-details {
+  margin-bottom: 30px;
+}
+
+.shiping-details {
+  margin-bottom: 30px;
+}
+
 /*=========================================================
 	RESPONSIVE
 ===========================================================*/

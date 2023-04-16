@@ -1,6 +1,5 @@
-import { Formik, Form, Field } from "formik";
-import isAuth from "../../../../../hoc/isAuth";
-import {MyTextInput} from "../../../../form/FormFields";
+import { Formik, Form } from "formik";
+import {MyRadioStar, MyTextInput, MyTextarea} from "../../../../form/FormFields";
 import {collection, doc, increment, setDoc, updateDoc, serverTimestamp, getDocs} from "firebase/firestore"
 import { db } from "../../../../../utils/firebase";
 import './ReviewForm.css';
@@ -34,7 +33,7 @@ const ReviewForm = ({productId}) => {
     
 	const validate = (values) => {
         const errors = {};
-
+        
         if (!values.name) {
             errors.name = '*The name is required!'
         };
@@ -46,7 +45,7 @@ const ReviewForm = ({productId}) => {
         };        
 
         if (!values.text) {
-            errors.text = '*Please give the review text!'
+            errors.text = '*Please give the review some text!'
         };
 
         if (+values.rating === 0) {
@@ -54,7 +53,7 @@ const ReviewForm = ({productId}) => {
         };
       
         return errors;
-      };
+    };
     
     return (
         <div id="review-form">
@@ -64,17 +63,17 @@ const ReviewForm = ({productId}) => {
                 onSubmit={SubmitHandler}>
                 {({errors,touched, isSubmitting}) => (
                     <Form className="review-form">
-                        <MyTextInput className="input" name="name" type="text" placeholder="Your Name" />
-                        <MyTextInput className="input" name="email" type="email" placeholder="Your Email" />
-                        <MyTextInput className="input" name="text" as="textarea" placeholder="Your Review" />
+                        <MyTextInput name="name" type="text" placeholder="Your Name" />
+                        <MyTextInput name="email" type="email" placeholder="Your Email" />
+                        <MyTextarea containerClass="form-group" name="text" placeholder="Your Review"></MyTextarea>
                         <div className="input-rating">
                             <span>Your Rating: </span>
                             <div className="stars" role="group" aria-labelledby="my-radio-group">
-                                <Field id="star5" name="rating" value="5" type="radio"/><label htmlFor="star5"></label>
-                                <Field id="star4" name="rating" value="4" type="radio"/><label htmlFor="star4"></label>
-                                <Field id="star3" name="rating" value="3" type="radio"/><label htmlFor="star3"></label>
-                                <Field id="star2" name="rating" value="2" type="radio"/><label htmlFor="star2"></label>
-                                <Field id="star1" name="rating" value="1" type="radio"/><label htmlFor="star1"></label>
+                                <MyRadioStar id="star5" name="rating" value="5" />
+                                <MyRadioStar id="star4" name="rating" value="4" />
+                                <MyRadioStar id="star3" name="rating" value="3" />                                
+                                <MyRadioStar id="star2" name="rating" value="2" />
+                                <MyRadioStar id="star1" name="rating" value="1" />
                             </div>
                             {touched.rating && errors.rating ? (<div className="errorClass">{errors.rating}</div>) : null}
                         </div>
@@ -85,4 +84,4 @@ const ReviewForm = ({productId}) => {
     )
 };
 
-export default isAuth(ReviewForm);
+export default ReviewForm;

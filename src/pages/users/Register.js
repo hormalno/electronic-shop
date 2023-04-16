@@ -1,11 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
-import {db, auth} from "../../utils/firebase";
-import {useNavigate} from "react-router-dom";
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { MyTextInput } from '../../components/form/FormFields';
-import isNotAuth from "../../hoc/isNotAuth";
+import { db, auth } from '../../utils/firebase';
 
 const Register = () => {
 
@@ -22,17 +21,15 @@ const Register = () => {
 
 		createUserWithEmailAndPassword(auth, values.email, values.password)
 		.then((cred) => setDoc(doc(db, "users", cred.user.uid),data)
-						.then(console.log("User added to database!"))
+						.then(() => navigate("/"))
 						.catch(e => console.log(e)))
-		.catch(e => console.log(e));
-
-		navigate("/")
+		.catch(e => console.log(e));		
 	};	
 
 	const RegisterSchema = Yup.object().shape({		
 		email: Yup.string().email('Invalid email').required('Required'),
 		password: Yup.string().min(6, 'The password must be at least 6 characters!').required('Required'),
-		repeatPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
+		repeatPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
 		firstname: Yup.string().required('Required'),
 		lastname: Yup.string().required('Required'),
 		address: Yup.string().required('Required'),
@@ -49,41 +46,39 @@ const Register = () => {
 							<div className="section-title">
 								<h3 className="title">Register</h3>
 							</div>
-							<Formik 
-								initialValues={{
-									email: '',
-									password: '',
-									repeatPassword: '',
-									firstname: '',
-									lastname: '',
-									address: '',
-									city: '',
-									country: '',
-								}}
-								validationSchema={RegisterSchema}
-								onSubmit={onSubmitHandler}>
-								<Form>
-									<MyTextInput type="email" name="email" placeholder="Email" />
-									<MyTextInput type="password" name="repeatPassword" placeholder="Repeat Your Password" />
-									<MyTextInput type="text" name="firstname" placeholder="First Name" />
-									<MyTextInput type="text" name="lastname" placeholder="Last Name" />
-									<MyTextInput type="text" name="address" placeholder="Address" />
-									<MyTextInput type="text" name="city" placeholder="City" />
-									<MyTextInput type="text" name="country" placeholder="Country" />
-									<MyTextInput type="password" name="password" placeholder="Enter Your Password" />
-									<div className="form-group">
-										<button type="submit" className="primary-btn">Submit</button>
-									</div>
-								</Form>
-							</Formik>
 						</div>
-					</div>
-					
+						<Formik 
+							initialValues={{
+								email: '',
+								password: '',
+								repeatPassword: '',
+								firstname: '',
+								lastname: '',
+								address: '',
+								city: '',
+								country: '',
+							}}
+							validationSchema={RegisterSchema}
+							onSubmit={onSubmitHandler}>
+							<Form>
+								<MyTextInput type="email" name="email" placeholder="Email" />
+								<MyTextInput type="password" name="password" placeholder="Enter Your Password" />
+								<MyTextInput type="password" name="repeatPassword" placeholder="Repeat Your Password" />
+								<MyTextInput type="text" name="firstname" placeholder="First Name" />
+								<MyTextInput type="text" name="lastname" placeholder="Last Name" />
+								<MyTextInput type="text" name="address" placeholder="Address" />
+								<MyTextInput type="text" name="city" placeholder="City" />
+								<MyTextInput type="text" name="country" placeholder="Country" />									
+								<div className="form-group">
+									<button type="submit" className="primary-btn">Submit</button>
+								</div>
+							</Form>
+						</Formik>
+					</div>					
 				</div>
 			</div>
 		</div>
     )
+};
 
-}
-
-export default isNotAuth(Register);
+export default Register;

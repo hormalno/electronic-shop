@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './TopHeader.css';
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../../contexts/AuthContextProvider';
@@ -6,18 +6,21 @@ import { AuthContext } from '../../../contexts/AuthContextProvider';
 function TopHeader() {
 
     const {isAuthenticated, username} = useContext(AuthContext);
-    let accountInfo;
-    if (isAuthenticated) {
-        accountInfo = (<>
+    const [account, setAccount] = useState('');
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            setAccount(<>
                             <li><Link to="/profile"><i className="fa fa-user-o"></i>Welcome, {username}</Link></li>
                             <li><Link to="/logout"> Logout</Link></li>
                         </>)
-    } else {
-        accountInfo = (<>
+        } else {
+            setAccount(<>
                             <li><Link to="/login"><i className="fa fa-user-o"></i>Log In</Link></li>
                             <li><Link to="/register"> Register</Link></li>
                         </>)
-    };
+        }
+    }, [isAuthenticated])
 
     return (
         <div id="top-header">
@@ -29,7 +32,7 @@ function TopHeader() {
                 </ul>
                 <ul className="header-links pull-right">
                     <li><Link to="#"><i className="fa fa-dollar"></i> USD</Link></li>
-                    {accountInfo}                   
+                    {account}                   
                 </ul>
             </div>
         </div>

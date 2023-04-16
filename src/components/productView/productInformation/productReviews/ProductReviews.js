@@ -8,8 +8,10 @@ import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase';
 import ProductContext from '../../../../contexts/ProductContext';
 import { ReviewsPaginationStyle, RatingAvgStyle, RatingStarsStyle } from './ProductReviewsStyle';
+import { AuthContext } from '../../../../contexts/AuthContextProvider';
 
 const ProductReviews = () => {
+  const {isAuthenticated} = useContext(AuthContext);
   const product = useContext(ProductContext);
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -69,7 +71,7 @@ const ProductReviews = () => {
           </div>                                
       </div>
       <div className="col-md-3">
-        <ReviewForm productId={product.id} />
+        {isAuthenticated ? <ReviewForm productId={product.id} /> : null}
       </div>
     </>
   );

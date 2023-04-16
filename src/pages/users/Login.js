@@ -1,19 +1,16 @@
-import {useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../../utils/firebase";
-import {signInWithEmailAndPassword} from "firebase/auth";
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { MyTextInput } from '../../components/form/FormFields';
-import isNotAuth from "../../hoc/isNotAuth";
 
-const Login = () => {
-
+const Login = () => {	
 	const navigate  = useNavigate();
-
-	const SubmitHandler = (values) => {
+	const SubmitHandler = (values) => {		
 		signInWithEmailAndPassword(auth, values.email, values.password)
 		.then(() => {
-			navigate(-1)
+			navigate('/')
 		}).catch(e => console.log(e))
 	};
 
@@ -42,17 +39,19 @@ const Login = () => {
 									<MyTextInput type="email" name="email" placeholder="Email" />
 									<MyTextInput type="password" name="password" placeholder="Enter Your Password" />
 									<div className="form-group">
+										<div class="caption">
+											<p>If you don't have an account please <Link className="review-link" to="/register">register</Link></p>
+										</div>
 										<button className='primary-btn' type="submit" >Submit</button>
 									</div>
 								</Form>
 							</Formik>
 						</div>
-					</div>
-					
+					</div>					
 				</div>
 			</div>
 		</div>
     )
 };
 
-export default isNotAuth(Login);
+export default Login;

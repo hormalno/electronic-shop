@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
 import RatingView from '../ratingView/RatingView'
 import { ProductShortViewClass,ProductShortViewImgClass,ProductShortViewLabelClass,ProductShortViewLabelSpanClass,ProductShortViewBodyClass,ProductShortViewCategoryClass,
-         ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle'
+         ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle';
 import { useContext } from 'react';
-import { CartContext } from '../../contexts/CartContextProvider';
+import CartContext from '../../contexts/cart/CartContext';
 
 const ProductShortView = ({product}) => {
 
-    const {addItem} = useContext(CartContext);
+    const { addToCart, increase, cartItems, sumItems, itemCount } = useContext(CartContext);
+
+    const isInCart = (product) => {return !!cartItems.find((item) => item.id === product.id)}
 
     return (
         <ProductShortViewClass>
             <ProductShortViewImgClass>
-                <img src={product.mainImg} alt="" />
+                <img src={product.mainImg} alt={product.name} />
                 <ProductShortViewLabelClass>
                     {product.isNew ? (<ProductShortViewLabelSpanClass new>new</ProductShortViewLabelSpanClass>) : ''}
                     {product.sale > 0 ? (<ProductShortViewLabelSpanClass sale>-{product.sale}%</ProductShortViewLabelSpanClass>) : ''}
@@ -31,7 +33,11 @@ const ProductShortView = ({product}) => {
                 </div>
             </ProductShortViewBodyClass>
             <AddToCartClass className="add-to-cart">
-                <button className="add-to-cart-btn" onClick={() => addItem(product)}><i className="fa fa-shopping-cart"></i> add to cart</button>
+                {isInCart(product) ?
+                    <button className="add-to-cart-btn" disabled={true}><i className="fa fa-shopping-cart"></i> added to cart</button>
+                    :
+                    <button className="add-to-cart-btn" disabled={false} onClick={() => addToCart(product)}><i className="fa fa-shopping-cart"></i> add to cart</button>
+                }
             </AddToCartClass>
         </ProductShortViewClass>
     )

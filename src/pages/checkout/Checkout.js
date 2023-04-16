@@ -1,160 +1,127 @@
+import { useContext, useState, useEffect } from "react";
+import {AuthContext} from "../../contexts/AuthContextProvider";
+import authorized from "../../hoc/authorized";
+import { db } from "../../utils/firebase";
+import { MyCheckbox, MyRadio, MyTextInput, MyTextarea } from "../../components/form/FormFields";
+import { Formik, Form, Field } from "formik";
+import { getDoc, doc } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import OrderSummary from "./OrderSummary";
+import CartContext from "../../contexts/cart/CartContext";
+
 const Checkout = () => {
+
+	const {handleCheckout} = useContext(CartContext);
+
+	const validate = (values) => {
+        const errors = {};
+
+        if (!values.firstname) {
+            errors.firstname = '*The first name is required!'
+        };
+
+		if (!values.lastname) {
+            errors.lastname = '*The last name is required!'
+        };
+      
+        if (!values.email) {
+          errors.email = '*The email is required!';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+          errors.email = '*Invalid email address!';
+        };        
+
+        if (!values.address) {
+            errors.address = '*The address is required!'
+        };
+
+		if (!values.city) {
+            errors.city = '*The city is required!'
+        };
+
+		if (!values.country) {
+            errors.country = '*The country is required!'
+        };
+
+		if (!values.terms) {
+            errors.terms = '*You must accept the terms and conditions!'
+        };
+
+		if (!values.payment) {
+            errors.payment = '*You must choose a payment!'
+        };
+      
+        return errors;
+    };
+
+	const onSubmitHandler = (values, {isSubmitting}) => {
+		console.log(values)
+		handleCheckout()
+		isSubmitting = false;
+	}
+
     return (
-		<div class="section">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<div class="billing-details">
-							<div class="section-title">
-								<h3 class="title">Billing address</h3>
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="first-name" placeholder="First Name" />
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="last-name" placeholder="Last Name" />
-							</div>
-							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email" />
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="address" placeholder="Address" />
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="city" placeholder="City" />
-							</div>
-							<div class="form-group">
-								<input class="input" type="text" name="country" placeholder="Country" />
-							</div>
-							<div class="form-group">
-								<div class="input-checkbox">
-									<input type="checkbox" id="create-account" />
-									<label for="create-account">
-										<span></span>
-										Create Account?
-									</label>
-									<div class="caption">
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-										<input class="input" type="password" name="password" placeholder="Enter Your Password" />
+		<Formik
+			initialValues={{
+				firstname: '',
+				lastname: '',
+				email: '',
+				address: '',
+				city: '',
+				country: '',
+				orderNotes: '',
+				terms: false,
+				payment: ''
+			}}
+			validate={validate}
+			onSubmit={onSubmitHandler}>
+			{({errors,touched, isSubmitting}) => (
+				<Form>
+				<div className="section">
+					<div className="container">
+						<div className="row">					
+							<div className="col-md-7">
+								<div className="billing-details">
+									<div className="section-title">
+										<h3 className="title">Billing address</h3>
 									</div>
+									<MyTextInput class="input" type="text" name="firstname" placeholder="First Name" />
+									<MyTextInput class="input" type="text" name="lastname" placeholder="Last Name" />
+									<MyTextInput class="input" type="email" name="email" placeholder="Email" />
+									<MyTextInput class="input" type="text" name="address" placeholder="Address" />
+									<MyTextInput class="input" type="text" name="city" placeholder="City" />
+									<MyTextInput class="input" type="text" name="country" placeholder="Country" />
 								</div>
+								<MyTextarea containerClass="order-notes" name="orderNotes" placeholder="Order Notes"></MyTextarea>
 							</div>
-						</div>
-						<div class="shiping-details">
-							<div class="section-title">
-								<h3 class="title">Shiping address</h3>
-							</div>
-							<div class="input-checkbox">
-								<input type="checkbox" id="shiping-address" />
-								<label for="shiping-address">
+							<div className="col-md-5 order-details">
+								<div className="section-title text-center">
+									<h3 className="title">Your Order</h3>
+								</div>
+								<OrderSummary />
+								<div className="payment-method">								
+									<MyRadio name="payment" id="payment1" value="payment1">
+										<span></span>Direct Bank Transfer
+									</MyRadio>
+									<MyRadio name="payment" id="payment2" value="payment2">
+										<span></span>Cheque Payment
+									</MyRadio>
+									<MyRadio name="payment" id="payment3" value="payment3">
+										<span></span>Paypal System
+									</MyRadio>
+									{touched.payment && errors.payment && (<div className="errorClass">{errors.payment}</div>)}
+								</div>
+								<MyCheckbox id="terms" name="terms">
 									<span></span>
-									Ship to a diffrent address?
-								</label>
-								<div class="caption">
-									<div class="form-group">
-										<input class="input" type="text" name="first-name" placeholder="First Name" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="last-name" placeholder="Last Name" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="email" name="email" placeholder="Email" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="address" placeholder="Address" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="city" placeholder="City" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="country" placeholder="Country" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="text" name="zip-code" placeholder="ZIP Code" />
-									</div>
-									<div class="form-group">
-										<input class="input" type="tel" name="tel" placeholder="Telephone" />
-									</div>
-								</div>
+									I've read and accept the <Link to="#">terms & conditions</Link>
+								</MyCheckbox>
+								<button type="submit" className="primary-btn order-submit" disabled={isSubmitting}>Place order</button>
 							</div>
 						</div>
-						<div class="order-notes">
-							<textarea class="input" placeholder="Order Notes"></textarea>
-						</div>
-					</div>
-					<div class="col-md-5 order-details">
-						<div class="section-title text-center">
-							<h3 class="title">Your Order</h3>
-						</div>
-						<div class="order-summary">
-							<div class="order-col">
-								<div><strong>PRODUCT</strong></div>
-								<div><strong>TOTAL</strong></div>
-							</div>
-							<div class="order-products">
-								<div class="order-col">
-									<div>1x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
-								<div class="order-col">
-									<div>2x Product Name Goes Here</div>
-									<div>$980.00</div>
-								</div>
-							</div>
-							<div class="order-col">
-								<div>Shiping</div>
-								<div><strong>FREE</strong></div>
-							</div>
-							<div class="order-col">
-								<div><strong>TOTAL</strong></div>
-								<div><strong class="order-total">$2940.00</strong></div>
-							</div>
-						</div>
-						<div class="payment-method">
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-1" />
-								<label for="payment-1">
-									<span></span>
-									Direct Bank Transfer
-								</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-2" />
-								<label for="payment-2">
-									<span></span>
-									Cheque Payment
-								</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-							<div class="input-radio">
-								<input type="radio" name="payment" id="payment-3" />
-								<label for="payment-3">
-									<span></span>
-									Paypal System
-								</label>
-								<div class="caption">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								</div>
-							</div>
-						</div>
-						<div class="input-checkbox">
-							<input type="checkbox" id="terms" />
-							<label for="terms">
-								<span></span>
-								I've read and accept the <a href="#">terms & conditions</a>
-							</label>
-						</div>
-						<a href="#" class="primary-btn order-submit">Place order</a>
 					</div>
 				</div>
-			</div>
-		</div>
+			</Form>)}
+		</Formik>
     )
 };
 
-export default Checkout;
+export default authorized(Checkout);

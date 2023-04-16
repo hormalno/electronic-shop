@@ -2,16 +2,15 @@ import { auth } from "../../utils/firebase";
 import { signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import isAuth from "../../hoc/isAuth";
 
 const Logout = () => {
     const navigate = useNavigate();
-    useEffect(() => {
-        signOut(auth)
-        .then(()=>console.log("User logged out!"))
-        .catch(e => console.log(e));
-        navigate(-1)
-    },[])   
+    signOut(auth).then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    })
+
 };
 
-export default isAuth(Logout);
+export default Logout;
