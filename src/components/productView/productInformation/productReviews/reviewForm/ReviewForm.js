@@ -36,18 +36,15 @@ const ReviewForm = ({productId}) => {
         
         if (!values.name) {
             errors.name = '*The name is required!'
-        };
-      
+        };      
         if (!values.email) {
           errors.email = '*The email is required!';
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
           errors.email = '*Invalid email address!';
-        };        
-
+        };
         if (!values.text) {
             errors.text = '*Please give the review some text!'
         };
-
         if (+values.rating === 0) {
             errors.rating = '*Please give a rating!'
         };
@@ -61,11 +58,11 @@ const ReviewForm = ({productId}) => {
                 initialValues={{name: '', email: '', text: '', rating: 0}}
                 validate={validate}
                 onSubmit={SubmitHandler}>
-                {({errors,touched, isSubmitting}) => (
+                {({errors, touched, isSubmitting}) => (
                     <Form className="review-form">
                         <MyTextInput name="name" type="text" placeholder="Your Name" />
                         <MyTextInput name="email" type="email" placeholder="Your Email" />
-                        <MyTextarea containerClass="form-group" name="text" placeholder="Your Review"></MyTextarea>
+                        <MyTextarea containerclass="form-group" name="text" placeholder="Your Review"></MyTextarea>
                         <div className="input-rating">
                             <span>Your Rating: </span>
                             <div className="stars" role="group" aria-labelledby="my-radio-group">

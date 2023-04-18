@@ -2,9 +2,9 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CartContext from '../../../../../contexts/cart/CartContext';
 import ProductWidget from './productWidget/ProductWidget';
-import './Cart.css';
+import './CartWidget.css';
 
-const Cart = () => {
+const CartWidget = () => {
 
     const {cartItems, itemCount, total} = useContext(CartContext)
     const [dropdownClass, setDropdownClass] = useState('dropdown');
@@ -28,12 +28,12 @@ const Cart = () => {
                     <h5>SUBTOTAL: ${total > 0 ? total : '0.00'}</h5>
                 </div>
                 <div className='cart-btns' onClick={cartToggle}>
-                    <Link to="/cart">View Cart</Link>
-                    <Link to="/checkout">Checkout  <i className="fa fa-arrow-circle-right"></i></Link>
+                    <Link to={itemCount > 0 ? '/cart' : '#'}>View Cart</Link>
+                    <Link to={total > 0 ? '/checkout' : '#'}>Checkout  <i className="fa fa-arrow-circle-right"></i></Link>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Cart;
+export default CartWidget;

@@ -7,7 +7,7 @@ import CartContext from '../../contexts/cart/CartContext';
 
 const ProductShortView = ({product}) => {
 
-    const { addToCart, increase, cartItems, sumItems, itemCount } = useContext(CartContext);
+    const { addToCart, cartItems } = useContext(CartContext);
 
     const isInCart = (product) => {return !!cartItems.find((item) => item.id === product.id)}
 
@@ -22,7 +22,7 @@ const ProductShortView = ({product}) => {
             </ProductShortViewImgClass>
             <ProductShortViewBodyClass>
                 <ProductShortViewCategoryClass>{product.category}</ProductShortViewCategoryClass>
-                <ProductShortViewNameClass><Link to={"/categories/"+product.id}>{product.name}</Link></ProductShortViewNameClass>
+                <ProductShortViewNameClass><Link to={"/categories/"+product.category+"/"+product.id}>{product.name}</Link></ProductShortViewNameClass>
                 <ProductShortViewPriceClass>${product.price.toFixed(2)} {product.sale > 0 ? <del className="product-old-price">${product.oldPrice.toFixed(2)}</del> : ''}</ProductShortViewPriceClass>
                 <ProductShortViewRatingClass>
                     <RatingView rating={product.rating} />
@@ -34,7 +34,7 @@ const ProductShortView = ({product}) => {
             </ProductShortViewBodyClass>
             <AddToCartClass className="add-to-cart">
                 {isInCart(product) ?
-                    <button className="add-to-cart-btn" disabled={true}><i className="fa fa-shopping-cart"></i> added to cart</button>
+                    <button className="add-to-cart-btn" disabled={true}><i className="fa fa-shopping-cart"></i> added</button>
                     :
                     <button className="add-to-cart-btn" disabled={false} onClick={() => addToCart(product)}><i className="fa fa-shopping-cart"></i> add to cart</button>
                 }

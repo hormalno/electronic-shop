@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import CartContext from "../../contexts/cart/CartContext";
-import "./OrderSummary.css"
+import CartContext from "../../../contexts/cart/CartContext";
+import "./OrderSummary.css";
 
 const OrderSummary = () => {
 
@@ -15,7 +15,7 @@ const OrderSummary = () => {
             <div className="order-products">
                 {cartItems && cartItems.map(product =>
                     (
-                        <div className="order-col">
+                        <div key={product.id} className="order-col">
                             <div>{product.quantity}x {product.name}</div>
                             <div>${product.price.toFixed(2)}</div>
                         </div>

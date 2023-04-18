@@ -8,7 +8,6 @@ const useAuth = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user.uid)
       if (user) {
         setAuthInfo({
           id: user.uid,

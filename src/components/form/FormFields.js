@@ -14,7 +14,7 @@ export const MyTextInput = ({ label, ...props }) => {
 export const MyTextarea = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <div className={props.containerClass}>
+    <div className={props.containerclass}>
       <textarea className="input" {...field} {...props} ></textarea>
       {meta.touched && meta.error ? (<div className="errorClass">{meta.error}</div>) : null}
     </div>

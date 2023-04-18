@@ -11,6 +11,7 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import AuthContextProvider from "./contexts/AuthContextProvider"
 import CartState from "./contexts/cart/CartState";
 import './App.css';
+import Cart from "./pages/cart/Cart";
 
 
 // import { createProducts } from "./services/ProductService";
@@ -22,24 +23,25 @@ import './App.css';
 //   )
 // }
 // to do refactoring the contexts
-// to do cart
+// to do cart autofill billing address
 // to do wishlist
-// to do MyRadioInput
+// to do error boundary
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="/" element={<Home />} />
       <Route path="categories" element={<Categories category="all" />} />
-      <Route path="categories/laptops" element={<Categories category="laptop" />} />
-      <Route path="categories/smartphones" element={<Categories category="smartphone" />} />
-      <Route path="categories/cameras" element={<Categories category="camera" />} />
-      <Route path="categories/accessories" element={<Categories category="accessory" />} />
-      <Route path="categories/:productId" element={<ProductDetail />} />
+      <Route path="categories/laptops" element={<Categories category="laptops" />} />
+      <Route path="categories/smartphones" element={<Categories category="smartphones" />} />
+      <Route path="categories/cameras" element={<Categories category="cameras" />} />
+      <Route path="categories/accessories" element={<Categories category="accessories" />} />
+      <Route path="categories/:category/:productId" element={<ProductDetail />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="logout" element={<Logout />} />
       <Route path="checkout" element={<Checkout />} />
+      <Route path="cart" element={<Cart />} />
       {/* <Route path="createProducts" element={<CreateProducts />} /> */}
       <Route path="*" element={<PageNotFound />} /> 
     </Route>

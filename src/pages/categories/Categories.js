@@ -8,7 +8,6 @@ function Categories({category}) {
 
     return (
         <StoreContext.Provider value={storeType}>
-            <Breadcrumb />
             <Store />
         </StoreContext.Provider>
     )

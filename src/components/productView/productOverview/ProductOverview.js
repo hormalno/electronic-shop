@@ -1,13 +1,17 @@
 import RatingView from "../../ratingView/RatingView";
-import './ProductOverview.css';
 import { useContext } from "react";
 import ProductContext from '../../../contexts/ProductContext';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContextProvider";
+import CartContext from "../../../contexts/cart/CartContext";
+import './ProductOverview.css';
+
 const ProductOverview = () => {
 
+    const {addToCart,cartItems} = useContext(CartContext);
     const product = useContext(ProductContext);
     const {isAuthenticated} = useContext(AuthContext);
+    const isInCart = (product) => {return !!cartItems.find((item) => item.id === product.id)}
 
     return (
         <div className="col-md-5">
@@ -24,30 +28,14 @@ const ProductOverview = () => {
                     {product?.inStock ? <span className="product-available">In Stock</span> : ''}
                 </div>
                 <p>{product?.shortDescription}</p>
-                <div className="product-options">
-                    <label>
-                        Size
-                        <select className="input-select">
-                            <option value="0">X</option>
-                        </select>
-                    </label>
-                    <label>
-                        Color
-                        <select className="input-select">
-                            <option value="0">Red</option>
-                        </select>
-                    </label>
+                <div className="product-options">                    
                 </div>
                 <div className="add-to-cart">
-                    <div className="qty-label">
-                        Qty
-                        <div className="input-number">
-                            <input type="number"/>
-                            <span className="qty-up">+</span>
-                            <span className="qty-down">-</span>
-                        </div>
-                    </div>
-                    <button className="add-to-cart-btn"><i className="fa fa-shopping-cart"></i> add to cart</button>
+                    {isInCart(product) ?
+                        <button className="add-to-cart-btn" disabled={true}><i className="fa fa-shopping-cart"></i> added</button>
+                    : 
+                        <button className="add-to-cart-btn" disabled={false} onClick={() => addToCart(product)}><i className="fa fa-shopping-cart"></i> add to cart</button>
+                    }
                 </div>
                 <ul className="product-btns">
                     <li><Link to="#"><i className="fa fa-heart-o"></i> add to wishlist</Link></li>

@@ -1,7 +1,7 @@
 import Logo from './fragments/Logo'
 import SearchBar from './fragments/SearchBar'
 import Wishlist from './fragments/Wishlist'
-import Cart from './fragments/cart/Cart'
+import CartWidget from './fragments/cart/CartWidget'
 import './MainHeader.css'
 
 function MainHeader() {
@@ -14,7 +14,7 @@ function MainHeader() {
 					<div className="col-md-3 clearfix">
 						<div className="header-ctn">
 							<Wishlist />
-							<Cart />
+							<CartWidget />
 						</div>
 					</div>
 				</div>

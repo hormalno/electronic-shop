@@ -1,62 +1,53 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import {AuthContext} from "../../contexts/AuthContextProvider";
 import authorized from "../../hoc/authorized";
 import { db } from "../../utils/firebase";
 import { MyCheckbox, MyRadio, MyTextInput, MyTextarea } from "../../components/form/FormFields";
-import { Formik, Form, Field } from "formik";
-import { getDoc, doc } from "firebase/firestore";
-import { Link } from "react-router-dom";
-import OrderSummary from "./OrderSummary";
+import { Formik, Form } from "formik";
+import * as Yup from 'yup';
+import { setDoc, doc, serverTimestamp, collection } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
+import OrderSummary from "./orderSummary/OrderSummary";
 import CartContext from "../../contexts/cart/CartContext";
+import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 
 const Checkout = () => {
+	const navigate = useNavigate();
+	const {handleCheckout,cartItems, total} = useContext(CartContext);
+	const {username,id} = useContext(AuthContext);
 
-	const {handleCheckout} = useContext(CartContext);
+	const checkoutSchema = Yup.object().shape({
+		firstname: Yup.string().required('*The first name is required'),
+		lastname: Yup.string().required('*The last name is required'),
+		email: Yup.string().oneOf([username],'*You must use your username').required('*The email is required'),
+		address: Yup.string().required('*The address name is required'),
+		city: Yup.string().required('*The city is required'),
+		country: Yup.string().required('*The country is required'),
+		terms: Yup.boolean().oneOf([true],'*You must accept the terms and conditions'),
+		payment: Yup.string().required('*You must choose a payment')
+	})
 
-	const validate = (values) => {
-        const errors = {};
+	const onSubmitHandler = async (values) => {
 
-        if (!values.firstname) {
-            errors.firstname = '*The first name is required!'
-        };
+		let orderData = {...values};
+		orderData.items = cartItems.map(product => {
+			return ({
+				productId: product.id,
+				quantity: product.quantity
+			})
+		});
+		orderData.totalPrice = total;
+		orderData.userId = id;
+		orderData.createdAt = serverTimestamp();
 
-		if (!values.lastname) {
-            errors.lastname = '*The last name is required!'
-        };
-      
-        if (!values.email) {
-          errors.email = '*The email is required!';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-          errors.email = '*Invalid email address!';
-        };        
+		const orderRef = doc(collection(db, "orders"));
+		await setDoc(orderRef, {...orderData, id: orderRef.id})
 
-        if (!values.address) {
-            errors.address = '*The address is required!'
-        };
-
-		if (!values.city) {
-            errors.city = '*The city is required!'
-        };
-
-		if (!values.country) {
-            errors.country = '*The country is required!'
-        };
-
-		if (!values.terms) {
-            errors.terms = '*You must accept the terms and conditions!'
-        };
-
-		if (!values.payment) {
-            errors.payment = '*You must choose a payment!'
-        };
-      
-        return errors;
-    };
-
-	const onSubmitHandler = (values, {isSubmitting}) => {
-		console.log(values)
 		handleCheckout()
-		isSubmitting = false;
+
+		console.log("Order placed!")
+
+		navigate("/")
 	}
 
     return (
@@ -72,7 +63,7 @@ const Checkout = () => {
 				terms: false,
 				payment: ''
 			}}
-			validate={validate}
+			validationSchema={checkoutSchema}
 			onSubmit={onSubmitHandler}>
 			{({errors,touched, isSubmitting}) => (
 				<Form>
@@ -91,7 +82,7 @@ const Checkout = () => {
 									<MyTextInput class="input" type="text" name="city" placeholder="City" />
 									<MyTextInput class="input" type="text" name="country" placeholder="Country" />
 								</div>
-								<MyTextarea containerClass="order-notes" name="orderNotes" placeholder="Order Notes"></MyTextarea>
+								<MyTextarea containerclass="order-notes" name="orderNotes" placeholder="Order Notes"></MyTextarea>
 							</div>
 							<div className="col-md-5 order-details">
 								<div className="section-title text-center">
@@ -120,8 +111,7 @@ const Checkout = () => {
 					</div>
 				</div>
 			</Form>)}
-		</Formik>
-    )
+		</Formik>)
 };
 
 export default authorized(Checkout);
