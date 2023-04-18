@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import ProductContext from "../../../contexts/ProductContext";
+import ProductContext from "../../../contexts/product/ProductContext";
 import ProductReviews from "./productReviews/ProductReviews";
 import {ProductTabStyle} from './ProductInformationStyle';
 

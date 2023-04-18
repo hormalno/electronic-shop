@@ -2,7 +2,7 @@ import { collection, getDocs, limit, orderBy, query, where } from "firebase/fire
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
 
-const useSliderData = (mainFilter, category) => {
+const useSliderData = (mainFilter, mainCategory, category) => {
 
     const [products, setProducts] = useState([]);
     
@@ -27,6 +27,8 @@ const useSliderData = (mainFilter, category) => {
             } else {
                 q = query(productsRef, where("sale", ">=", 1), orderBy("sale", "desc"), limit(6));
             }
+        } else if (!mainFilter) {
+            q = query(productsRef, where("category", "==", mainCategory), orderBy("name", "asc"), limit(6));
         };
 
         getDocs(q)
@@ -40,7 +42,7 @@ const useSliderData = (mainFilter, category) => {
             };
         }).catch(e => console.log(e));
 
-    },[mainFilter,category])
+    },[mainFilter,mainCategory,category])
 
     return products;
 };

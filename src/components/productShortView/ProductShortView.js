@@ -14,7 +14,7 @@ const ProductShortView = ({product}) => {
     return (
         <ProductShortViewClass>
             <ProductShortViewImgClass>
-                <img src={product.mainImg} alt={product.name} />
+                <img src={'/'+product.mainImg} alt={product.name} />
                 <ProductShortViewLabelClass>
                     {product.isNew ? (<ProductShortViewLabelSpanClass new>new</ProductShortViewLabelSpanClass>) : ''}
                     {product.sale > 0 ? (<ProductShortViewLabelSpanClass sale>-{product.sale}%</ProductShortViewLabelSpanClass>) : ''}

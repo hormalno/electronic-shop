@@ -7,9 +7,9 @@ function Home() {
     return (
         <>
             <ShopNow />
-            <ProductsSlider title="new products" mainFilter="new" />
+            <ProductsSlider title="new products" mainFilter="new" withNavigation={true} />
             <HotDeals />
-            <ProductsSlider title="top rated" mainFilter="rated"/>
+            <ProductsSlider title="products on sale" mainFilter="sale" withNavigation={true}/>
             <Widget mockData = {[1,2,3,4,5,6]} />
         </>
     )

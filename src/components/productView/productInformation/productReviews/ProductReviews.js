@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 import ReviewView from './reviewView/ReviewView';
 import ReviewForm from './reviewForm/ReviewForm';
@@ -6,9 +6,9 @@ import RatingScheme from './ratingScheme/RatingScheme';
 import RatingView from '../../../ratingView/RatingView';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../../../../utils/firebase';
-import ProductContext from '../../../../contexts/ProductContext';
+import ProductContext from '../../../../contexts/product/ProductContext';
+import AuthContext from '../../../../contexts/auth/AuthContext';
 import { ReviewsPaginationStyle, RatingAvgStyle, RatingStarsStyle } from './ProductReviewsStyle';
-import { AuthContext } from '../../../../contexts/AuthContextProvider';
 
 const ProductReviews = () => {
   const {isAuthenticated} = useContext(AuthContext);

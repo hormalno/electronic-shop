@@ -10,6 +10,14 @@ export const SectionTitleClass = styled.div `
 		margin: 0px;
 	}
 `
+
+export const SectionCenterTitleClass = styled.div `
+	position: relative,
+	.title {
+		text-transform: uppercase;
+		text-align: center;
+	}
+`
 export const SectionNavClass = styled.div `
 	float: right;
 `

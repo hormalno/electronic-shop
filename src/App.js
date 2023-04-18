@@ -7,25 +7,22 @@ import Login from "./pages/users/Login";
 import Register from "./pages/users/Register";
 import Logout from "./pages/users/Logout";
 import Checkout from "./pages/checkout/Checkout";
+import Cart from "./pages/cart/Cart";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
-import AuthContextProvider from "./contexts/AuthContextProvider"
+import AuthState from "./contexts/auth/AuthState"
 import CartState from "./contexts/cart/CartState";
 import './App.css';
-import Cart from "./pages/cart/Cart";
 
+import ProductService from "./services/ProductService";
 
-// import { createProducts } from "./services/ProductService";
-
-// const CreateProducts = () => {
-//   createProducts();
-//   return (
-//     <h3>Products created!</h3>
-//   )
-// }
-// to do refactoring the contexts
 // to do cart autofill billing address
 // to do wishlist
 // to do error boundary
+// to do always fix loading at the top
+// to do store fix the pagination, 
+// to do store add filtering
+// to do adding review redirect to the product page
+// to do optional widget 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,20 +39,19 @@ const router = createBrowserRouter(
       <Route path="logout" element={<Logout />} />
       <Route path="checkout" element={<Checkout />} />
       <Route path="cart" element={<Cart />} />
-      {/* <Route path="createProducts" element={<CreateProducts />} /> */}
+      <Route path="createProducts" element={<ProductService />} />
       <Route path="*" element={<PageNotFound />} /> 
     </Route>
   )
 );
 
 function App() {
-
   return (
-    <CartState>
-      <AuthContextProvider>
+    <AuthState>
+      <CartState>
         <RouterProvider router={router} />
-      </AuthContextProvider>
-    </CartState>
+      </CartState>
+    </AuthState>
   );
 }
 

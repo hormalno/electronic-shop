@@ -1,6 +1,6 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import './Breadcrumb.css'
 
@@ -20,8 +20,7 @@ const Breadcrumb = () => {
 
 	useEffect(() => {
 		let productName = '';
-		getProductName().then((name) => {
-			productName = name;
+		getProductName().then((productName) => {
 			let currentLink = "";
 			let paramCrumbs = pathname.split('/')
 			.filter((crumb) => crumb !== '')
@@ -36,11 +35,8 @@ const Breadcrumb = () => {
 			setCrumbs(paramCrumbs)
 			setTitle(paramCrumbs[paramCrumbs.length-1].crumb)
 		})
-		
-		
-		
 	}, [pathname])
-	console.log(crumbs)
+
     return (
 		<div id="breadcrumb" className="section">
 			<div className="container">
@@ -59,10 +55,5 @@ const Breadcrumb = () => {
 		</div>
     )
 }
-
-
-
-
-
 
 export default Breadcrumb;

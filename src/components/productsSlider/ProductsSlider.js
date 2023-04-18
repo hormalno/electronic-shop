@@ -3,10 +3,10 @@ import Slider from 'react-slick';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useSliderData from '../../hooks/useSliderData';
-import { SectionTitleClass, SectionNavClass, SectionTabNavClass, ProductsTabsClass } from './ProductsSliderStyle';
+import { SectionTitleClass, SectionCenterTitleClass, SectionNavClass, SectionTabNavClass, ProductsTabsClass } from './ProductsSliderStyle';
 import {ProductsSliderNavStyle} from "./ProductsSliderNavStyle";
 
-function ProductsSlider({title, mainFilter}) {
+function ProductsSlider({title, mainFilter, mainCategory, withNavigation}) {
 	const sliderSettings = {
 		slidesToShow: 4,
 		slidesToScroll: 1,
@@ -20,30 +20,39 @@ function ProductsSlider({title, mainFilter}) {
 	};
 
 	const [slider, setSlider] = useState();	
-	const [category, setCategory] = useState('');
-	const sliderProducts = useSliderData(mainFilter,category);
+	const [category, setCategory] = useState();
+	const onClickHandler = (e) => {e.preventDefault();setCategory(e.target.name);};
+	const sliderProducts = useSliderData(mainFilter,mainCategory,category);
 
-	const onClickHandler = (e) => {
-		e.preventDefault();
-        setCategory(e.target.name);
-	};
+	let navigation = '';
+	if (withNavigation) {
+		navigation = (
+			<SectionTitleClass>
+				<h3 className="title">{title}</h3>
+				<SectionNavClass>
+					<SectionTabNavClass>
+						<li className={category === 'laptops' ? 'active' : ''}><Link to="#navTap" name="laptops" onClick={onClickHandler}>Laptops</Link></li>
+						<li className={category === 'smartphones' ? 'active' : ''}><Link to="#navTap" name="smartphones" onClick={onClickHandler}>Smartphones</Link></li>
+						<li className={category === 'cameras' ? 'active' : ''}><Link to="#navTap" name="cameras" onClick={onClickHandler}>Cameras</Link></li>
+						<li className={category === 'accessories' ? 'active' : ''}><Link to="#navTap" name="accessories" onClick={onClickHandler}>Accessories</Link></li>
+					</SectionTabNavClass>
+				</SectionNavClass>
+			</SectionTitleClass>
+		)
+	} else {
+		navigation = (
+			<SectionCenterTitleClass className='text-center'>
+				<h3 className="title">{title}</h3>
+			</SectionCenterTitleClass>
+		)
+	}
 
     return (
 		<div className="section">
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12">
-						<SectionTitleClass>
-							<h3 className="title">{title}</h3>
-							<SectionNavClass>
-								<SectionTabNavClass>
-									<li className={category === 'laptop' ? 'active' : ''}><Link to="#navTap" name="laptop" onClick={onClickHandler}>Laptops</Link></li>
-									<li className={category === 'smartphone' ? 'active' : ''}><Link to="#navTap" name="smartphone" onClick={onClickHandler}>Smartphones</Link></li>
-									<li className={category === 'camera' ? 'active' : ''}><Link to="#navTap" name="camera" onClick={onClickHandler}>Cameras</Link></li>
-									<li className={category === 'accessory' ? 'active' : ''}><Link to="#navTap" name="accessory" onClick={onClickHandler}>Accessories</Link></li>
-								</SectionTabNavClass>
-							</SectionNavClass>
-						</SectionTitleClass>
+						{navigation}
 					</div>
 					<div className="col-md-12">
 						<div className="row">

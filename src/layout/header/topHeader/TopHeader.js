@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import './TopHeader.css';
 import { Link } from "react-router-dom";
-import { AuthContext } from '../../../contexts/AuthContextProvider';
+import AuthContext from '../../../contexts/auth/AuthContext';
+import './TopHeader.css';
 
 function TopHeader() {
 
@@ -20,7 +20,7 @@ function TopHeader() {
                             <li><Link to="/register"> Register</Link></li>
                         </>)
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated,username])
 
     return (
         <div id="top-header">

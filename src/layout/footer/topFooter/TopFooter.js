@@ -9,7 +9,7 @@ function TopFooter() {
 					<div className="col-md-3 col-xs-6">
 						<FooterClass>
 							<h3 className="footer-title">About Us</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+							<p>Lorem ipsum dolor sit amet.</p>
 							<FoooterLinks>
 								<li><Link to="#"><i className="fa fa-map-marker"></i>1734 Stonecoal Road</Link></li>
 								<li><Link to="#"><i className="fa fa-phone"></i>+021-95-51-84</Link></li>
@@ -17,12 +17,10 @@ function TopFooter() {
 							</FoooterLinks>
 						</FooterClass>
 					</div>
-
 					<div className="col-md-3 col-xs-6">
 						<FooterClass>
 							<h3 className="footer-title">Categories</h3>
 							<FoooterLinks>
-								<li><Link to="/hotdeals">Hot deals</Link></li>
 								<li><Link to="/categories/laptops">Laptops</Link></li>
 								<li><Link to="/categories/smartphones">Smartphones</Link></li>
 								<li><Link to="/categories/cameras">Cameras</Link></li>
@@ -30,31 +28,26 @@ function TopFooter() {
 							</FoooterLinks>
 						</FooterClass>
 					</div>
-
 					<div className="clearfix visible-xs"></div>
-
 					<div className="col-md-3 col-xs-6">
 						<FooterClass>
 							<h3 className="footer-title">Information</h3>
 							<FoooterLinks>
-								<li><Link to="#">About Us</Link></li>
-								<li><Link to="#">Contact Us</Link></li>
-								<li><Link to="#">Privacy Policy</Link></li>
-								<li><Link to="#">Orders and Returns</Link></li>
-								<li><Link to="#">Terms & Conditions</Link></li>
+								<li><Link to="about" target="_blank" rel="noopener noreferrer">About Us</Link></li>
+								<li><Link to="contact" target="_blank" rel="noopener noreferrer">Contact Us</Link></li>
+								<li><Link to="orders" target="_blank" rel="noopener noreferrer">Orders and Returns</Link></li>
+								<li><Link to="terms" target="_blank" rel="noopener noreferrer">Terms & Conditions</Link></li>
 							</FoooterLinks>
 						</FooterClass>
 					</div>
-
 					<div className="col-md-3 col-xs-6">
 						<FooterClass>
 							<h3 className="footer-title">Service</h3>
 							<FoooterLinks>
-								<li><Link to="#">My Account</Link></li>
-								<li><Link to="#">View Cart</Link></li>
-								<li><Link to="#">Wishlist</Link></li>
-								<li><Link to="#">Track My Order</Link></li>
-								<li><Link to="#">Help</Link></li>
+								<li><Link to="/profile">My Account</Link></li>
+								<li><Link to="/cart">View Cart</Link></li>
+								<li><Link to="/wishlist">Wishlist</Link></li>
+								<li><Link to="/profile/orders">View My Orders</Link></li>
 							</FoooterLinks>
 						</FooterClass>
 					</div>

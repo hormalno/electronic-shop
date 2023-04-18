@@ -1,15 +1,14 @@
 import { useContext } from "react";
-import {AuthContext} from "../../contexts/AuthContextProvider";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../contexts/auth/AuthContext";
+import CartContext from "../../contexts/cart/CartContext";
 import authorized from "../../hoc/authorized";
 import { db } from "../../utils/firebase";
+import { setDoc, doc, serverTimestamp, collection } from "firebase/firestore";
 import { MyCheckbox, MyRadio, MyTextInput, MyTextarea } from "../../components/form/FormFields";
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
-import { setDoc, doc, serverTimestamp, collection } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
 import OrderSummary from "./orderSummary/OrderSummary";
-import CartContext from "../../contexts/cart/CartContext";
-import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 
 const Checkout = () => {
 	const navigate = useNavigate();
@@ -60,7 +59,7 @@ const Checkout = () => {
 				city: '',
 				country: '',
 				orderNotes: '',
-				terms: false,
+				acceptedTerms: false,
 				payment: ''
 			}}
 			validationSchema={checkoutSchema}
@@ -101,7 +100,7 @@ const Checkout = () => {
 									</MyRadio>
 									{touched.payment && errors.payment && (<div className="errorClass">{errors.payment}</div>)}
 								</div>
-								<MyCheckbox id="terms" name="terms">
+								<MyCheckbox id="acceptedTerms" name="acceptedTerms">
 									<span></span>
 									I've read and accept the <Link to="#">terms & conditions</Link>
 								</MyCheckbox>

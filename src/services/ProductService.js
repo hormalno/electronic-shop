@@ -1,28 +1,40 @@
-import { addDoc, collection, doc, setDoc, getDocs, serverTimestamp, updateDoc, increment } from "firebase/firestore"; 
-import {db, firestore} from '../utils/firebase';
+import { collection, doc, setDoc } from "firebase/firestore"; 
+import {db} from '../utils/firebase';
+import { useState } from "react";
 
-const categories = ["laptop","accessory","camera","smartphone"];
+const categories = ["laptops","accessories","cameras","smartphones"];
 const brandsLaptop = ["Asus","Acer","iMac","Lenovo"];
 const brandsAccessories = ["JBL","Phillips","Sony","Lenovo"];
 const brandsCameras = ["Canon", "Nikon", "Olympus","Fujifilm"];
 const brandsSmartphones = ["Samsung","Huawei","Xiaomi","iPhone"];
 
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-  };
+const ProductService = () => {
+    const [title, setTitle] = useState('');
+  const onClickHandler = async () => {
+    await createProducts();
+    setTitle("Products created!")
+  }
 
+  return (
+    <div className="container">
+        <h3>{title}</h3>
+        <button className="primary-btn" onClick={onClickHandler}>create products</button>
+    </div>
+  )
+}
 export const createProducts = () => {
+    const getRndInteger = (min, max) => {return Math.floor(Math.random() * (max - min + 1) ) + min;};
     let products = [];
     categories.forEach((category)=> {
         for (let index = 1; index <= 15; index++) {
             let newProduct = {};
-            newProduct.name = `Some name here ${index}`;
+            newProduct.name = `Name ${index}`;
             newProduct.category = category;
             newProduct.price = getRndInteger(index*10,index*100);
-            newProduct.oldPrice = getRndInteger(index*100,index*250);
+            newProduct.oldPrice = getRndInteger(index*100,index*200);
             let mainImgRnd = getRndInteger(1,4);
             switch(true) {
-                case category === "laptop":
+                case category === "laptops":
                     newProduct.brand = brandsLaptop[getRndInteger(1,4)-1];                    
                     if (mainImgRnd === 1) {
                         newProduct.mainImg = '../img/product01.png';
@@ -35,7 +47,7 @@ export const createProducts = () => {
                     }                    
                     newProduct.images = ['../img/product01.png','../img/product02.png','../img/product03.png','../img/product04.png'];
                     break;
-                case category === "accessory":
+                case category === "accessories":
                     newProduct.brand = brandsAccessories[getRndInteger(1,4)-1];
                     if (mainImgRnd === 1) {
                         newProduct.mainImg = '../img/product05.png';
@@ -48,7 +60,7 @@ export const createProducts = () => {
                     }  
                     newProduct.images = ['../img/product05.png','../img/product06.png','../img/product07.png','../img/product08.png'];
                     break;
-                case category === "camera":
+                case category === "cameras":
                     newProduct.brand = brandsCameras[getRndInteger(1,4)-1];  
                     if (mainImgRnd === 1) {
                         newProduct.mainImg = '../img/product09.png';
@@ -61,7 +73,7 @@ export const createProducts = () => {
                     }  
                     newProduct.images = ['../img/product09.png','../img/product10.png','../img/product11.png','../img/product12.png'];
                     break;
-                case category === "smartphone":
+                case category === "smartphones":
                     newProduct.brand = brandsSmartphones[getRndInteger(1,4)-1];
                     if (mainImgRnd === 1) {
                         newProduct.mainImg = '../img/product13.png';
@@ -80,7 +92,7 @@ export const createProducts = () => {
             newProduct.description =  'This is the full description. This is the full description. This is the full description. This is the full description. This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.';
             newProduct.shortDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
             newProduct.details = 'This is more details. This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.';
-            newProduct.rating = parseFloat(getRndInteger(0,4) + "." + getRndInteger(10,75));
+            newProduct.rating = 0.00;
             newProduct.reviewsCount = 0;
             if (index === 2 || index === 8 || index === 14 || index === 17) {
                 newProduct.sale = getRndInteger(10,75);
@@ -107,75 +119,13 @@ export const createProducts = () => {
         }
     });
 
-    // products.forEach((product) => {
-    //     const productRef = doc(collection(db, "products"))
-    //     setDoc(productRef,{...product,id:productRef.id})
-    //     .then(()=>console.log("Product created!"))
-    //     .catch(e => console.log(e));
-    // });
+    products.forEach((product) => {
+        const productRef = doc(collection(db, "products"))
+        setDoc(productRef,{...product,id:productRef.id})
+        .then(()=>console.log("Product created!"))
+        .catch(e => console.log(e));
+    });
 
-    // getDocs(collection(db, "products"))
-    // .then((querySnapshot) => {
-    //     querySnapshot.forEach((productRef) => {
-    //         for (let index = 0; index < 10; index++) {
-    //             let customReviewChosen = getRndInteger(1,40);
-    //             if (customReviewChosen === 3) {
-                    
-    //                 updateDoc(doc(db,"products",productRef.id), {reviewsCount: increment(1)})
-    //                 .then(() => console.log("The reviews count is incremented!"));
-
-    //                 const reviewRef = doc(collection(db, "products", productRef.id, "reviews"))
-    //                 setDoc(reviewRef, {
-    //                     id: reviewRef.id,
-    //                     email: "asdf@asdf.com",
-    //                     name: "Yasen",
-    //                     rating: getRndInteger(1,5),
-    //                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-    //                     createdAt: serverTimestamp()
-    //                 }).then(() => console.log("The review is added!"));
-    //             }         
-    //         }
-                
-    //     })
-    // }).catch(e => console.log(e));
 };
 
-const product = {
-    name: 'Some Name here',
-    category: 'laptop',
-    brand: 'Asus',
-    mainImg: '../img/product01.png',
-    images: ['../img/product01.png','../img/product03.png','../img/product06.png','../img/product08.png'],
-    price: 800,
-    oldPrice: 1000,
-    shortDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    description: 'This is the full description. This is the full description. This is the full description. This is the full description. This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.This is the full description.',
-    details: 'This is more details. This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.This is more details.',
-    sale: 24,   
-    rating: 3.2,
-    isNew: true,
-    isTopSelling: true,
-    inStock: true
-};
-
-export const getAllProducts = () => {
-    let productArray = [];
-    for (let index = 0; index < 35; index++) {
-        product.id = index;
-        productArray.push(product);
-    }
-    return productArray;
-}
-
-export const getAllProductsByCategory = (category) => {
-    let productArray = [];
-    for (let index = 0; index < 35; index++) {
-        product.id = index;
-        productArray.push(product);
-    }
-    return productArray;
-}
-
-export const getProduct = () => {
-    return product;
-}
+export default ProductService;

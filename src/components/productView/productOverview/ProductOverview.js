@@ -1,9 +1,9 @@
-import RatingView from "../../ratingView/RatingView";
 import { useContext } from "react";
-import ProductContext from '../../../contexts/ProductContext';
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthContextProvider";
+import ProductContext from '../../../contexts/product/ProductContext';
+import AuthContext from "../../../contexts/auth/AuthContext";
 import CartContext from "../../../contexts/cart/CartContext";
+import RatingView from "../../ratingView/RatingView";
 import './ProductOverview.css';
 
 const ProductOverview = () => {
@@ -42,7 +42,7 @@ const ProductOverview = () => {
                 </ul>
                 <ul className="product-links">
                     <li>Category:</li>
-                    <li><Link to="#">{product?.category}</Link></li>
+                    <li><Link to={'/'+product?.category}>{product?.category}</Link></li>
                 </ul>
                 <ul className="product-links">
                     <li>Share:</li>
