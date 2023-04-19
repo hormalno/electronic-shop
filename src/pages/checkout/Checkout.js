@@ -4,17 +4,19 @@ import AuthContext from "../../contexts/auth/AuthContext";
 import CartContext from "../../contexts/cart/CartContext";
 import authorized from "../../hoc/authorized";
 import { db } from "../../utils/firebase";
-import { setDoc, doc, serverTimestamp, collection } from "firebase/firestore";
+import { setDoc, doc, serverTimestamp, collection, getDoc } from "firebase/firestore";
 import { MyCheckbox, MyRadio, MyTextInput, MyTextarea } from "../../components/form/FormFields";
 import { Formik, Form } from "formik";
 import * as Yup from 'yup';
 import OrderSummary from "./orderSummary/OrderSummary";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Checkout = () => {
+	const [user, setUser] = useState({});
 	const navigate = useNavigate();
 	const {handleCheckout,cartItems, total} = useContext(CartContext);
 	const {username,id} = useContext(AuthContext);
-
 	const checkoutSchema = Yup.object().shape({
 		firstname: Yup.string().required('*The first name is required'),
 		lastname: Yup.string().required('*The last name is required'),
@@ -22,9 +24,16 @@ const Checkout = () => {
 		address: Yup.string().required('*The address name is required'),
 		city: Yup.string().required('*The city is required'),
 		country: Yup.string().required('*The country is required'),
-		terms: Yup.boolean().oneOf([true],'*You must accept the terms and conditions'),
+		acceptedTerms: Yup.boolean().oneOf([true],'*You must accept the terms and conditions'),
 		payment: Yup.string().required('*You must choose a payment')
 	})
+
+	useEffect(() => {
+		getDoc(doc(db,"users",id))
+		.then((userSnap) => {
+			setUser(userSnap.data());
+		})		
+	},[id])
 
 	const onSubmitHandler = async (values) => {
 
@@ -43,25 +52,23 @@ const Checkout = () => {
 		await setDoc(orderRef, {...orderData, id: orderRef.id})
 
 		handleCheckout()
-
-		console.log("Order placed!")
-
 		navigate("/")
 	}
 
     return (
 		<Formik
 			initialValues={{
-				firstname: '',
-				lastname: '',
-				email: '',
-				address: '',
-				city: '',
-				country: '',
+				firstname: user.firstname,
+				lastname: user.lastname,
+				email: username,
+				address: user.address,
+				city: user.city,
+				country: user.country,
 				orderNotes: '',
 				acceptedTerms: false,
 				payment: ''
 			}}
+			enableReinitialize={true}
 			validationSchema={checkoutSchema}
 			onSubmit={onSubmitHandler}>
 			{({errors,touched, isSubmitting}) => (
@@ -74,12 +81,12 @@ const Checkout = () => {
 									<div className="section-title">
 										<h3 className="title">Billing address</h3>
 									</div>
-									<MyTextInput class="input" type="text" name="firstname" placeholder="First Name" />
-									<MyTextInput class="input" type="text" name="lastname" placeholder="Last Name" />
-									<MyTextInput class="input" type="email" name="email" placeholder="Email" />
-									<MyTextInput class="input" type="text" name="address" placeholder="Address" />
-									<MyTextInput class="input" type="text" name="city" placeholder="City" />
-									<MyTextInput class="input" type="text" name="country" placeholder="Country" />
+									<MyTextInput type="text" name="firstname" placeholder="First Name" />
+									<MyTextInput type="text" name="lastname" placeholder="Last Name" />
+									<MyTextInput type="email" name="email" placeholder="Email" />
+									<MyTextInput type="text" name="address" placeholder="Address" />
+									<MyTextInput type="text" name="city" placeholder="City" />
+									<MyTextInput type="text" name="country" placeholder="Country" />
 								</div>
 								<MyTextarea containerclass="order-notes" name="orderNotes" placeholder="Order Notes"></MyTextarea>
 							</div>

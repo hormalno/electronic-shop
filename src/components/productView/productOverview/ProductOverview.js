@@ -1,17 +1,38 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductContext from '../../../contexts/product/ProductContext';
 import AuthContext from "../../../contexts/auth/AuthContext";
 import CartContext from "../../../contexts/cart/CartContext";
+import WishlistContext from "../../../contexts/wishlist/WishlistContext";
 import RatingView from "../../ratingView/RatingView";
 import './ProductOverview.css';
 
 const ProductOverview = () => {
 
-    const {addToCart,cartItems} = useContext(CartContext);
-    const product = useContext(ProductContext);
     const {isAuthenticated} = useContext(AuthContext);
-    const isInCart = (product) => {return !!cartItems.find((item) => item.id === product.id)}
+    const product = useContext(ProductContext);
+    const {addToCart,cartItems} = useContext(CartContext);
+    const {addToWishlist,removeFromWishlist,wishlistItems} = useContext(WishlistContext);
+    const isInCart = !!cartItems.find((item) => item.id === product.id);
+    const isInWishlist = !!wishlistItems.find((item) => item.id === product.id);
+    const [{cartDisabledBtn,cartBtnTitle}, setCartBtn] = useState({cartDisabledBtn: false, cartBtnTitle:'add to cart'});
+    const [{wishlistClass,wishlistIcon,wishlistTitle},setWishlistBtn] = useState({wishlistClass:'',wishlistIcon: "fa fa-heart-o",wishlistTitle: 'add to wishlist'})
+
+    useEffect(() => {
+        if (isInWishlist) {
+            setWishlistBtn({wishlistClass:'removed',wishlistIcon: "fa fa-heart",wishlistTitle: 'remove from wishlist'})
+        } else {
+            setWishlistBtn({wishlistClass:'',wishlistIcon: "fa fa-heart-o",wishlistTitle: 'add to wishlist'})
+        }
+        if (isInCart) {
+            setCartBtn({cartDisabledBtn:true, cartBtnTitle:'added'})
+        } else {
+            setCartBtn({cartDisabledBtn: false, cartBtnTitle:'add to cart'})
+        }
+    },[isInCart,isInWishlist])
+    
+    const onWishlistClickHandler = () => isInWishlist ? removeFromWishlist(product) : addToWishlist(product);
+    const onCartClickHandler = () => isInCart ? '' : addToCart(product);
 
     return (
         <div className="col-md-5">
@@ -31,18 +52,14 @@ const ProductOverview = () => {
                 <div className="product-options">                    
                 </div>
                 <div className="add-to-cart">
-                    {isInCart(product) ?
-                        <button className="add-to-cart-btn" disabled={true}><i className="fa fa-shopping-cart"></i> added</button>
-                    : 
-                        <button className="add-to-cart-btn" disabled={false} onClick={() => addToCart(product)}><i className="fa fa-shopping-cart"></i> add to cart</button>
-                    }
+                    <button className="add-to-cart-btn" disabled={cartDisabledBtn} onClick={onCartClickHandler}><i className="fa fa-shopping-cart"></i>{cartBtnTitle}</button>
                 </div>
                 <ul className="product-btns">
-                    <li><Link to="#"><i className="fa fa-heart-o"></i> add to wishlist</Link></li>
+                    <li className={wishlistClass} onClick={onWishlistClickHandler}><i className={wishlistIcon}></i> {wishlistTitle}</li>
                 </ul>
                 <ul className="product-links">
                     <li>Category:</li>
-                    <li><Link to={'/'+product?.category}>{product?.category}</Link></li>
+                    <li><Link to={'/categories/'+product?.category}>{product?.category}</Link></li>
                 </ul>
                 <ul className="product-links">
                     <li>Share:</li>

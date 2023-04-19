@@ -118,6 +118,9 @@ export const ProductShortViewButtonClass = styled.button `
             transform: translate(-50%, -5px);
         }
     }
+    .fa-heart {
+        color: #D10024;
+    }
     .tooltipp {
         position: absolute;
         bottom: 100%;

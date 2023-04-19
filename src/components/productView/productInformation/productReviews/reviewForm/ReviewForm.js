@@ -1,10 +1,17 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import {MyRadioStar, MyTextInput, MyTextarea} from "../../../../form/FormFields";
 import {collection, doc, increment, setDoc, updateDoc, serverTimestamp, getDocs} from "firebase/firestore"
 import { db } from "../../../../../utils/firebase";
+import AuthContext from "../../../../../contexts/auth/AuthContext";
+import * as Yup from 'yup';
 import './ReviewForm.css';
 
 const ReviewForm = ({productId}) => {
+
+    const navigate = useNavigate();
+    const {username} = useContext(AuthContext);
 
     const SubmitHandler = async (values) => {
         const reviewRef = doc(collection(db, "products", productId, "reviews"))
@@ -29,34 +36,22 @@ const ReviewForm = ({productId}) => {
         await updateDoc(doc(db,"products",productId), {rating: rating.toFixed(2)})
 
         console.log("Review added!");
+
+        navigate(0)
 	};
-    
-	const validate = (values) => {
-        const errors = {};
-        
-        if (!values.name) {
-            errors.name = '*The name is required!'
-        };      
-        if (!values.email) {
-          errors.email = '*The email is required!';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-          errors.email = '*Invalid email address!';
-        };
-        if (!values.text) {
-            errors.text = '*Please give the review some text!'
-        };
-        if (+values.rating === 0) {
-            errors.rating = '*Please give a rating!'
-        };
-      
-        return errors;
-    };
+
+    const reviewtSchema = Yup.object().shape({
+		name: Yup.string().required('*The name is required'),
+		email: Yup.string().oneOf([username],'*You must use your username').required('*The email is required'),
+		text: Yup.string().required('*Please give the review some text'),
+		rating: Yup.number().min(1,'*Please give a rating').max(5).required('*Please give a rating')
+	})
     
     return (
         <div id="review-form">
             <Formik
                 initialValues={{name: '', email: '', text: '', rating: 0}}
-                validate={validate}
+                validationSchema={reviewtSchema}
                 onSubmit={SubmitHandler}>
                 {({errors, touched, isSubmitting}) => (
                     <Form className="review-form">

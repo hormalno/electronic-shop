@@ -4,12 +4,34 @@ import { ProductShortViewClass,ProductShortViewImgClass,ProductShortViewLabelCla
          ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle';
 import { useContext } from 'react';
 import CartContext from '../../contexts/cart/CartContext';
+import WishlistContext from '../../contexts/wishlist/WishlistContext';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const ProductShortView = ({product}) => {
 
     const { addToCart, cartItems } = useContext(CartContext);
+    const {addToWishlist, removeFromWishlist, wishlistItems} = useContext(WishlistContext);
+    const isInCart = !!cartItems.find((item) => item.id === product.id);
+    const isInWishlist = !!wishlistItems.find((item) => item.id === product.id);
+    const [{cartDisabledBtn,cartBtnTitle}, setCartBtn] = useState({cartDisabledBtn: false, cartBtnTitle:'add to cart'});
+    const [{wishlistIcon,wishlistTitle},setWishlistBtn] = useState({wishlistIcon: "fa fa-heart-o",wishlistTitle: 'add to wishlist'})
 
-    const isInCart = (product) => {return !!cartItems.find((item) => item.id === product.id)}
+    useEffect(() => {
+        if (isInWishlist) {
+            setWishlistBtn({wishlistIcon: "fa fa-heart",wishlistTitle: 'remove'})
+        } else {
+            setWishlistBtn({wishlistIcon: "fa fa-heart-o",wishlistTitle: 'add to wishlist'})
+        }
+        if (isInCart) {
+            setCartBtn({cartDisabledBtn:true, cartBtnTitle:'added'})
+        } else {
+            setCartBtn({cartDisabledBtn: false, cartBtnTitle:'add to cart'})
+        }
+    },[isInCart,isInWishlist])
+    
+    const onWishlistClickHandler = () => isInWishlist ? removeFromWishlist(product) : addToWishlist(product);
+    const onCartClickHandler = () => isInCart ? '' : addToCart(product);
 
     return (
         <ProductShortViewClass>
@@ -28,16 +50,12 @@ const ProductShortView = ({product}) => {
                     <RatingView rating={product.rating} />
                 </ProductShortViewRatingClass>
                 <div className="product-btns">
-                    <ProductShortViewButtonClass><i className="fa fa-heart-o"></i><span className="tooltipp">add to wishlist</span></ProductShortViewButtonClass>
+                    <ProductShortViewButtonClass onClick={onWishlistClickHandler}><i className={wishlistIcon}></i><span className="tooltipp">{wishlistTitle}</span></ProductShortViewButtonClass>                    
                     <ProductShortViewButtonClass><i className="fa fa-eye"></i><span className="tooltipp">quick view</span></ProductShortViewButtonClass>
                 </div>
             </ProductShortViewBodyClass>
             <AddToCartClass className="add-to-cart">
-                {isInCart(product) ?
-                    <button className="add-to-cart-btn" disabled={true}><i className="fa fa-shopping-cart"></i> added</button>
-                    :
-                    <button className="add-to-cart-btn" disabled={false} onClick={() => addToCart(product)}><i className="fa fa-shopping-cart"></i> add to cart</button>
-                }
+                <button className="add-to-cart-btn" disabled={cartDisabledBtn} onClick={onCartClickHandler}><i className="fa fa-shopping-cart"></i>{cartBtnTitle}</button>
             </AddToCartClass>
         </ProductShortViewClass>
     )

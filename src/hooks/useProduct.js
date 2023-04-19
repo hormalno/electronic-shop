@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../utils/firebase";
+import { db } from "../utils/firebase"
 
 const useProduct = (productId) => {
 
     const [product, setProduct] = useState({});
 
-    useEffect(() => { 
+    useEffect(() => {
         getDoc(doc(db, "products", productId))
         .then((docSnap) => {
             if (docSnap.exists()) {

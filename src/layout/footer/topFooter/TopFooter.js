@@ -11,7 +11,7 @@ function TopFooter() {
 							<h3 className="footer-title">About Us</h3>
 							<p>Lorem ipsum dolor sit amet.</p>
 							<FoooterLinks>
-								<li><Link to="#"><i className="fa fa-map-marker"></i>1734 Stonecoal Road</Link></li>
+								<li><Link to="/#"><i className="fa fa-map-marker"></i>1734 Stonecoal Road</Link></li>
 								<li><Link to="#"><i className="fa fa-phone"></i>+021-95-51-84</Link></li>
 								<li><Link to="#"><i className="fa fa-envelope-o"></i>email@email.com</Link></li>
 							</FoooterLinks>

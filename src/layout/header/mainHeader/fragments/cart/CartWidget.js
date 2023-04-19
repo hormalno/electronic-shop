@@ -8,7 +8,7 @@ const CartWidget = () => {
 
     const {cartItems, itemCount, total} = useContext(CartContext)
     const [dropdownClass, setDropdownClass] = useState('dropdown');
-    const cartToggle = () => {setDropdownClass(dropdownClass === 'dropdown' &&  cartItems.length > 0 ? "dropdown open" : "dropdown")};
+    const cartToggle = () => {setDropdownClass(dropdownClass === 'dropdown' &&  itemCount > 0 ? "dropdown open" : "dropdown")};
 
     return (
         <div className={dropdownClass}>
