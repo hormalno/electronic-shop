@@ -2,29 +2,41 @@ import { getDocs, collection, query, where, limit } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../utils/firebase";
 
-const useStoreData = (queries) => {
+const useStoreData = (category,currentPage,perPage) => {
 
-    const [products, setProducts] = useState([]);
+    const [currentPageData, setCurrentPageData] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
 
     useEffect(()=> {
+        window.scrollTo({top:0,left:0})
         let q;
-        if (queries) {
-            q = query(collection(db, "products"), where("category", "==", queries), limit(12));
+        if (category) {
+            q = query(collection(db, "products"), where("category", "==", category), limit(12));
         } else {
             q = query(collection(db, "products"), limit(12));
         };
 
         getDocs(q)
         .then((querySnapshot) => {
-            let foundProduct = [];
+            let foundProducts = [];
             querySnapshot.forEach((doc) => {
-                foundProduct.push(doc.data());
+                foundProducts.push(doc.data());
             })
-            setProducts(foundProduct);
-        }).catch(e => console.log(e));
-    },[queries])
 
-    return products;
+            let offset = (currentPage - 1) * perPage;
+            setCurrentPageData(foundProducts.slice(offset, offset + perPage));
+            setPageCount(Math.ceil(foundProducts.length / perPage));      
+        }).catch(e => console.log(e));
+    },[category,currentPage,perPage])
+
+    return {
+        currentPageData: currentPageData,
+        pageCount: pageCount,
+        productShowed: {
+            start:((currentPage - 1) * perPage)+1,
+            end:((currentPage - 1) * perPage)+currentPageData.length
+        }
+    };
 };
 
 export default useStoreData;

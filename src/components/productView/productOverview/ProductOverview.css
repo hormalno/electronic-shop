@@ -147,6 +147,7 @@
     color: #D10024;
     text-decoration: none;
     outline: none;
+    cursor:pointer
   }
   .product-details .product-btns li+li {
     margin-left: 15px;

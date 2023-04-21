@@ -1,0 +1,17 @@
+.store-filter {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  
+  /*-- Store Sort --*/
+  
+  .store-sort {
+    display: inline-block;
+  }
+  
+  .store-sort label {
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 15px;
+  }

@@ -1,18 +1,18 @@
+import "./TopFilter.css"
+
 const TopFilter = () => {
 
     return (
         <div className="store-filter clearfix">
             <div className="store-sort">
-                <label>
-                    Sort By:
-                    <select name="pageSorting" className="input-select">
-                        <option value="popular">Popular</option>
-                        <option value="position">Position</option>
+                <label htmlFor="sorting">Sort By:
+                    <select id="sorting" name="pageSorting" className="input-select">
+                        <option value="name">Name</option>
+                        <option value="price">Price</option>
                     </select>
                 </label>
-                <label>
-                    Show:
-                    <select name="pageNumber" className="input-select">
+                <label htmlFor="pageNumber">Show:
+                    <select id="pageNumber" name="pageNumber" className="input-select">
                         <option value={9}>9</option>
                         <option value={18}>18</option>
                     </select>

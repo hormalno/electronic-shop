@@ -4,7 +4,7 @@ function AsideFilter() {
     return (
         <div id="aside" className="col-md-3">
             <div className="aside">
-                <h3 className="aside-title">Categories</h3>
+                <h3 className="aside-title">Brand</h3>
                 <div className="checkbox-filter">
                     <div className="input-checkbox">
                         <input type="checkbox" id="category-1" />
@@ -74,13 +74,13 @@ function AsideFilter() {
                 </div>
             </div>
             <div className="aside">
-                <h3 className="aside-title">Brand</h3>
+                <h3 className="aside-title">Rating</h3>
                 <div className="checkbox-filter">
                     <div className="input-checkbox">
                         <input type="checkbox" id="brand-1" />
                         <label htmlFor="brand-1">
                             <span></span>
-                            SAMSUNG
+                            <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i>
                             <small>(578)</small>
                         </label>
                     </div>
@@ -88,7 +88,7 @@ function AsideFilter() {
                         <input type="checkbox" id="brand-2" />
                         <label htmlFor="brand-2">
                             <span></span>
-                            LG
+                            <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i>
                             <small>(125)</small>
                         </label>
                     </div>
@@ -96,7 +96,7 @@ function AsideFilter() {
                         <input type="checkbox" id="brand-3" />
                         <label htmlFor="brand-3">
                             <span></span>
-                            SONY
+                            <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i>
                             <small>(755)</small>
                         </label>
                     </div>
@@ -104,7 +104,7 @@ function AsideFilter() {
                         <input type="checkbox" id="brand-4" />
                         <label htmlFor="brand-4">
                             <span></span>
-                            SAMSUNG
+                            <i className="fa fa-star"></i><i className="fa fa-star"></i>
                             <small>(578)</small>
                         </label>
                     </div>
@@ -112,16 +112,8 @@ function AsideFilter() {
                         <input type="checkbox" id="brand-5" />
                         <label htmlFor="brand-5">
                             <span></span>
-                            LG
+                            <i className="fa fa-star"></i>
                             <small>(125)</small>
-                        </label>
-                    </div>
-                    <div className="input-checkbox">
-                        <input type="checkbox" id="brand-6" />
-                        <label htmlFor="brand-6">
-                            <span></span>
-                            SONY
-                            <small>(755)</small>
                         </label>
                     </div>
                 </div>
