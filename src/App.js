@@ -11,14 +11,14 @@ import Cart from "./pages/cart/Cart";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import AuthState from "./contexts/auth/AuthState"
 import CartState from "./contexts/cart/CartState";
+import WishlistState from "./contexts/wishlist/WishlistState";
 import './App.css';
 
 import ProductService from "./services/ProductService";
-import WishlistState from "./contexts/wishlist/WishlistState";
+
 
 // to do wishlist and cart pages
 // to do error boundary
-// to do store fix the pagination, 
 // to do store add filtering
 // to do optional widget 
 

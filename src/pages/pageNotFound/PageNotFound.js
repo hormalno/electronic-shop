@@ -1,6 +1,4 @@
-import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
-
-function PageNotFound() {
+const PageNotFound = () => {
     return (
         <div className="section">
             <div className="container">

@@ -64,10 +64,9 @@ export const MyRadioStar = ({ children, ...props }) => {
 export const MySelect = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <div>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <select {...field} {...props} />
+    <label htmlFor={props.id || props.name}>{label}
+      <select className="input-select" {...field} {...props} />
       {meta.touched && meta.error ? (<div className="errorClass">{meta.error}</div>) : null}
-    </div>
+    </label>
   );
 };

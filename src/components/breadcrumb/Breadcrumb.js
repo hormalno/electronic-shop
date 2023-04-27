@@ -10,16 +10,16 @@ const Breadcrumb = () => {
 	const {productId} = useParams();
 	const [crumbs, setCrumbs] = useState([]);
 	const [title, setTitle] = useState('');
-	const getProductName =  async () => {		
-		if (productId) {
-			const productSnap = await getDoc(doc(db, "products", productId))
-			return productSnap.data().name;
-		};
-		return '';
-	};
+	
 
 	useEffect(() => {
-		let productName = '';
+		const getProductName =  async () => {		
+			if (productId) {
+				const productSnap = await getDoc(doc(db, "products", productId))
+				return productSnap.data().name;
+			};
+			return '';
+		};
 		getProductName().then((productName) => {
 			let currentLink = "";
 			let paramCrumbs = pathname.split('/')
@@ -35,7 +35,7 @@ const Breadcrumb = () => {
 			setCrumbs(paramCrumbs)
 			setTitle(paramCrumbs[paramCrumbs.length-1].crumb)
 		})
-	}, [pathname])
+	}, [pathname,productId])
 
     return (
 		<div id="breadcrumb" className="section">
