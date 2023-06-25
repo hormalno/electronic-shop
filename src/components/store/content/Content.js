@@ -19,7 +19,7 @@ const Content = () => {
    
 
     useEffect(()=> {
-        storeRef.current.scrollIntoView();
+        window.scrollTo({top: 0, left:0,behaviour:'smooth'});
         let q;
         if (category) {
             q = query(collection(db, "products"), where("category", "==", category), orderBy(sorting), limit(12));
@@ -40,7 +40,7 @@ const Content = () => {
     },[category, perPage, sorting])
 
     useEffect(() => {
-        storeRef.current.scrollIntoView();
+        window.scrollTo({top: 0, left:0,behaviour:'smooth'});
         let offset = (currentPage - 1) * perPage;
         setCurrentPageData(products.slice(offset, offset + perPage));
         setProductShowed({start: (offset+1), end:(offset+products.slice(offset, offset + perPage).length)})

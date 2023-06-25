@@ -8,6 +8,7 @@ import Register from "./pages/users/Register";
 import Logout from "./pages/users/Logout";
 import Checkout from "./pages/checkout/Checkout";
 import Cart from "./pages/cart/Cart";
+import Wishlist from "./pages/wishlist/Wishlist";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import AuthState from "./contexts/auth/AuthState"
 import CartState from "./contexts/cart/CartState";
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
       <Route path="logout" element={<Logout />} />
       <Route path="checkout" element={<Checkout />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="wishlist" element={<Wishlist />} />
       <Route path="createProducts" element={<ProductService />} />
       <Route path="*" element={<PageNotFound />} /> 
     </Route>
