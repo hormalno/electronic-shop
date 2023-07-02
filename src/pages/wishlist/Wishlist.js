@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import WishlistContext from "../../contexts/wishlist/WishlistContext";
+import ProductListItem from "../../components/productListItem/ProductListItem";
 
 const Wishlist = () => {
 
@@ -13,7 +14,7 @@ const Wishlist = () => {
         <div className="container">
             <h1>WISHLIST ITEMS</h1>
             {wishlistItems.map(item => {
-                return <p>{item.name}</p>
+                return <ProductListItem key={item.id} viewType="wishlist" product={item} />
             })}
         </div>
      );
