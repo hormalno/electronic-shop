@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CartContext from '../../../../../contexts/cart/CartContext';
-import ProductWidget from './productWidget/ProductWidget';
+import ProductWidget from '../../../../../components/productWidget/ProductWidget';
 import './CartWidget.css';
 
 const CartWidget = () => {
@@ -19,8 +19,8 @@ const CartWidget = () => {
             </Link>
             <div className='cart-dropdown'>
                 <div className='cart-list'>
-                    {cartItems.length > 0 && cartItems.map((product) => {
-                        return <ProductWidget key={product.id} product={product} />
+                    {cartItems && cartItems.map((product) => {
+                        return <ProductWidget viewType="cartThumb" product={product} />
                     })}
                 </div>
                 <div className='cart-summary'>

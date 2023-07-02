@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import CartContext from "../../contexts/cart/CartContext";
+import ProductWidget from "../../components/productWidget/ProductWidget";
 
 const Cart = () => {
 
@@ -12,8 +13,8 @@ const Cart = () => {
     return ( 
         <div className="container">
             <h1>CART ITEMS</h1>
-            {cartItems.map(item => {
-                return <p>{item.name}</p>
+            {cartItems && cartItems.map(item => {
+                return <ProductWidget viewType="cartFull" product={item} />
             })}
         </div>
      );
