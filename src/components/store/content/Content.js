@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import { getDocs, collection, query, where, limit, orderBy } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import ProductShortView from "../../productShortView/ProductShortView";
@@ -6,8 +6,7 @@ import StoreContext from "../../../contexts/StoreContext";
 import "./Content.css";
 
 const Content = () => {
-    
-    const storeRef = useRef();
+
     const category = useContext(StoreContext);
     const [products, setProducts] = useState([]);
     const [sorting, setSorting] = useState("name");
@@ -57,7 +56,7 @@ const Content = () => {
     const handlePageClick = (e, page) => {setCurrentPage(page);};
     
     return (
-        <div id="store" ref={storeRef} className="col-md-9"> 
+        <div id="store" className="col-md-9"> 
             <div className="store-filter clearfix">
                 <div className="store-sort">
                     <label htmlFor="sortBy">Sort by:

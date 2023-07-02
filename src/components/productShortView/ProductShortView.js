@@ -1,12 +1,10 @@
+import { useContext, useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 import RatingView from '../ratingView/RatingView'
-import { ProductShortViewClass,ProductShortViewImgClass,ProductShortViewLabelClass,ProductShortViewLabelSpanClass,ProductShortViewBodyClass,ProductShortViewCategoryClass,
-         ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle';
-import { useContext } from 'react';
 import CartContext from '../../contexts/cart/CartContext';
 import WishlistContext from '../../contexts/wishlist/WishlistContext';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { ProductShortViewClass,ProductShortViewImgClass,ProductShortViewLabelClass,ProductShortViewLabelSpanClass,ProductShortViewBodyClass,ProductShortViewCategoryClass,
+    ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle';
 
 const ProductShortView = ({product}) => {
 

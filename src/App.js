@@ -19,9 +19,11 @@ import ProductService from "./services/ProductService";
 
 
 // to do wishlist and cart pages
+// to do out of stock - no add cart
 // to do error boundary
 // to do store add filtering
-// to do optional widget 
+// to do optional widget
+// to do change currency
 
 const router = createBrowserRouter(
   createRoutesFromElements(
