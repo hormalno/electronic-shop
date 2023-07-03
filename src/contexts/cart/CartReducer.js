@@ -53,9 +53,8 @@ import {REMOVE_ITEM,ADD_TO_CART,INCREASE,DECREASE,CHECKOUT,CLEAR} from "./CartTy
   
       // If the action type is INCREASE, we want to increase the quantity of the particular item in the cartItems array
       case INCREASE:
-        state.cartItems[
-          state.cartItems.findIndex((item) => item.id === action.payload.id)
-        ].quantity++;
+        let index = state.cartItems.findIndex((item) => item.id === action.payload.id);
+        state.cartItems[index].quantity++;
         return {
           ...state,
           ...sumItems(state.cartItems),

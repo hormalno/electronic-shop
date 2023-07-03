@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import CartContext from "../../contexts/cart/CartContext";
 import ProductListItem from "../../components/productListItem/ProductListItem";
 import './Cart.css';
-import OrderSummary from "../checkout/orderSummary/OrderSummary";
-import { Link } from "react-router-dom";
+
 
 const Cart = () => {
 
@@ -32,7 +32,7 @@ const Cart = () => {
                             </thead>
                             <tbody>
                                 {cartItems && cartItems.map(item => {   
-                                    return <ProductListItem key={item.id} itemType="cart" product={item} />
+                                    return <ProductListItem key={item.id} product={item} />
                                 })}
                             </tbody>
                         </table>
@@ -51,7 +51,7 @@ const Cart = () => {
                                 <div><strong className="order-total">$ {total}</strong></div>
                             </div>
                         </div>
-                        <Link to='/checkout' className="primary-btn">Proceed to checkout</Link>
+                        <Link to={itemCount > 0 ? '/checkout' : ''} className="primary-btn">Proceed to checkout</Link>
                     </div>
                 </div>
             </div>
