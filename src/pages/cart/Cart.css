@@ -1,3 +1,15 @@
-.cartItems {
-    
+.cart_items > thead > tr > .w-200 {
+    width: 200px;
+}
+
+.cart_items > thead > tr > .w-150 {
+    width: 150px;
+}
+
+.cart_items > thead > tr > .w-100 {
+    width: 100px;
+}
+
+.cart_items > thead > tr > .w-50 {
+    width: 50px;
 }

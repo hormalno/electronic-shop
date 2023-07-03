@@ -1,10 +1,10 @@
-.productItem {
-
+.product-item td {
+  vertical-align: middle;
 }
 
-.productItem img {
+.product-item td img {
     width:auto;
-    height: 120px;;
+    height: 80px;;
 }
 
 @mixin cross($size: 10px, $color: currentColor, $thickness: 1px) {
@@ -42,14 +42,14 @@
   
 }
 
-.productItem .btn-close {
+.product-item td .btn-close {
   margin: 0;
   border: 0;
   padding: 0;
   background: #D10024;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -69,22 +69,43 @@
 
 }
 
-.productItem .btn-plus {
-  padding: 0;
-  border: none;
-  color:white;
-  background-color: transparent;
-  cursor: pointer;
-  height: 30px;
-  width: 30px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  background-color: #4f5165;
+.product-item td .btn-quantity {
+  color:black;
+  background-color: #FFF;
+  border: 1px solid #E4E7ED;
+  height: 25px;
+  width: 25px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
   border-radius: 3px;
-  font-size: larger
+  font-weight: bold;
 }
 
-.productItem .btn-plus:hover {
-  outline: 0;
-  background-color: black;
+.product-item td .btn-quantity.limit {
+  background-color: #D10024;
+  border-color: #D10024;
+  color: #FFF;
+  font-weight: 500;
+  cursor: default;
 }
+
+.product-item td .btn-quantity:hover {
+  background-color: #E4E7ED;
+  color: #D10024;
+}
+
+.product-item td .btn-quantity.limit:hover {
+  background-color: #D10024;
+  color: #FFF;
+}
+
+.product-item td span {
+  display: inline-block;
+  width: 20px;
+  height: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+

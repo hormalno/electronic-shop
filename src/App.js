@@ -18,8 +18,9 @@ import './App.css';
 import ProductService from "./services/ProductService";
 
 
-// to do wishlist and cart pages
+// to do increase and decrease just add one point - check context logic
 // to do out of stock - no add cart
+// to do profile page
 // to do error boundary
 // to do store add filtering
 // to do optional widget
