@@ -17,14 +17,12 @@ import './App.css';
 
 import ProductService from "./services/ProductService";
 
-
-// to do increase and decrease just add one point - check context logic
 // to do out of stock - no add cart
+// to do store add filtering
+// to do change currency
 // to do profile page
 // to do error boundary
-// to do store add filtering
 // to do optional widget
-// to do change currency
 
 const router = createBrowserRouter(
   createRoutesFromElements(

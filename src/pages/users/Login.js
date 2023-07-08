@@ -39,7 +39,7 @@ const Login = () => {
 									<MyTextInput type="email" name="email" placeholder="Email" />
 									<MyTextInput type="password" name="password" placeholder="Enter Your Password" />
 									<div className="form-group">
-										<div class="caption">
+										<div className="caption">
 											<p>If you don't have an account please <Link className="review-link" to="/register">register</Link></p>
 										</div>
 										<button className='primary-btn' type="submit" >Submit</button>

@@ -56,8 +56,9 @@ ul, ol {
   transition: 0.2s all;
 }
 
-.primary-btn:disabled {
-  background-color: #d1002357;
+.primary-btn.disabled {
+  background-color: #6a6767 !important;
+  cursor:default
 }
 
 

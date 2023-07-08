@@ -1,19 +1,21 @@
 import { useContext } from 'react';
-import './ProductListItem.scss'
-import CartContext from '../../contexts/cart/CartContext';
 import { Link } from 'react-router-dom';
+import CartContext from '../../contexts/cart/CartContext';
+import useProduct from "../../hooks/useProduct";
+import './ProductListItem.scss';
 
-const ProductListItem = ({product}) => {
+const ProductListItem = ({item}) => {
 
     const {removeFromCart,increase,decrease} = useContext(CartContext);
+    const product = useProduct(item.id);
 
     const handleDecrease = () => {
-        product.quantity <= 1 ? removeFromCart(product) : decrease(product);
+        item.quantity <= 1 ? removeFromCart(item.id) : decrease(item.id);
     };
 
     const handleIncrease = () => {
-        if (product.quantity < 20) {
-            increase(product)
+        if (item.quantity < 20) {
+            increase(item.id)
         };
     };
 
@@ -21,14 +23,14 @@ const ProductListItem = ({product}) => {
         <tr className='product-item'>
             <td><img src={'/'+product.mainImg} alt={product.name} /></td>
             <td><h3><Link to={"/categories/"+product.category+"/"+product.id}>{product.name}</Link></h3>{product.category}</td>
-            <td>$ {product.price}</td>
+            <td>$ {item.price}</td>
             <td>
-                <button className={product.quantity > 0 ? 'btn-quantity' : 'btn-quantity limit'} onClick={handleDecrease}>-</button>
-                <span className='quantity_number'>{product.quantity}</span>
-                <button className={product.quantity < 20 ? 'btn-quantity' : 'btn-quantity limit'} onClick={handleIncrease}>+</button>
+                <button className={item.quantity >= 1 ? 'btn-quantity' : 'btn-quantity limit'} onClick={handleDecrease}>-</button>
+                <span className='quantity_number'>{item.quantity}</span>
+                <button className={item.quantity < 20 ? 'btn-quantity' : 'btn-quantity limit'} onClick={handleIncrease}>+</button>
             </td>
-            <td>$ {product.price * product.quantity}</td>
-            <td><button className='btn-close' onClick={()=>removeFromCart(product)}><span class="icon-cross"></span></button></td>
+            <td>$ {item.price * item.quantity}</td>
+            <td><button className='btn-close' onClick={()=>removeFromCart(item.id)}><span className="icon-cross"></span></button></td>
         </tr>
     )
 };

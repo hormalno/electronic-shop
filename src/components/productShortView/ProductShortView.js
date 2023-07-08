@@ -10,7 +10,7 @@ const ProductShortView = ({product}) => {
 
     const { addToCart, cartItems } = useContext(CartContext);
     const {addToWishlist, removeFromWishlist, wishlistItems} = useContext(WishlistContext);
-    const isInCart = !!cartItems.find((item) => item.id === product.id);
+    const isInCart = !!cartItems.find(item => item.id === product.id);
     const isInWishlist = !!wishlistItems.find((item) => item.id === product.id);
     const [{cartDisabledBtn,cartBtnTitle}, setCartBtn] = useState({cartDisabledBtn: false, cartBtnTitle:'add to cart'});
     const [{wishlistIcon,wishlistTitle},setWishlistBtn] = useState({wishlistIcon: "fa fa-heart-o",wishlistTitle: 'add to wishlist'})
@@ -29,7 +29,7 @@ const ProductShortView = ({product}) => {
     },[isInCart,isInWishlist])
     
     const onWishlistClickHandler = () => isInWishlist ? removeFromWishlist(product) : addToWishlist(product);
-    const onCartClickHandler = () => isInCart ? '' : addToCart(product);
+    const onCartClickHandler = () => isInCart ? '' : addToCart(product.id,product.price);
 
     return (
         <ProductShortViewClass>

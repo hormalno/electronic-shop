@@ -7,7 +7,7 @@ import './Cart.css';
 
 const Cart = () => {
 
-    const {cartItems,total,itemCount} = useContext(CartContext);
+    const {cartItems,total,itemCount,clearCart} = useContext(CartContext);
 
     useEffect(() => {
         window.scrollTo({top: 0, left:0,behaviour:'smooth'})
@@ -32,10 +32,11 @@ const Cart = () => {
                             </thead>
                             <tbody>
                                 {cartItems && cartItems.map(item => {   
-                                    return <ProductListItem key={item.id} product={item} />
+                                    return <ProductListItem key={item.id} item={item} />
                                 })}
                             </tbody>
                         </table>
+                        {itemCount > 0 ? <button className="primary-btn" onClick={clearCart}>Clear Cart</button> : ''}
                     </div>
                     <div className="col-md-3">
                         <div className="section-title text-center">
@@ -51,7 +52,7 @@ const Cart = () => {
                                 <div><strong className="order-total">$ {total}</strong></div>
                             </div>
                         </div>
-                        <Link to={itemCount > 0 ? '/checkout' : ''} className="primary-btn">Proceed to checkout</Link>
+                        <Link to={itemCount > 0 ? '/checkout' : '#'} className={itemCount > 0 ? "primary-btn" : "primary-btn disabled"} >Proceed to checkout</Link>
                     </div>
                 </div>
             </div>

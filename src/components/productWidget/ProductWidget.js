@@ -1,11 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import CartContext from "../../contexts/cart/CartContext";
+import useProduct from "../../hooks/useProduct";
 import "./ProductWidget.css"
 
 
-const ProductWidget = ({product}) => {
+const ProductWidget = ({productId}) => {
 
     const { removeFromCart } = useContext(CartContext);
+    const product = useProduct(productId)
 
     return (
         <div className="product-widget">
@@ -16,7 +18,7 @@ const ProductWidget = ({product}) => {
                 <h3 className="product-name"><a href={'/categories/'+product.category+'/'+product.id}>{product.name}</a></h3>
                 <h4 className="product-price"><span className="qty">{product.quantity}x</span>${product.price}</h4>
             </div>
-            <button className="delete" onClick={() => removeFromCart(product)}><i className="fa fa-close"></i></button>
+            <button className="delete" onClick={() => removeFromCart(product.id)}><i className="fa fa-close"></i></button>
         </div>
     );
 }

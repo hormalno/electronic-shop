@@ -20,7 +20,7 @@ const CartWidget = () => {
             <div className='cart-dropdown'>
                 <div className='cart-list'>
                     {cartItems && cartItems.map((product) => {
-                        return <ProductWidget viewType="cartThumb" product={product} />
+                        return <ProductWidget key={product.id} productId={product.id} />
                     })}
                 </div>
                 <div className='cart-summary'>

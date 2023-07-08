@@ -32,7 +32,7 @@ const ProductOverview = () => {
     },[isInCart,isInWishlist])
     
     const onWishlistClickHandler = () => isInWishlist ? removeFromWishlist(product) : addToWishlist(product);
-    const onCartClickHandler = () => isInCart ? '' : addToCart(product);
+    const onCartClickHandler = () => isInCart ? '' : addToCart(product.id, product.price);
 
     return (
         <div className="col-md-5">
