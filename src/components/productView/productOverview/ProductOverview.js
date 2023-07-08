@@ -24,14 +24,14 @@ const ProductOverview = () => {
         } else {
             setWishlistBtn({wishlistClass:'',wishlistIcon: "fa fa-heart-o",wishlistTitle: 'add to wishlist'})
         }
-        if (isInCart) {
-            setCartBtn({cartDisabledBtn:true, cartBtnTitle:'added'})
+        if (isInCart || !product.inStock) {
+            setCartBtn({cartDisabledBtn:true, cartBtnTitle: product.inStock ? 'Added' : 'Out of stock'})
         } else {
             setCartBtn({cartDisabledBtn: false, cartBtnTitle:'add to cart'})
         }
-    },[isInCart,isInWishlist])
+    },[isInCart,isInWishlist,product])
     
-    const onWishlistClickHandler = () => isInWishlist ? removeFromWishlist(product) : addToWishlist(product);
+    const onWishlistClickHandler = () => isInWishlist ? removeFromWishlist(product.id) : addToWishlist(product.id);
     const onCartClickHandler = () => isInCart ? '' : addToCart(product.id, product.price);
 
     return (

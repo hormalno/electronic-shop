@@ -77,7 +77,7 @@ const Content = () => {
                 {currentPageData &&
                  currentPageData.map(product => 
                         <div key={product.id} className="col-md-4 col-xs-6">
-                            <ProductShortView key={product.id} product={product} />
+                            <ProductShortView key={product.id} productId={product.id} />
                         </div>)}
             </div>
             <div className="store-filter clearfix">

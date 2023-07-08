@@ -17,7 +17,7 @@ const Wishlist = () => {
                 <div className="row">                    
                         {wishlistItems.map(item => {
                             return (<div className="col-md-4 col-xs-6">
-                                        <ProductShortView product={item} />
+                                        <ProductShortView productId={item.id} />
                                     </div>)
                         })}
                 </div>

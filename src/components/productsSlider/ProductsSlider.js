@@ -59,7 +59,7 @@ function ProductsSlider({title, mainFilter, mainCategory, withNavigation}) {
 							<ProductsTabsClass>
 								<div id="tab1" className="tab-pane active">
 									<Slider ref={s => setSlider(s)} className="products-slick" {...sliderSettings}>
-										{sliderProducts && sliderProducts.map((product)=> {return <ProductShortView key={product.id} product={product} />})}
+										{sliderProducts && sliderProducts.map((product)=> {return <ProductShortView key={product.id} productId={product.id} />})}
 									</Slider>
 									<ProductsSliderNavStyle>
 										<button className="slick-prev" onClick={() => {slider.slickPrev();}}>Previous</button>
