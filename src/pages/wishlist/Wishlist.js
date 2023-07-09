@@ -4,7 +4,7 @@ import ProductShortView from "../../components/productShortView/ProductShortView
 
 const Wishlist = () => {
 
-    const {wishlistItems} = useContext(WishlistContext);
+    const {wishlistItems,clearWishlist} = useContext(WishlistContext);
     
     useEffect(() => {
         window.scrollTo({top: 0, left:0,behaviour:'smooth'})
@@ -21,6 +21,7 @@ const Wishlist = () => {
                                     </div>)
                         })}
                 </div>
+                {wishlistItems.length > 0 ? <button className="primary-btn" onClick={clearWishlist}>Clear wishlist</button> : ""}
             </div>
         </div>
      );

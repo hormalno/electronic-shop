@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { getDocs, collection, query, where, limit, orderBy } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import ProductShortView from "../../productShortView/ProductShortView";
-import StoreContext from "../../../contexts/StoreContext";
+import StoreContext from "../../../contexts/store/StoreContext";
 import "./Content.css";
 
 const Content = () => {

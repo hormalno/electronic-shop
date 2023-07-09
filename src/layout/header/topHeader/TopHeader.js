@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import AuthContext from '../../../contexts/auth/AuthContext';
+import CurrencyContext from '../../../contexts/currency/CurrencyContext';
 import './TopHeader.css';
 
 function TopHeader() {
 
     const {isAuthenticated, username} = useContext(AuthContext);
     const [account, setAccount] = useState('');
+    const {currency,setCurrency} = useContext(CurrencyContext);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -22,6 +24,8 @@ function TopHeader() {
         }
     }, [isAuthenticated,username])
 
+    console.log(currency)
+
     return (
         <div id="top-header">
             <div className="container">
@@ -31,7 +35,8 @@ function TopHeader() {
                     <li><Link to="#"><i className="fa fa-map-marker"></i> 1734 Stonecoal Road</Link></li>
                 </ul>
                 <ul className="header-links pull-right">
-                    <li><Link to="#"><i className="fa fa-dollar"></i> USD</Link></li>
+                    <li><Link to="#" onClick={()=>setCurrency('USD')}><i className="fa fa-dollar"></i> USD</Link></li>
+                    <li><Link to="#" onClick={()=>setCurrency('EUR')}><i className="fa fa-euro"></i> EUR</Link></li>
                     {account}                   
                 </ul>
             </div>

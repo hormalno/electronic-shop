@@ -4,7 +4,9 @@ import ProductContext from '../../../contexts/product/ProductContext';
 import AuthContext from "../../../contexts/auth/AuthContext";
 import CartContext from "../../../contexts/cart/CartContext";
 import WishlistContext from "../../../contexts/wishlist/WishlistContext";
+import CurrencyContext from "../../../contexts/currency/CurrencyContext";
 import RatingView from "../../ratingView/RatingView";
+import { priceView } from "../../../utils/currency";
 import './ProductOverview.css';
 
 const ProductOverview = () => {
@@ -13,6 +15,7 @@ const ProductOverview = () => {
     const product = useContext(ProductContext);
     const {addToCart,cartItems} = useContext(CartContext);
     const {addToWishlist,removeFromWishlist,wishlistItems} = useContext(WishlistContext);
+    const {currency} = useContext(CurrencyContext);
     const isInCart = !!cartItems.find((item) => item.id === product.id);
     const isInWishlist = !!wishlistItems.find((item) => item.id === product.id);
     const [{cartDisabledBtn,cartBtnTitle}, setCartBtn] = useState({cartDisabledBtn: false, cartBtnTitle:'add to cart'});
@@ -45,7 +48,7 @@ const ProductOverview = () => {
                     <Link className="review-link" to={isAuthenticated ? "#review-form" : '/login'}>{product?.reviewsCount} Review(s) | Add review</Link>
                 </div>
                 <div>
-                    <h3 className="product-price">${product?.price} {product?.sale > 0 ? (<del className="product-old-price">${product?.oldPrice}</del>) : ''}</h3>
+                    <h3 className="product-price">{priceView(product?.price,currency)} {product?.sale > 0 ? (<del className="product-old-price">{priceView(product?.oldPrice,currency)}</del>) : ''}</h3>
                     {product?.inStock ? <span className="product-available">In Stock</span> : ''}
                 </div>
                 <p>{product?.shortDescription}</p>

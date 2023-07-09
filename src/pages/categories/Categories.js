@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import StoreContext from "../../contexts/StoreContext";
+import StoreContext from "../../contexts/store/StoreContext";
 import Store from "../../components/store/Store";
 
 function Categories({category}) {

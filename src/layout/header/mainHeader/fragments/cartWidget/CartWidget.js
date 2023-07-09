@@ -1,12 +1,15 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import CartContext from '../../../../../contexts/cart/CartContext';
+import CurrencyContext from '../../../../../contexts/currency/CurrencyContext';
 import ProductWidget from '../../../../../components/productWidget/ProductWidget';
+import { priceView } from '../../../../../utils/currency';
 import './CartWidget.css';
 
 const CartWidget = () => {
 
     const {cartItems, itemCount, total} = useContext(CartContext)
+    const {currency} = useContext(CurrencyContext);
     const [dropdownClass, setDropdownClass] = useState('dropdown');
     const cartToggle = () => {setDropdownClass(dropdownClass === 'dropdown' ? "dropdown open" : "dropdown")};
 
@@ -19,13 +22,13 @@ const CartWidget = () => {
             </Link>
             <div className='cart-dropdown'>
                 <div className='cart-list'>
-                    {cartItems && cartItems.map((product) => {
-                        return <ProductWidget key={product.id} productId={product.id} />
+                    {cartItems && cartItems.map((item) => {
+                        return <ProductWidget key={item.id} item={item} />
                     })}
                 </div>
                 <div className='cart-summary'>
                     <small>{itemCount > 0 ? itemCount : '0'} Item(s) selected</small>
-                    <h5>SUBTOTAL: ${total > 0 ? total : '0.00'}</h5>
+                    <h5>SUBTOTAL: {total > 0 ? priceView(total,currency) : priceView('0',currency)}</h5>
                 </div>
                 <div className='cart-btns' onClick={cartToggle}>
                     <Link to={itemCount > 0 ? '/cart' : '#'}>View Cart</Link>

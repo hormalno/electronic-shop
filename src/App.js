@@ -16,10 +16,9 @@ import WishlistState from "./contexts/wishlist/WishlistState";
 import './App.css';
 
 import ProductService from "./services/ProductService";
+import CurrencyState from "./contexts/currency/CurrencyState";
 
-// to do out of stock - no add cart
 // to do store add filtering
-// to do change currency
 // to do profile page
 // to do error boundary
 // to do optional widget
@@ -51,7 +50,9 @@ function App() {
     <AuthState>
       <CartState>
         <WishlistState>
-          <RouterProvider router={router} />
+          <CurrencyState>
+            <RouterProvider router={router} />
+          </CurrencyState>
         </WishlistState>
       </CartState>
     </AuthState>

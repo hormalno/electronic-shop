@@ -3,15 +3,18 @@ import { Link } from 'react-router-dom';
 import RatingView from '../ratingView/RatingView'
 import CartContext from '../../contexts/cart/CartContext';
 import WishlistContext from '../../contexts/wishlist/WishlistContext';
+import CurrencyContext from '../../contexts/currency/CurrencyContext';
+import useProduct from '../../hooks/useProduct';
+import { priceView } from '../../utils/currency';
 import { ProductShortViewClass,ProductShortViewImgClass,ProductShortViewLabelClass,ProductShortViewLabelSpanClass,ProductShortViewBodyClass,ProductShortViewCategoryClass,
     ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle';
-import useProduct from '../../hooks/useProduct';
 
 const ProductShortView = ({productId}) => {
 
     const product = useProduct(productId);
     const { addToCart, cartItems } = useContext(CartContext);
     const {addToWishlist, removeFromWishlist, wishlistItems} = useContext(WishlistContext);
+    const {currency} = useContext(CurrencyContext);
     const isInCart = !!cartItems.find(item => item.id === productId);
     const isInWishlist = !!wishlistItems.find((item) => item.id === productId);
     const [{cartDisabledBtn,cartBtnTitle}, setCartBtn] = useState({cartDisabledBtn: false, cartBtnTitle:'add to cart'});
@@ -45,7 +48,7 @@ const ProductShortView = ({productId}) => {
             <ProductShortViewBodyClass>
                 <ProductShortViewCategoryClass>{product?.category}</ProductShortViewCategoryClass>
                 <ProductShortViewNameClass><Link to={"/categories/"+product?.category+"/"+product?.id}>{product?.name}</Link></ProductShortViewNameClass>
-                <ProductShortViewPriceClass>${product?.price?.toFixed(2)} {product?.sale > 0 ? <del className="product-old-price">${product?.oldPrice?.toFixed(2)}</del> : ''}</ProductShortViewPriceClass>
+                <ProductShortViewPriceClass>{priceView(product?.price,currency)} {product?.sale > 0 ? <del className="product-old-price">{priceView(product?.oldPrice,currency)}</del> : ''}</ProductShortViewPriceClass>
                 <ProductShortViewRatingClass>
                     <RatingView rating={product?.rating} />
                 </ProductShortViewRatingClass>
