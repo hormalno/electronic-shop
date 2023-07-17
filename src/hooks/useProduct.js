@@ -5,6 +5,7 @@ import { db } from "../utils/firebase"
 const useProduct = (productId) => {
 
     const [product, setProduct] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getDoc(doc(db, "products", productId))
@@ -19,6 +20,7 @@ const useProduct = (productId) => {
                     })
                     foundProduct.reviews = foundReviews;
                     setProduct(foundProduct);
+                    setIsLoading(false);
                 }).catch(e=>console.log(e));
             } else {
                 console.log("No product found!");
@@ -27,7 +29,7 @@ const useProduct = (productId) => {
         
     },[productId]);
 
-    return product;
+    return {product,isLoading};
 };
 
 export default useProduct;

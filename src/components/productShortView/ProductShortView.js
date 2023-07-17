@@ -6,12 +6,15 @@ import WishlistContext from '../../contexts/wishlist/WishlistContext';
 import CurrencyContext from '../../contexts/currency/CurrencyContext';
 import useProduct from '../../hooks/useProduct';
 import { priceView } from '../../utils/currency';
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import { ProductShortViewClass,ProductShortViewImgClass,ProductShortViewLabelClass,ProductShortViewLabelSpanClass,ProductShortViewBodyClass,ProductShortViewCategoryClass,
     ProductShortViewNameClass,ProductShortViewPriceClass,ProductShortViewRatingClass,ProductShortViewButtonClass,AddToCartClass } from './ProductShortViewStyle';
 
+
 const ProductShortView = ({productId}) => {
 
-    const product = useProduct(productId);
+    const {product,isLoading} = useProduct(productId);
+    const [loadingImage, setLoadingImage] = useState(true);
     const { addToCart, cartItems } = useContext(CartContext);
     const {addToWishlist, removeFromWishlist, wishlistItems} = useContext(WishlistContext);
     const {currency} = useContext(CurrencyContext);
@@ -37,12 +40,13 @@ const ProductShortView = ({productId}) => {
     const onCartClickHandler = () => isInCart ? '' : addToCart(product?.id,product?.price);
 
     return (
-        <ProductShortViewClass>
+        <ProductShortViewClass>         
             <ProductShortViewImgClass>
-                <img src={'/'+product?.mainImg} alt={product?.name} />
+                {loadingImage ? <LoadingSpinner /> : ''}
+                <img src={'/'+product?.mainImg} alt={product?.name} onLoad={()=>setLoadingImage(false)} />
                 <ProductShortViewLabelClass>
                     {product?.isNew ? (<ProductShortViewLabelSpanClass new>new</ProductShortViewLabelSpanClass>) : ''}
-                    {product?.sale > 0 ? (<ProductShortViewLabelSpanClass sale>-{product?.sale}%</ProductShortViewLabelSpanClass>) : ''}
+                    {product?.sale > 0 ? (<ProductShortViewLabelSpanClass sale>-{product.sale}%</ProductShortViewLabelSpanClass>) : ''}
                 </ProductShortViewLabelClass>
             </ProductShortViewImgClass>
             <ProductShortViewBodyClass>
