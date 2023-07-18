@@ -50,11 +50,11 @@ const ProductShortView = ({productId}) => {
                 </ProductShortViewLabelClass>
             </ProductShortViewImgClass>
             <ProductShortViewBodyClass>
-                <ProductShortViewCategoryClass>{product?.category}</ProductShortViewCategoryClass>
-                <ProductShortViewNameClass><Link to={"/categories/"+product?.category+"/"+product?.id}>{product?.name}</Link></ProductShortViewNameClass>
-                <ProductShortViewPriceClass>{priceView(product?.price,currency)} {product?.sale > 0 ? <del className="product-old-price">{priceView(product?.oldPrice,currency)}</del> : ''}</ProductShortViewPriceClass>
+                <ProductShortViewCategoryClass>{isLoading ? "category" : product.category}</ProductShortViewCategoryClass>
+                <ProductShortViewNameClass><Link to={"/categories/"+product?.category+"/"+product?.id}>{isLoading ? "name" : product.name}</Link></ProductShortViewNameClass>
+                <ProductShortViewPriceClass>{priceView(isLoading ? 0 : product.price,currency)} {isLoading === false && product.sale > 0 ? <del className="product-old-price">{priceView(product.oldPrice,currency)}</del> : ''}</ProductShortViewPriceClass>
                 <ProductShortViewRatingClass>
-                    <RatingView rating={product?.rating} />
+                    <RatingView rating={isLoading ? 0 : product.rating} />
                 </ProductShortViewRatingClass>
                 <div className="product-btns">
                     <ProductShortViewButtonClass onClick={onWishlistClickHandler}><i className={wishlistIcon}></i><span className="tooltipp">{wishlistTitle}</span></ProductShortViewButtonClass>                    
